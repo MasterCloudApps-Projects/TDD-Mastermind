@@ -71,6 +71,11 @@ Vemos el solo TDD no ayuda a mejorar el coste, sino es el conjunto de todas las 
 
 
 ## Las distintias corrientes del TDD:
+En el primer libro Kent Beck, nos da unas series de pautas que podemos usar para hacer un mejor código y TDD. Entre ellas nos dice que tenemos que hacer una lista de las pruebas que vamos a hacer ahora y otra de las futuras pruebas, porque el nos dice que no podemos abarcar todo el programa en una misma iteración. Nos dice que un programa basado en pruebas puede parecer estar escrito tanto de arriba abajo, porque se ha comenzado con prueba que representa un caso simple, como de abajo a arriba, porque se ha comenzado con pequeñas partes y luego se le van agregado partes más grandes.
+
+Por eso, dice que ninguna de las dos describe realmente como es el proceso. Porque no podemos definar el proceso como algo vertical, si tuviéramos que hacer en todo caso sería algo como de lo conocido a lo desconocido. Por eso, nos dice que no tenemos que abarcar todo el programa de una vez, sino que tenemos que centrarnos en una funcionalidad haciendo pequeñas iteraciones. De esta manera, si cada pequeña funcionalidad lo representamos como un palo, al final tendremos muchos palos que serían todas las funcionalidades y sobre esos palos estaría asentado nuestro programa. 
+
+Actualmente tenemos dos corrientes principales:
 ### Inside-Out
 
 La escuela clásica (Inside-Out) se distingue por centrarse en la verificación del estado de los objetos, siendo por ello imprescindible que el contexto de los test siempre deba estar formado por `objetos reales`, configurados previamente. Para la correcta generación de estos contextos se pueden crear clases que nos ayuden.
