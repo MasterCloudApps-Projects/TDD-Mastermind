@@ -67,6 +67,8 @@ No hay razón para que el costo de realizar un cambio en el software deba ser ta
 - Es importante no perder tiempo y dinero iterando cuando no es necesario. Pasar suficiente tiempo por adelantado en la comprensión de los requisitos y en el diseño para hacerlo bien al menos en su mayor parte la primera vez, se puede ahorrar mucho, más adelante.
 - Ya sea que se esté trabajando de forma incremental e iterativa, o secuencialmente, tiene sentido detectar errores lo más temprano que se pueda, ya sea que se haga a través del desarrollo e implementación de prueba primero, o talleres de requisitos y revisiones de código, lo que sea que más funcional.
 
+Vemos el solo TDD no ayuda a mejorar el coste, sino es el conjunto de todas las buenas prácticas. El TDD nos ayuda a detectar los errores y a hacer un código mas limpio, pero decir que con solo la implementación del TDD podemos mejorar mucho el coste, no es cierto. 
+
 
 ## Las distintias corrientes del TDD:
 ### Inside-Out
