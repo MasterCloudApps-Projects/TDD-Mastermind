@@ -14,8 +14,8 @@ public class CombinationTest {
 	}
 	
 	@Test
-	public void getMaxWidthWrongValueTest() {
+	public void getMaxWidthCorrectValueTest() {
 		Combination combination = new Combination();
-		assertEquals(combination.getMaxWidth(), Integer.MIN_VALUE);
+		assertEquals(combination.getMaxWidth(), 4);
 	}
 }

@@ -8,6 +8,7 @@ import com.tfm.mastermind.back.utils.Color;
 
 public class Combination {
 
+	public static int MAXWIDTH = 4;
 	public List<Color> combination;
 	
 	public Combination() {
@@ -19,7 +20,7 @@ public class Combination {
 	}
 	
 	public int getMaxWidth() {
-		return Integer.MIN_VALUE;
+		return MAXWIDTH;
 	}
 	
 }
