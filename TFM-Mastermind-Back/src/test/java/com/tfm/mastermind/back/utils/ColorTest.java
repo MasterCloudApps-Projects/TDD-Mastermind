@@ -1,6 +1,7 @@
 package com.tfm.mastermind.back.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class ColorTest {
 	}
 	
 	@Test
-	public void getColorLenghtWrongValueTest() {
-		assertEquals(Color.length(), Integer.MIN_VALUE);
+	public void getColorLenghtCorrectValueTest() {
+		assertNotEquals(Color.length(), Integer.MIN_VALUE);
 	}
 }

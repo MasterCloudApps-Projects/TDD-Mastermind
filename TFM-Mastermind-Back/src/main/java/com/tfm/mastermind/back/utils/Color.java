@@ -15,7 +15,7 @@ public enum Color {
 	}
 
 	public static int length() {
-		return Integer.MIN_VALUE;
+		return Color.length();
 	}
 	
 }
