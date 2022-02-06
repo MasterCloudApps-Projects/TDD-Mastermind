@@ -17,4 +17,9 @@ public class ColorTest {
 		Color color = Color.get(Color.GREEN.ordinal());
 		assertEquals(color, Color.GREEN);
 	}
+	
+	@Test
+	public void getColorLenghtWrongValueTest() {
+		assertEquals(Color.length(), Integer.MIN_VALUE);
+	}
 }

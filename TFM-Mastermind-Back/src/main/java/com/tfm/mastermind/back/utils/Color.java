@@ -13,5 +13,9 @@ public enum Color {
 	public static Color get(int index){
 		return Color.values()[index];
 	}
+
+	public static int length() {
+		return Integer.MIN_VALUE;
+	}
 	
 }
