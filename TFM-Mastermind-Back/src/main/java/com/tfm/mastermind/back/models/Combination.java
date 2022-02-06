@@ -18,4 +18,8 @@ public class Combination {
 		return this.combination;
 	}
 	
+	public int getMaxWidth() {
+		return Integer.MIN_VALUE;
+	}
+	
 }
