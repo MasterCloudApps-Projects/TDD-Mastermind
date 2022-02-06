@@ -1,14 +1,14 @@
 package com.tfm.mastermind.back.models;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
 public class CombinationTest {
 
 	@Test
-	public void getCombinationListNullTest() {
+	public void getCombinationListNotNullTest() {
 		Combination combination = new Combination();
-		assertNull(combination.getColors());
+		assertNotNull(combination.getColors());
 	}
 }
