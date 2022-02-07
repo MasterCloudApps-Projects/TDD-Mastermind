@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 public class BoardTest {
 
 	@Test
-	public void getBoardSecretCombinationNull() {
+	public void getBoardSecretCombinationNotNull() {
 		Board board = new Board();
 		assertNull(board.getSecretCombination());
 	}
+	
 }
