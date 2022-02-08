@@ -4,7 +4,13 @@ import com.tfm.mastermind.back.models.Board;
 
 public class BoardService {
 
+	private Board board;
+	
+	public BoardService() {
+		this.board = new Board();
+	}
+	
 	public Board getBoard() {
-		return null;
+		return this.board;
 	}
 }
