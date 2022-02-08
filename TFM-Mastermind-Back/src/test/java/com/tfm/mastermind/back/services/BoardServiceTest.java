@@ -11,4 +11,10 @@ public class BoardServiceTest {
 		BoardService boardService = new BoardService();
 		assertNotNull(boardService.getBoard());
 	}
+	
+	@Test
+	public void getSecretCombinationFromBoardTest() {
+		BoardService boardService = new BoardService();
+		assertNotNull(boardService.getBoard().getSecretCombination());
+	}
 }
