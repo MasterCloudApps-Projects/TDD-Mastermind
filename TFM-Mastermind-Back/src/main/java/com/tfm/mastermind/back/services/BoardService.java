@@ -1,7 +1,10 @@
 package com.tfm.mastermind.back.services;
 
+import org.springframework.stereotype.Service;
+
 import com.tfm.mastermind.back.models.Board;
 
+@Service
 public class BoardService {
 
 	private Board board;
