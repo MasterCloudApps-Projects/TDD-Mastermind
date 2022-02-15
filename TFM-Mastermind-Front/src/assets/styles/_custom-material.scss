@@ -1,0 +1,57 @@
+/*
+Fichero con adaptaciones sobre el estilo por defecto de los componentes de angular-material
+*/
+
+$header-height: 65px;
+
+.qo {
+
+    .danger-color {
+        color: $warn_color;
+    }
+    .accent-color {
+        color: $accent_color;
+    }
+    .primary-color {
+        color: $primary_color;
+    }
+
+
+    .mat-list-base .mat-list-item {
+        height: auto;
+        min-height: 48px;
+    }
+
+    .mat-button,
+    .mat-raised-button,
+    .mat-stroked-button,
+    .mat-flat-button {
+        .mat-icon:first-child {
+            margin-right: 5px;
+        }
+    }
+
+    .mat-form-field-infix {
+        width: auto;
+    }
+}
+//---------------------------------------------------------------------------------------\\
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+
+    box-shadow: inset 0 0 5px white;
+}
+::-webkit-scrollbar-thumb {
+    background:$primary_color;
+    border-radius: 10px;
+}
+* {
+    scrollbar-width: thin;
+    scrollbar-color: $primary_color $primary_color_contrast;
+}
+

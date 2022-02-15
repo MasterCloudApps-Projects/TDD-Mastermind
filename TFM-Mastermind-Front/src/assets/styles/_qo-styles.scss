@@ -1,0 +1,29 @@
+
+@import 'app-colors';
+
+$min-button-width: 164px;
+
+.form-buttons {
+  width: 100%;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  .mat-button-base {
+    min-width: $min-button-width;
+    margin-left: 1rem;
+  }
+}
+
+.main-padding {
+  padding: 1rem;
+}
+
+.listing-row {
+  min-width: 500px;
+  padding: 0 10px 10px 10px;
+  font-size: 1.2rem;
+  &:hover {
+      background-color: #f0f0f0;
+  }
+}
+
