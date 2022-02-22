@@ -82,9 +82,7 @@ En el primer libro Kent Beck, nos da unas series de pautas que podemos usar para
 
 Por eso, dice que ninguna de las dos describe realmente como es el proceso. Porque no podemos definar el proceso como algo vertical, si tuviéramos que hacer en todo caso sería algo como de lo conocido a lo desconocido. Por eso, nos dice que no tenemos que abarcar todo el programa de una vez, sino que tenemos que centrarnos en una funcionalidad haciendo pequeñas iteraciones. De esta manera, si cada pequeña funcionalidad lo representamos como un palo, al final tendremos muchos palos que serían todas las funcionalidades y sobre esos palos estaría asentado nuestro programa. 
 
-En su libro Kent Beck no habla del outside-in, porque en el libro original no habla de mocks, pero si que habla del inside-out pero no es puro, sino que son como hilos de abajo-arriba en pequeñas verticales y no todas las funcionalidades. Se empieza desde una pequeña funcionalidad hasta el arriba, asi se hacen distintas iteraciones sobre pequeñas funcionalidad hasta arriba y sobre todas esas iteraciones se situa toda la funcionalidad de la aplicación.  
-
-Las historias de usuarios para inside-out desde lo mas basico. outside-in en principal son cascadas. las historias de usuarios se empiezas desde los modelos de backend y vas subiendo.
+En su libro Kent Beck no habla del outside-in, porque en el libro original no habla de mocks, pero si que habla del inside-out pero no es puro, sino que son como hilos de abajo-arriba en pequeñas verticales y no todas las funcionalidades. 
 
 Actualmente tenemos dos corrientes principales:
 ### Inside-Out
