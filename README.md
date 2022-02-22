@@ -1,6 +1,7 @@
 # TDD-Mastermind
 
 ## TDD
+TDD o Test-Driven Development (desarrollo dirigido por tests) es una práctica de programación que consiste en escribir primero las pruebas (generalmente unitarias), después escribir el código fuente que pase la prueba satisfactoriamente y, por último, refactorizar el código escrito.
 Para el uso del TDD se deben combinar 2 metodologías: Test-first development (escribir las pruebas primero) y Refactoring (refactorización de código). Para esto, se usa un ciclo de desarrollo que consta de 3 partes principales:
 - La prueba debe fallar. (Red: Muchas herramientas muestran los fallos de las pruebas en rojo)
 - La prueba debe pasar. (Green: Al igual que lo anterior, las herramientas muestran las pruebas que pasan en verde)
@@ -25,7 +26,9 @@ Los errores más comunes:
 - Escribir pruebas sin aserciones.
 - No escribir el código mínimo (suficiente para aprobar el test creado no más).
 
-### Experimentos
+## Experimentos
+
+### Experimento IBM y Microsoft
 En 2008 se hicieron varios experimentos con varios equipos en igualdad de condiciones haciendo distintos desarrollos, esos equipos se dividieron en dos unos haciendo desarrollos con TDD y otros sin TDD. Todos los equipos eran similares entre sí en tamaño y velocidad y fueron seleccionados en función de sus diferentes características:
 - Tenía un nivel de experiencia de desarrollo diferente, de menor a mayor.
 - Tenía un nivel de experiencia de dominio diferente, de menor a mayor.
@@ -40,25 +43,29 @@ Tras finalizar los experimentos, hallazgos fueron realmente interesantes:
 - Los equipos que continuaron usando TDD después del experimento experimentaron una menor cantidad de defectos en la producción.
 - La información interesante provino de un equipo de IBM que participo en el experimento. Después del experimento, algunos de los miembros del equipo dejaron de ejecutar las pruebas unitarias de regresión. La situación resultó en una mayor cantidad de defectos en la producción. 
 
-Otro experimento se llevó a cabo entre 24 desarrolladores de software experimentados que se enfrentaron en pares. Donde un par escribía el código usando el TDD y otro par no. Los autores del experimento prepararon 20 pruebas de caja negra para verificar los resultados.
-
-Los hallazgos fueron:
-- Las aplicaciones escritas por los desarrolladores de TDD pasaron en promedio un 18% más de casos de prueba de caja negra que las aplicaciones escritas por desarrolladores que no son de TDD.
-- Después del experimento, los desarrolladores reconocieron que TDD ayuda a comprender mejor los requisitos comerciales y que TDD facilitó su trabajo al reducir el tiempo y la energía para la depuración.
-
-#### Resumen: ¿Vale la pena TDD?
-Fuentes confiables confirman que el desarrollo basado en pruebas se conecta directamente con la mayor calidad del código, lo que resulta en menos defectos. El costo de la sobrecarga de tiempo para escribir las pruebas unitarias se paga rápidamente porque el costo de los cambios que deben realizarse más tarde sin una cobertura de prueba automatizada es mucho mayor, en escenarios pesimistas puede aumentar exponencialmente. En los lenguajes orientados a objetos, TDD está bien examinado y el retorno de la inversión (ROI) de los proyectos está respaldado con la mejor calidad.
-
-Pero las pruebas unitarias no debería ser la única capa de pruebas automatizadas de su sistema. También se expandir la capa de prueba unitaria mediante pruebas de integración, desarrollo impulsado por pruebas de aceptación (ATDD), desarrollo impulsado por el comportamiento (BDD) o, al menos, considerar dicha opción en su propio.
 
 #### Las críticas
 En los experimentos que realizó IBM, se ve una clara diferencia en la cantidad de los test unitarios realizados por los grupos que desarrollaban los distintos proyectos. El grupo que estaba haciendo el proyecto sin usar el TDD, no hizo los test unitarios hasta finalizar el desarrollo. Los test realizados después de la finalización fueron muy pobres y no tenían una buena cobertura. Por último, los test de aceptación que tenían que pasar los dos proyectos no se basaron en los test realizados por los grupos, sino que los tests los hizo un grupo distintos basándose en los requisitos del proyecto.
 
 Los equipos de Microsoft partían con un poco de ventajas, y era que los equipos hicieron reuniones para definir los requisitos y a la reunión también asistió el equipo encargado de crear las pruebas de aceptación que al final tenían que pasar los proyectos.  Microsoft tenía tres grupos distintos, uno de los grupos seguía el enfoque hibrido “Waterfall” de Royce, que consiste en la creación de prototipos antes del proyecto final, otro equipo tenia un código heredado y no siguió ninguna técnica de desarrollo y el ultimo, utilizó metodologías agiles con TDD. No había medidas de particular para ver que proyectos pasaban mas los test, solo se utilizó como medida la cobertura de pruebas de cada proyecto. 
 
+Tanto en el proyecto de IBM como en los de Microsoft, no hay medida homologada o eficaz para medir por completo como de bien funciona el TDD. Pero lo que si podemos saber con estos experimentos es que, si se utiliza el TDD desde etapas tempranas en los desarrollos, estos proyectos luego tienen un menos corte de mantenimiento. Pero para tener unos números más exacto de la cuando es la diferencia si se utiliza o no el TDD, habría que hacer experimentos en un entorno mas controlado, tener unas medidas de evaluación más igualitarias y partir en los dos casos desde el mismo punto. 
+
+### Experimentos de pares
+Otro experimento se llevó a cabo entre 24 desarrolladores de software experimentados que se enfrentaron en pares. Donde un par escribía el código usando el TDD y otro par no. Los autores del experimento prepararon 20 pruebas de caja negra para verificar los resultados.
+
+Los hallazgos fueron:
+- Las aplicaciones escritas por los desarrolladores de TDD pasaron en promedio un 18% más de casos de prueba de caja negra que las aplicaciones escritas por desarrolladores que no son de TDD.
+- Después del experimento, los desarrolladores reconocieron que TDD ayuda a comprender mejor los requisitos comerciales y que TDD facilitó su trabajo al reducir el tiempo y la energía para la depuración.
+
+#### Criticas
 En el experimento que se hizo con 24 pares personas la mitad desarrollando usado TDD y los otros pares sin TDD, tanto los que usaban TDD como los que no, tenían que escribir pruebas para probar el funcionamiento de la aplicación. Pero de los 12 pares no que usaban TDD solo un par hizo suficientes pruebas como para considerar validas. Por tanto, sacar las conclusiones viendo la cobertura de test y haciendo pasar al código pruebas de caja negra, no es muy fiable. De igual manera decir que tardas mas en hacer el código si haces TDD es normal ya que no estas escribiendo pruebas y por tanto tardas menos. Después de los experimentos por pares, se preguntó a los desarrolladores sobre la productividad, efectividad y la dificultad de adaptarse al TDD. En cuanto la productividad, la mayoría de los desarrolladores creían que el enfoque TDD facilita una mejor comprensión de los requisitos y reduce el esfuerzo de depuración. En cuanto a la efectividad, también la mayoría creían que TDD produce un código de mayor calidad y pensó que TDD promueve un diseño más simple. En cuando a las dificultades en adoptarse al enfoque, casi la mitad de los desarrolladores profesionales pensaban que meterse en la mentalidad de TDD fue difícil, una minoría indicó que la falta de la fase de diseño inicial en TDD fue un obstáculo. Por lo tanto, tomando promedio de las respuestas, el 40% de los desarrolladores pensaron que el enfoque enfrenta dificultades en la adopción.
 
-Tanto en el proyecto de IBM como en los de Microsoft, no hay medida homologada o eficaz para medir por completo como de bien funciona el TDD. Pero lo que si podemos saber con estos experimentos es que, si se utiliza el TDD desde etapas tempranas en los desarrollos, estos proyectos luego tienen un menos corte de mantenimiento. Pero para tener unos números más exacto de la cuando es la diferencia si se utiliza o no el TDD, habría que hacer experimentos en un entorno mas controlado, tener unas medidas de evaluación más igualitarias y partir en los dos casos desde el mismo punto. 
+
+#### Resumen: ¿Vale la pena TDD?
+El costo de la sobrecarga de tiempo para escribir las pruebas unitarias se paga rápidamente porque el costo de los cambios que deben realizarse más tarde sin una cobertura de prueba automatizada es mucho mayor, en escenarios pesimistas puede aumentar exponencialmente. `Fuentes confiables confirman que el desarrollo basado en pruebas se conecta directamente con la mayor calidad del código, lo que resulta en menos defectos. En los lenguajes orientados a objetos, TDD está bien examinado y el retorno de la inversión (ROI) de los proyectos está respaldado con la mejor calidad.`
+
+Pero las pruebas unitarias no debería ser la única capa de pruebas automatizadas de su sistema. También se expandir la capa de prueba unitaria mediante pruebas de integración, desarrollo impulsado por pruebas de aceptación (ATDD), desarrollo impulsado por el comportamiento (BDD) o, al menos, considerar dicha opción en su propio.
 
 #### Los costes
 ¿El costo real del cambio es exponencial o es plano? 
@@ -67,13 +74,17 @@ No hay razón para que el costo de realizar un cambio en el software deba ser ta
 - Es importante no perder tiempo y dinero iterando cuando no es necesario. Pasar suficiente tiempo por adelantado en la comprensión de los requisitos y en el diseño para hacerlo bien al menos en su mayor parte la primera vez, se puede ahorrar mucho, más adelante.
 - Ya sea que se esté trabajando de forma incremental e iterativa, o secuencialmente, tiene sentido detectar errores lo más temprano que se pueda, ya sea que se haga a través del desarrollo e implementación de prueba primero, o talleres de requisitos y revisiones de código, lo que sea que más funcional.
 
-Vemos el solo TDD no ayuda a mejorar el coste, sino es el conjunto de todas las buenas prácticas. El TDD nos ayuda a detectar los errores y a hacer un código mas limpio, pero decir que con solo la implementación del TDD podemos mejorar mucho el coste, no es cierto. 
+Vemos el solo TDD no ayuda a mejorar el coste, sino es el conjunto de todas las buenas prácticas. El TDD nos ayuda a detectar los errores y a hacer un código mas limpio, pero decir que con solo la implementación del TDD podemos mejorar mucho el coste, no es cierto. Además, cuando se habla del coste no solo se habla de TDD, sino de otros muchos factores que afectan al coste.
 
 
 ## Las distintias corrientes del TDD:
 En el primer libro Kent Beck, nos da unas series de pautas que podemos usar para hacer un mejor código y TDD. Entre ellas nos dice que tenemos que hacer una lista de las pruebas que vamos a hacer ahora y otra de las futuras pruebas, porque el nos dice que no podemos abarcar todo el programa en una misma iteración. Nos dice que un programa basado en pruebas puede parecer estar escrito tanto de arriba abajo, porque se ha comenzado con prueba que representa un caso simple, como de abajo a arriba, porque se ha comenzado con pequeñas partes y luego se le van agregado partes más grandes.
 
 Por eso, dice que ninguna de las dos describe realmente como es el proceso. Porque no podemos definar el proceso como algo vertical, si tuviéramos que hacer en todo caso sería algo como de lo conocido a lo desconocido. Por eso, nos dice que no tenemos que abarcar todo el programa de una vez, sino que tenemos que centrarnos en una funcionalidad haciendo pequeñas iteraciones. De esta manera, si cada pequeña funcionalidad lo representamos como un palo, al final tendremos muchos palos que serían todas las funcionalidades y sobre esos palos estaría asentado nuestro programa. 
+
+En su libro Kent Beck no habla del outside-in, porque en el libro original no habla de mocks, pero si que habla del inside-out pero no es puro, sino que son como hilos de abajo-arriba en pequeñas verticales y no todas las funcionalidades. Se empieza desde una pequeña funcionalidad hasta el arriba, asi se hacen distintas iteraciones sobre pequeñas funcionalidad hasta arriba y sobre todas esas iteraciones se situa toda la funcionalidad de la aplicación.  
+
+Las historias de usuarios para inside-out desde lo mas basico. outside-in en principal son cascadas. las historias de usuarios se empiezas desde los modelos de backend y vas subiendo.
 
 Actualmente tenemos dos corrientes principales:
 ### Inside-Out
