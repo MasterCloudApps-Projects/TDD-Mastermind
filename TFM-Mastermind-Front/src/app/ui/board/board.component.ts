@@ -8,8 +8,11 @@ import { Component } from '@angular/core';
 export class BoardComponent {
   public title = 'mastermind-front';
   
-  public secretCombination:string[] = ['red', 'green', 'blue', 'black'];
+  public secretCombination:string[] = [];
 
 
+  public getSecretCombination(){
+    this.secretCombination = ['red', 'green', 'blue', 'black'];
+  }
 }
 
