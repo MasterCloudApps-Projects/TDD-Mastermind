@@ -26,11 +26,9 @@ describe('BoardComponent', () => {
     expect(app.title).toEqual('mastermind-front');
   });
 
-  it('should render title in a h1 tag', () => {
+  it(`get secret combination`, () => {
     const fixture = TestBed.createComponent(BoardComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    //console.log(compiled.getAttribute('ng-version'));
-    expect(compiled.querySelector('router-outlet')).toBeTruthy();
+    const app = fixture.debugElement.componentInstance;
+    expect(app.secretCombination).toBeTruthy();
   });
 });

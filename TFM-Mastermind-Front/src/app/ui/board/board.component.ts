@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class BoardComponent {
   public title = 'mastermind-front';
+  
+  public secretCombination:string[] = ['red', 'green', 'blue', 'black'];
+
+
 }
+
