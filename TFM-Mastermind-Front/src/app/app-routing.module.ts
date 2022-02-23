@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BoardComponent } from './ui/board/board.component';
 import { HomeComponent } from './ui/home/home.component';
 
 const routes: Routes = [
   { path: '',  component: HomeComponent, children: [
-    //{ path: 'name',  component: nameComponent },
+    { path: 'boardComponent',  component: BoardComponent },
     ]}
 ];
 
