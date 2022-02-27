@@ -4,8 +4,10 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { BusService } from "../common/bus";
 import { IForm } from "../interfaces/IForm";
+import { take } from 'rxjs/operators';
+import { Board } from "../domain/Board";
 
-const PREFIX = `${environment.baseUrl}/film`;
+const PREFIX = `${environment.baseUrl}/board`;
 
 /**
  * Servicio para recuperar catálogos, tanto "locales" como desde el servidor
@@ -14,13 +16,23 @@ const PREFIX = `${environment.baseUrl}/film`;
  @Injectable({
     providedIn: 'root'
 })
-export class BoardService {
+export class BoardService implements IForm<Board>{
     constructor(
+        private http: HttpClient
     ) {
     } 
+     create(data: Partial<Board>): Observable<Board> {
+         throw new Error("Method not implemented.");
+     }
+     get(data: number): Observable<Board> {
+         throw new Error("Method not implemented.");
+     }
+     edit(data: Partial<Board>): Observable<Board> {
+         throw new Error("Method not implemented.");
+     }
 
     //Recupera todos los atributos de un cliente
-    public getSecretcombination (): string[] {
-        return ['red', 'green', 'blue', 'black'];
+    public getSecretcombination (): Observable<Board> {
+        return this.http.get<Board>(`${PREFIX}/`).pipe(take(1));
     }
 }

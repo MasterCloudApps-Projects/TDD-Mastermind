@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Board } from 'src/app/domain/Board';
 import { BoardService } from 'src/app/services/board-service';
 
 @Component({
@@ -9,15 +10,20 @@ import { BoardService } from 'src/app/services/board-service';
 export class BoardComponent {
   public title = 'mastermind-front';
   
-  public secretCombination:string[] = [];
+  public secretCombination: Board = {};
 
   constructor(
     private boardService: BoardService
-  ) {}
+  ) {
+    this.getSecretCombination();
+  }
+
 
 
   public getSecretCombination(){
-    this.secretCombination = this.boardService.getSecretcombination();
+    this.boardService.getSecretcombination().subscribe((combination: Board) => {
+      this.secretCombination = combination;
+    });
   }
 }
 
