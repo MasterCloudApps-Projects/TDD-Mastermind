@@ -39,7 +39,7 @@ describe('BoardComponent', () => {
     expect(component.secretCombination).toHaveSize(4);
   });
 
-  it(`get secret combination by method using the board service and check length before and after`, () => {
+  it(`get secret combination by method using the board service and compare`, () => {
     let boardService: BoardService = TestBed.inject(BoardService);
     spyOn(boardService, 'getSecretcombination').and.callThrough();
     let combination1: string[] = boardService.getSecretcombination();
