@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BoardService } from 'src/app/services/board-service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,13 @@ export class BoardComponent {
   
   public secretCombination:string[] = [];
 
+  constructor(
+    private boardService: BoardService
+  ) {}
+
 
   public getSecretCombination(){
-    this.secretCombination = ['red', 'green', 'blue', 'black'];
+    this.secretCombination = this.boardService.getSecretcombination();
   }
 }
 
