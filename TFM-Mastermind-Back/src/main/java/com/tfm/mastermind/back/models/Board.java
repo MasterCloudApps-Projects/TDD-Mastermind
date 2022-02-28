@@ -11,4 +11,8 @@ public class Board {
 	public SecretCombination getSecretCombination() {
 		return this.secretCombination;
 	}
+	
+	public ProposalCombination getProposalCombination() {
+		return null;
+	}
 }
