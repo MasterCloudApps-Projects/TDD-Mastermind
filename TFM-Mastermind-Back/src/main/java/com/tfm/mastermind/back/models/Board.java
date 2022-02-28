@@ -3,6 +3,7 @@ package com.tfm.mastermind.back.models;
 public class Board {
 
 	private SecretCombination secretCombination;
+	private ProposalCombination[] proposalCombinations;
 	
 	public Board() {
 		this.secretCombination = new SecretCombination();
@@ -14,5 +15,9 @@ public class Board {
 	
 	public ProposalCombination getProposalCombination() {
 		return null;
+	}
+	
+	public int getActualIntent() {
+		return Integer.MIN_VALUE;
 	}
 }

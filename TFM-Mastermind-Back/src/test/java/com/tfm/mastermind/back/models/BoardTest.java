@@ -1,5 +1,6 @@
 package com.tfm.mastermind.back.models;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -25,6 +26,12 @@ public class BoardTest {
 	public void getBoardProposalCombinationNullTest() {
 		Board board = new Board();
 		assertNull(board.getProposalCombination());
+	}
+	
+	@Test
+	public void getActualIntentErroneousValueTest() {
+		Board board = new Board();
+		assertEquals(board.getActualIntent(), Integer.MIN_VALUE);
 	}
 	
 }
