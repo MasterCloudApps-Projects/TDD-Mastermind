@@ -14,6 +14,7 @@ public class Board {
 	
 	public void addProposal(ProposalCombination proposalCombinations) {
 		this.proposalCombinations[actualIntent] = proposalCombinations;
+		this.actualIntent++;
 	}
 	
 	public SecretCombination getSecretCombination() {

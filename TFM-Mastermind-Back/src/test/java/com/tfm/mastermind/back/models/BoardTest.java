@@ -52,7 +52,7 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void addProposalAndIntentNotChangeTest() {
+	public void addProposalAndIntentChangeTest() {
 		Board board = new Board();
 		ProposalCombination proposalCombination = new ProposalCombination();
 		proposalCombination.combination.add(Color.RED);
@@ -64,7 +64,7 @@ public class BoardTest {
 		board.addProposal(proposalCombination);
 		int secondIntent = board.getActualIntent();
 		
-		assertEquals(firstIntent, secondIntent);
+		assertNotEquals(firstIntent, secondIntent);
 	}
 	
 	
