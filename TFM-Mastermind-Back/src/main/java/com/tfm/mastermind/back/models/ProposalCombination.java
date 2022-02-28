@@ -7,6 +7,6 @@ import com.tfm.mastermind.back.utils.Color;
 public class ProposalCombination extends Combination{
 
 	public List<Color> getColors(){
-		return null;
+		return this.combination;
 	}
 }
