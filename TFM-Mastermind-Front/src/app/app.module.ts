@@ -8,6 +8,7 @@ import { BusService } from './common/bus';
 import { CapitalizePipe } from './common/capitalize-pipe';
 import { UIMaterialModule } from './ui-material.module';
 import { AppComponent } from './ui/app/app.component';
+import { BoardComponent } from './ui/board/board.component';
 import { HomeComponent } from './ui/home/home.component';
 import { MainMenuComponent } from './ui/home/menu/menu.component';
 
@@ -16,6 +17,7 @@ import { MainMenuComponent } from './ui/home/menu/menu.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    BoardComponent,
     MainMenuComponent,
     CapitalizePipe,
   ],
