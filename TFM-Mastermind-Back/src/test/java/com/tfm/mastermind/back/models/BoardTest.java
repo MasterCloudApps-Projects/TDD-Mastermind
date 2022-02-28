@@ -51,4 +51,21 @@ public class BoardTest {
 		assertEquals(proposalCombination, board.getProposalCombination());
 	}
 	
+	@Test
+	public void addProposalAndIntentNotChangeTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		
+		int firstIntent = board.getActualIntent();		
+		board.addProposal(proposalCombination);
+		int secondIntent = board.getActualIntent();
+		
+		assertEquals(firstIntent, secondIntent);
+	}
+	
+	
 }
