@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import com.tfm.mastermind.back.utils.Color;
+
 public class BoardTest {
 
 	@Test
@@ -32,6 +34,21 @@ public class BoardTest {
 	public void getActualIntentCorrectValueTest() {
 		Board board = new Board();
 		assertNotEquals(board.getActualIntent(), Integer.MIN_VALUE);
+	}
+	
+	@Test
+	public void addProposalTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		
+		assertNotEquals(proposalCombination.getColors(), board.getProposalCombination());
+		
+		board.addProposal(proposalCombination);
+		assertEquals(proposalCombination, board.getProposalCombination());
 	}
 	
 }
