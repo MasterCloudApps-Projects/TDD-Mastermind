@@ -29,9 +29,9 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void getActualIntentErroneousValueTest() {
+	public void getActualIntentCorrectValueTest() {
 		Board board = new Board();
-		assertEquals(board.getActualIntent(), Integer.MIN_VALUE);
+		assertNotEquals(board.getActualIntent(), Integer.MIN_VALUE);
 	}
 	
 }
