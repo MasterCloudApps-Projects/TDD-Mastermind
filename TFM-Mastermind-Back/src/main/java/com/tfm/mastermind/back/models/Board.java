@@ -25,6 +25,10 @@ public class Board {
 		return this.proposalCombinations[actualIntent];
 	}
 	
+	public ProposalCombination getProposalCombination(int i) {
+		return this.proposalCombinations[i];
+	}
+	
 	public int getActualIntent() {
 		return this.actualIntent;
 	}

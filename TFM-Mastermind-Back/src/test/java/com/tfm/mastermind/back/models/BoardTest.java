@@ -45,10 +45,12 @@ public class BoardTest {
 		proposalCombination.combination.add(Color.GREEN);
 		proposalCombination.combination.add(Color.ORANGE);
 		
-		assertNotEquals(proposalCombination.getColors(), board.getProposalCombination());
+		int i = board.getActualIntent();
+		
+		assertNotEquals(proposalCombination.getColors(), board.getProposalCombination(i));
 		
 		board.addProposal(proposalCombination);
-		assertEquals(proposalCombination, board.getProposalCombination());
+		assertEquals(proposalCombination, board.getProposalCombination(i));
 	}
 	
 	@Test
@@ -67,5 +69,27 @@ public class BoardTest {
 		assertNotEquals(firstIntent, secondIntent);
 	}
 	
-	
+	@Test
+	public void getEspecificProposalTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		
+		int i = board.getActualIntent();
+		
+		assertNull(board.getProposalCombination(i));
+		board.addProposal(proposalCombination);
+		assertNotNull(board.getProposalCombination(i));		
+		assertEquals(proposalCombination, board.getProposalCombination(i));
+		
+		int i2 = board.getActualIntent();
+		assertNotEquals(i, i2);
+		assertNull(board.getProposalCombination(i2));
+		board.addProposal(proposalCombination);
+		assertNotNull(board.getProposalCombination(i2));		
+		assertEquals(proposalCombination, board.getProposalCombination(i2));
+	}
 }
