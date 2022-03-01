@@ -27,7 +27,15 @@ public class ColorTest {
 	
 	@Test
 	public void getColorByNameNotNullTest() {
-		Color color = Color.getColor();
+		Color color = Color.getColor("NULL_COLOR");
 		assertNotNull(color);
+	}
+	
+	@Test
+	public void getEspecificColorByNameTest() {
+		String c = "RED";
+		Color color = Color.getColor(c);
+		assertNotNull(color);
+		assertEquals(Color.RED, color);
 	}
 }

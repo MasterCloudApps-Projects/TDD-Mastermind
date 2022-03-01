@@ -14,7 +14,12 @@ public enum Color {
 		return Color.values()[index];
 	}
 	
-	public static Color getColor() {
+	public static Color getColor(String color) {
+		for (int i = 0; i < Color.length(); i++) {
+			if (Color.get(i).toString().equals(color)) {
+				return Color.get(i);
+			}
+		}
 		return Color.NULL_COLOR;
 	}
 
