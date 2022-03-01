@@ -15,7 +15,7 @@ public enum Color {
 	}
 	
 	public static Color getColor() {
-		return null;
+		return Color.NULL_COLOR;
 	}
 
 	public static int length() {

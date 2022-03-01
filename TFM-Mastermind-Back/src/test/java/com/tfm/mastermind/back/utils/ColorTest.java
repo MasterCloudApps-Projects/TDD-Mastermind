@@ -2,7 +2,7 @@ package com.tfm.mastermind.back.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +26,8 @@ public class ColorTest {
 	}
 	
 	@Test
-	public void getColorByNameNullTest() {
+	public void getColorByNameNotNullTest() {
 		Color color = Color.getColor();
-		assertNull(color);
+		assertNotNull(color);
 	}
 }
