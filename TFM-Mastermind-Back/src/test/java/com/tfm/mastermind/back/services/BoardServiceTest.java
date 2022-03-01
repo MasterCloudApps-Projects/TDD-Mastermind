@@ -53,20 +53,20 @@ public class BoardServiceTest {
 	@Test
 	public void addProposalCombinationToBoardServiceTest() {
 		BoardService boardService = new BoardService();
+		String[] stringProposalCombination = {"RED", "GREEN", "BLUE", "ORANGE"};
 		ProposalCombination proposalCombination = new ProposalCombination();
-		proposalCombination.combination.add(Color.RED);
-		proposalCombination.combination.add(Color.BLUE);
-		proposalCombination.combination.add(Color.GREEN);
-		proposalCombination.combination.add(Color.ORANGE);
-		
+		proposalCombination.combination.add(Color.getColor(stringProposalCombination[0]));
+		proposalCombination.combination.add(Color.getColor(stringProposalCombination[1]));
+		proposalCombination.combination.add(Color.getColor(stringProposalCombination[2]));
+		proposalCombination.combination.add(Color.getColor(stringProposalCombination[3]));
 		int firstIntent = boardService.getBoard().getActualIntent();		
 		assertNull(boardService.getBoard().getProposalCombination(firstIntent));
-		assertNotEquals(proposalCombination, boardService.getBoard().getProposalCombination(firstIntent));
 		
-		boardService.addProposal(proposalCombination);
+		boardService.addProposal(stringProposalCombination);
 		
 		assertNotNull(boardService.getBoard().getProposalCombination(firstIntent));
-		assertEquals(proposalCombination, boardService.getBoard().getProposalCombination(firstIntent));
+		assertEquals(proposalCombination.getColors(), 
+				boardService.getBoard().getProposalCombination(firstIntent).getColors());
 		
 	}
 }
