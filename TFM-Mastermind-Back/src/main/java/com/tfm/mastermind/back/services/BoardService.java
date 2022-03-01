@@ -3,6 +3,7 @@ package com.tfm.mastermind.back.services;
 import org.springframework.stereotype.Service;
 
 import com.tfm.mastermind.back.models.Board;
+import com.tfm.mastermind.back.models.ProposalCombination;
 
 @Service
 public class BoardService {
@@ -15,5 +16,9 @@ public class BoardService {
 	
 	public Board getBoard() {
 		return this.board;
+	}
+	
+	public void addProposal(ProposalCombination proposalCombinations) {
+		this.board.addProposal(proposalCombinations);
 	}
 }
