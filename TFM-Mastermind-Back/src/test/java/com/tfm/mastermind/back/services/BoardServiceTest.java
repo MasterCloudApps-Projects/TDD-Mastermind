@@ -17,4 +17,10 @@ public class BoardServiceTest {
 		BoardService boardService = new BoardService();
 		assertNotNull(boardService.getBoard().getSecretCombination());
 	}
+	
+	@Test
+	public void getActualIntentFromBoardTest() {
+		BoardService boardService = new BoardService();
+		assertNotNull(boardService.getBoard().getActualIntent());
+	}
 }
