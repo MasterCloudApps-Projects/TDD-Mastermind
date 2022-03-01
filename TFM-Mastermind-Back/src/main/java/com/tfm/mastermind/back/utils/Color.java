@@ -13,6 +13,10 @@ public enum Color {
 	public static Color get(int index){
 		return Color.values()[index];
 	}
+	
+	public static Color getColor() {
+		return null;
+	}
 
 	public static int length() {
 		return Color.values().length-1;
