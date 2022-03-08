@@ -1,5 +1,12 @@
-# TDD-Mastermind
+# Estudio de TDD aplicado en el dessarollo al Mastermind
 
+## Indice
+
+## Objetivo
+El objetivo de este proyecto es realizar un estudio sobre TDD y sus distintas técnicas aplicándolas al desarrollo del Mastermind. En el libro original de TDD de Kent Beck, no se habla de distintas técnicas, sino de un solo modo. Pero actualmente hay distintas técnicas Inside-out y Outside-in, en este proyecto vamos a aplicar estas dos técnicas. Además, la manera de hacer esto según el libro es, escribir la prueba primero para el código, luego hacer escribir el código mínimo para pasar la prueba y, por último, refactorizar el código si hace falta. En este proyecto también vamos a ver si ese planteamiento es el adecuado o no. Aparte de estos puntos también vamos a ver tratar algunas cuestiones que en el libro no están muy claros o que nos se indican. 
+Para el desarrollo del proyecto vamos a usar distintas tecnologías, para el front vamos a usar Angular y para la ejecución de los test unitarios en el front usamos Karma, y para el desarrollo del back vamos a usar el SpringBoot y los test unitarios con el JUnit. Para el control de versiones vamos a usar GitHub con la técnica de GitFlow con una rama por funcionalidad. 
+
+## Introducción
 ## TDD
 TDD o Test-Driven Development (desarrollo dirigido por tests) es una práctica de programación que consiste en escribir primero las pruebas (generalmente unitarias), después escribir el código fuente que pase la prueba satisfactoriamente y, por último, refactorizar el código escrito.
 Para el uso del TDD se deben combinar 2 metodologías: Test-first development (escribir las pruebas primero) y Refactoring (refactorización de código). Para esto, se usa un ciclo de desarrollo que consta de 3 partes principales:
