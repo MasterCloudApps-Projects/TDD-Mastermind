@@ -2,6 +2,15 @@
 
 ## Indice
 
+## Resumen
+Esta aplicación que se va a desarrollar en el trabajo de fin de master es un estudio sobre el TDD haciendo su uso en el desarrollo del juego TDD. Para ello, se creará una api-rest en el back y una interfaz web en front, se podrá jugar al juego tanto usando la interfaz como haciendo peticiones a la api.
+
+A continuación, mostraremos la estructura de la memoria y describiremos brevemente los puntos:
+- En el primer punto, “Objetivos”, se hablará de las principales razones por las que se ha decidido llevar a cabo este estudio.
+- En el segundo punto, “Introducción - TDD”, en este punto se hablará del TDD, sus distintas escuelas, los experimentos, los costes y una breve conclusión. 
+- En el tercer punto, “Aplicación y problemas encontrados”, se hablará de como se ha aplicado el TDD en el desarrollo, los problemas encontrados en su aplicación y en que se defiere la teoría del TDD a su uso en un proyecto real. 
+
+
 ## Objetivo
 El objetivo de este proyecto es realizar un estudio sobre TDD y sus distintas técnicas aplicándolas al desarrollo del Mastermind. En el libro original de TDD de Kent Beck, no se habla de distintas técnicas, sino de un solo modo. Pero actualmente hay distintas técnicas Inside-out y Outside-in, en este proyecto vamos a aplicar estas dos técnicas. Además, la manera de hacer esto según el libro es, escribir la prueba primero para el código, luego hacer escribir el código mínimo para pasar la prueba y, por último, refactorizar el código si hace falta. En este proyecto también vamos a ver si ese planteamiento es el adecuado o no. Aparte de estos puntos también vamos a ver tratar algunas cuestiones que en el libro no están muy claros o que nos se indican. 
 
