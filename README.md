@@ -9,6 +9,7 @@ A continuación, mostraremos la estructura de la memoria y describiremos breveme
 - En el primer punto, “Objetivos”, se hablará de las principales razones por las que se ha decidido llevar a cabo este estudio.
 - En el segundo punto, “Introducción - TDD”, en este punto se hablará del TDD, sus distintas escuelas, los experimentos, los costes y una breve conclusión. 
 - En el tercer punto, “Aplicación y problemas encontrados”, se hablará de como se ha aplicado el TDD en el desarrollo, los problemas encontrados en su aplicación y en que se defiere la teoría del TDD a su uso en un proyecto real. 
+- En el último punto, “Conclusiones”, se reflexionará sobre el trabajo realizado y lecciones aprendidas de ello, también se hará una comparativa entre el TDD puro del libro y en que se difiere el TDD aplicado en un proyecto real. 
 
 
 ## Objetivo
