@@ -6,10 +6,11 @@
 Esta aplicación que se va a desarrollar en el trabajo de fin de master es un estudio sobre el TDD haciendo su uso en el desarrollo del juego TDD. Para ello, se creará una api-rest en el back y una interfaz web en front, se podrá jugar al juego tanto usando la interfaz como haciendo peticiones a la api.
 
 A continuación, mostraremos la estructura de la memoria y describiremos brevemente los puntos:
-- En el primer punto, “Objetivos”, se hablará de las principales razones por las que se ha decidido llevar a cabo este estudio.
-- En el segundo punto, “Introducción - TDD”, en este punto se hablará del TDD, sus distintas escuelas, los experimentos, los costes y una breve conclusión. 
-- En el tercer punto, “Aplicación y problemas encontrados”, se hablará de como se ha aplicado el TDD en el desarrollo, los problemas encontrados en su aplicación y en que se defiere la teoría del TDD a su uso en un proyecto real. 
-- En el último punto, “Conclusiones”, se reflexionará sobre el trabajo realizado y lecciones aprendidas de ello, también se hará una comparativa entre el TDD puro del libro y en que se difiere el TDD aplicado en un proyecto real. 
+- En el primer punto, `Objetivos`, se hablará de las principales razones por las que se ha decidido llevar a cabo este estudio.
+- En el segundo punto, `Introducción - TDD`, en este punto se hablará del TDD, sus distintas escuelas, los experimentos, los costes y una breve conclusión. 
+- En el tercer punto, `Aplicación y problemas encontrados`, se hablará de como se ha aplicado el TDD en el desarrollo, los problemas encontrados en su aplicación y en que se defiere la teoría del TDD a su uso en un proyecto real. 
+- En el cuarto punto, `Desarrollo y aplicación final`, aquí vamos a indicar que hemos hecho el desarrollo y la arquitectura de nuestra aplicación después de cada funcionalidad.
+- En el último punto, `Conclusiones`, se reflexionará sobre el trabajo realizado y lecciones aprendidas de ello, también se hará una comparativa entre el TDD puro del libro y en que se difiere el TDD aplicado en un proyecto real. 
 
 
 ## Objetivo
@@ -162,6 +163,126 @@ También es importante remarcar el uso de la técnica del doble bucle:
 En consecuencia, no habrá muchos cambios oscilantes hacia arriba y hacia abajo de las capas.
 La API se puede adaptar a las necesidades del producto y no al revés.             |                                                                                              
 		
+## Aplicación y problemas encontrados
+Para los desarrollos se decidió usar inside-out para el Backend y outside-in para el Frontend.
+ ### Backend
+Para el desarrollo del Backend se decidió usar la técnica de inside-out, para este desarrollo se han seguido las indicaciones del libro de Kent Beck, donde nos indica que no hay que hacer desarrollo de toda la funcionalidad de manera horizontal y luego ir subido hacia arriba, sino que hay que desarrollar una pequeña funcionalidad e ir subiendo hacia arriba haciendo desarrollos verticales. 
+
+Además, al tener distintas funcionalidades, se han seguido distintos enfoques para el desarrollo. Para la primera funcionalidad se uso el TDD puro, escribiendo el test para que primero falle, luego implementar el código mínimo para que pase el test, luego escribir el test para el funcionamiento y luego escribir el código para que el test anterior funcione. 
+Nada mas empezar el desarrollo incumplimos una de las cosas que nos dice en el libro y es que, en el libro se indica que no hay diseñar y eso es algo imposible de incumplir ya que nada más empezar a desarrollar se diseña, incluso antes de empezar cuando decidimos que tecnología usar, incluso cuando elegimos por donde empezar front o back, ya estamos diseñando. Cuando Kent Beck dice que no hay que diseñar se refiere a no hacerlo sobre el papel haciendo diagramas antes de empezar, el no diseñar supone un gran problema ya que para empezar a desarrollar hay que tener un mínimo de diseño previo, aunque no sea sobre el papel. Ya que el tener un diseño previo luego evita que tengas que rediseñar la aplicación cuando estás desarrollando, eso fue uno de los problemas que tuvimos cuando estábamos haciendo el desarrollo. Porque empezamos haciendo el desarrollo de una funcionalidad y en la siguiente iteración vimos que al juntar esa funcionalidad con la otra había que cambiar el diseño, por eso tener un mínimo de diseño previo nos ayuda con el desarrollo.
+
+Otro de los problemas de no diseñar fue que no sabíamos por dónde empezar, aunque se diga que hay que empezar desde lo más abajo eso es muy ambiguo. Porque cómo no tienes un diseño puedes empezar desde lo que sería más abajo de verdad que serían las entidades,  
+
+![Entity-Service-Controller-User](Documentation/Entity-Service-Controller-User.PNG)
+
+o también puedes empezar desde los servicios ya que no sabemos que tiene porque haber una entidad.
+
+![Service-Controller-User](Documentation/Service-Controller-User.PNG)
+
+También puedes empezar directamente desde el controlador porque hasta que no tengas una segunda funcionalidad que desarrollar no necesitas un servicio o una entidad y el controlador directamente puede tener el código de la primera funcionalidad y no hacer ninguna llamada a una clase de más abajo.
+
+![Controller-User](Documentation/Controller-User.PNG)
+
+Las tres opciones serían igual de válidas, porque si empezamos desde el controlador en la primera funcionalidad no necesitamos crear ningún tipo de objeto concreto para devolverlo, directamente podríamos devolver la respuesta creando el objeto básico en el mismo controlador. Para la opción de crear un servicio para devolver el objeto podría tener exactamente la misma funcionalidad que el controlador sin tener que crear ningún tipo entidad concreta, se podría mapear y crear el objeto directamente en el Service y devolverlo. No sería necesario crear una entidad hasta que haya que hacer otra funcionalidad y devolver el mismo tipo de objeto, porque si no creamos una entidad tendríamos mucho código duplicado. Incluso teniendo código duplicado no hay una necesidad real de crear una entidad hasta que no tengamos que cruzar esa entidad con otra para crear un objeto en conjunto. Por eso el no tener un diseño previo puede complicar mucho el desarrollo si no has empezado desde el sitio correcto.
+
+Debido a esto de no diseñar tuvimos un problema que fue que luego en la segunda iteración haciendo el proposal combination hubo que modificar el código ya implementado en la primera iteración sobre el Secret combination. Si hubiéramos tenido un primer diseño luego no habríamos tenido que modificar el código ya implementado, Debido a esto también hubo código que se quedó obsoleto.
+
+#### Técnicas de desarrollo
+Para la primera funcionalidad cumplimos de pie a la letra el TDD según el libro de Kent Beck, pero vimos que para desarrollos tan pequeños como el nuestro había algunos pasos intermedios que eran innecesarios. El TDD puro está más orientado a proyectos complejos donde la lógica de negocio sea compleja, para proyectos pequeños hacer el TDD de puro puede ser un inconveniente ya que en lugar de ayudar puede hacer que perdamos el tiempo en pequeñas interacciones tales como en las que tengamos que devolver un valor predefinido. En estos casos hacer muchas iteraciones nos hace perder el tiempo ya que tendríamos que hacer primero una interacción dónde creamos el test 
+
+![maxWigth1](Documentation/maxWigth1.PNG)
+
+y el código mínimo para que ese test pase, luego tendríamos que hacer una siguiente iteración donde creamos el código para devolver un valor nulo 
+
+![maxWigth2](Documentation/maxWigth2.PNG)
+
+y una última iteración dónde ya devolvemos el valor que se ha decidido de antemano.
+
+![maxWigth3](Documentation/maxWigth3.PNG)
+
+![maxWigth4](Documentation/maxWigth4.PNG)
+ 
+Por eso en estos casos hacer el TDD puro nos puede hacer perder tiempo y que en estos casos es más adecuado hacer el TFD.
+
+Para el desarrollo de la segunda funcionalidad teniendo en cuenta las conclusiones sacadas de la primera funcionalidad se decidió no hacer el TDD estricto sino en lugar de hacer un commit después de cada iteración se decidió a hacer un commit después de desarrollar la mini funcionalidad completa. Al hacer esto vimos que para esta funcionalidad se mejoró el tiempo de desarrollo, pero ese tiempo de desarrollo se vio afectado por no tener un diseño previo y tener que modificar el código ya existente para incorporar el código de la nueva funcionalidad.
+
+para la última y la tercera funcionalidad se decidió cambiar de enfoque de desarrollo y en lugar de hacer el código de inside-out se decidió hacer outside-in para que de esta manera tener los dos puntos de vista y ver cómo afecta al desarrollo. 
+
+#### Las dudas 
+Haciendo este desarrollo nos surgieron unas cuantas dudas:
+- La primera de las dudas es, ¿cuánto código debe ser probado?, pueden haber casos que solamente nos retornen un valor que es predefinido entonces, ¿es necesario probar ese código?
+- Otra de las dudas es, ¿qué tipo de test se tienen que hacer para probar los controladores?, ya que los controladores la función que tienen es de entrada y salida de datos. Entonces se debería probar ese controlador con test unitarios y además con los test de integración pruebe sí toda la funcionalidad implementada de los servicios y de las entidades funciona correctamente, o los tests de integración no harían falta ya que haciendo el desarrollo de los servicios y las entidades ya hemos probado esa funcionalidad.
+- La siguiente duda es si podríamos crear un mini framework para las pruebas de los controladores y los servicios, porque en muchos casos los test son muy similares ya que lo único que hay que probar es la entrada de datos y la salida de esos datos después de haberles aplicando la lógica de negocio.
+
+#### Conclusiones 
+Haciendo el desarrollo Inside-out nos hemos dado cuenta de que, aunque no hayamos tenido que crear mocks como en el caso de outside-in, pero sí hemos tenido que modificar el código ya implementado en varias ocasiones porque al no haber un diseño previo no se podía saber cómo va a afectar el nuevo código implementado al código ya existente. Al final podemos pensar que al usar Inside out nos estamos ahorrando el tiempo que tardaríamos en implementar los mocks pero no es así ya que podemos perder el mismo tiempo modificando el código ya implementado adaptándolo al nuevo código.
+
+### Frontend 
+Para el desarrollo del Frontend se utilizó la técnica de outside-in, esta técnica consiste en empezar a hacer el desarrollo desde los elementos más cercanos al usuario. En este caso, estos elementos serían las pantallas que vería el usuario para interactuar con nuestra aplicación. Para estos elementos también se han hecho desarrollos verticales desde el usuario hasta el back, en lugar de hacer desarrollos horizontales con todas las funcionalidades. En estos casos, al tener también distintas funcionalidades hemos decidido jugar un poco con el TDD para ver cómo afecta a los tiempos de desarrollo y a la dificultad, si hacemos TDD de puro o un TDD más adaptado a nuestro proyecto.
+
+#### Desarrollo
+Se empezó el desarrollo con el Secret combination, que consiste en mostrar una combinación secreta que recuperamos desde el backend y lo mostramos al usuario. Para esta funcionalidad usamos el TDD puro, haciendo un commit por cada test y su código correspondiente. Al tratarse del Frontend incumplimos una de las normas que tenemos para hacer desarrollos con TDD, la norma del código mínimo, ya que para pasar el test mínimo tenemos que crear tanto código en los componentes como código en los archivos HTML. 
+
+![Front-initial-commit](Documentation/Front-initial-commit.PNG)
+
+Para el desarrollo del front se ha usado Angular con TypeScript, para la cobertura de los test se ha usado Karma y para el testing se han usado los componentes propios de Angular. Haciendo el desarrollo del front con el outside-in, da la sensación de que avanzamos bastante ya que, aunque se haga el código mínimo para pasar el test, ese código incluye elementos tantos del HTML como del componente. Por eso, vamos avanzando más de cara al usuario que si hacemos un desarrollo basado en Inside-out dónde todo el código que se implementa el usuario no lo llega a ver. Aunque el tiempo que se tarda en implementar este código mínimo es bastante mayor ya que, hay que implementar tanto el código cómo los datos mokeados que vamos a usar hasta que podamos conectar nuestra aplicación con el Backend.
+
+para la segunda parte del desarrollo se decidió no seguir un tdd tan puro, sino uno más adaptado a nuestro proyecto y para la tercera parte se decidió cambiar del enfoque de outside-in a uno de Inside-out para ver cómo afecta al desarrollo del Frontend.
+
+#### Las dudas
+Las dudas que nos han surgido haciendo este desarrollo de la parte de Frontend son:
+- ¿Cuánto del código implementado hay que probar?, haciendo el desarrollo del Frontend usando TDD de nos hemos dado cuenta de que está más orientado a hacer desarrollos en lenguajes de programación orientado a objetos.
+- Si estamos haciendo el desarrollo del Frontend y no podemos cumplir la regla del código mínimo, ¿de verdad estamos haciendo TDD o es solo desarrollo basado en TFD (Test First Development)?
+- Si nos toca cambiar el código HTML pero no tenemos cobertura de test para eso, ¿seguiría siendo TDD? 
+- Cuando conectemos los componentes a los servicios que hacen las llamadas al Backend, ¿tendríamos que quitar los mocks en una interacción diferente o los podríamos quitar en la misma iteración en la que conectamos el componente con los con el servicio?
+
+#### Conclusiones
+Haciendo el desarrollo del Frontend con el TDI nos hemos dado cuenta de que el TDD no está pensado para hacer desarrollos con lenguajes no orientados a objetos. También nos hemos dado cuenta de que hay otros cuántos aspectos que no están claros, como por ejemplo, cuando hacemos el desarrollo del front siguiendo el TDD no tenemos ningún tipo de instrucción sobre cómo implementar el código HTML y CSS. 
+
+### Conclusiones generales
+Haciendo el desarrollo con TDD nos hemos dado cuenta de que hay bastantes lagunas respeto a la forma de hacer el desarrollo. En primer lugar, no está muy claro qué tipo de tests tienen que ser los que prueben nuestro código, tampoco está claro qué parte del código debe ser probado. ¿Tenemos que probar todo el código y todos los métodos (get, set, negocio) o podemos no probar los métodos simples de gets y los sets? Tampoco deja claro qué hacer en caso de que escribamos código que no puede ser probado, ¿tenemos que seguir haciendo TDD para escribir esa parte del código o podemos no hacerlo?
+
+En segundo lugar, hemos visto que el TDD está muy orientado a las personas con bastante experiencia escribiendo código, ya que empezar a escribir el código sin tener un diseño previo no es posible a no ser que tengas bastante experiencia y que solamente con saber los requisitos seas capaz de diseñar en tu mente cómo quedaría la estructura de las clases de la aplicación. 
+
+En el tercer lugar, para los desarrollos Inside-out no se indica desde donde se debería empezar el desarrollo, lo que hace que los programadores poco experimentados puedan tener problemas luego de empezar el desarrollo, porque puede que tengan que modificar algunas de las clases sean implementadas posteriormente. 
+
+En cuarto lugar, hemos visto que tampoco se indica nada sobre qué hacer cuando al escribir un test y su prueba hacen que el otro test falle. En estos casos, lo que podríamos hacer es o bien seguir desarrollando el test y el código y dejar como está el test que ha fallado y luego en la siguiente iteración corregir ese test. O bien, lo que podríamos hacer es, ya que sabemos que el test que vamos a implementar va a hacer que otro test falle, podríamos primero adaptar el test que va a fallar para qué al implementar el nuevo test y código éste no falle. Tampoco deja claro qué hacer en caso de que necesitemos el código de otra clase y ese código todavía no está implementado, en el libro se indica que, si estamos desarrollando la clase uno y necesitamos el código de la clase dos, entonces la clase dos deberá ser probada en la clase uno. Pero no se indican y el orden en el que se tienen que desarrollar, se da suponer que primero se desarrollaría la clase dos sin probar y luego se usaría ese código en la clase uno probando así las dos clases. Pero de esa manera no estaríamos haciendo el TDD, ya que en TDD se escribe antes la prueba que el propio código. Tenemos que hacerlo de esta manera ya que, si desarrollamos primero la clase uno entonces no tendríamos disponible el código de la clase dos, y tendríamos error al compilar la aplicación lo que no nos dejaría avanzar en el desarrollo. Pero este enfoque de desarrollar sin probar nos deja con otro problema, y es, qué hacer si el código de la clase dos que hemos implementado sin probar falla, tenemos que corregirlo en una integración sin TDD o tenemos que hacerlo usando TDD y mientras probamos el código de la clase uno. 
+
+En el último lugar, haciendo el desarrollo TDD en cualquiera de sus dos variantes tiene sus propios inconvenientes, si hacemos el usando Inside-out, el inconveniente es que, al no tener un diseño previo, luego en las etapas más avanzadas podemos tener que modificar el código ya implementado y los tests correspondientes a ese código. Y haciendo el desarrollo con Outside-in, el inconveniente es que al empezar por arriba tenemos que mockear las clases de abajo. Y que en las etapas más avanzadas de desarrollo tengamos que modificar alguno de estos mocks y el código o los tests asociados a este fallen, ya que no los hemos adaptado a los nuevos mocks.
+
+## Desarrollo y aplicación final
+Para el desarrollo de esta aplicación hemos usado distintas tecnologías, para el Backend, hemos usado Spring-Boot con Maven y para el desarrollo de los test unitarios hemos usado jUnit con Mockito y rest-assured para los test de integración. No tenemos una base de datos ya que esta aplicación solamente nos permite jugar a una partida de Mastermind sin la posibilidad de guardar nada, esto lo hemos hecho de esta manera ya que nos hemos centrado más en investigar y hacer el desarrollo con TDD que la propia aplicación.
+Para el desarrollo de Frontend hemos usado Angular Material con TypeScript, y para los test unitarios hemos usado la propia herramienta de Angular y hemos usado Karma para saber la cobertura de los test.
+
+### Backend 
+#### SecretCombination
+Para la primera funcionalidad decidimos usar el TDD puro con la técnica de inside-out.
+La primera funcionalidad que decidimos desarrollar fue la de SecretCombination, empezamos creando el enumerado Color, este número tiene todos los colores que vamos a mostrar y con los que vamos a jugar nuestro juego de Mastermind. Después de haber creado el enumerado Color, creamos la clase Combination que tiene un array de uno a cuatro colores y la funcionalidad de devolver este array. Después creamos la clase de SecretCombination que extiende la clase Combination y por ahora solamente tiene una funcionalidad y es tener una combinación secreta Random de cuatro colores. Después de SecretCombination creamos la clase Board, este Board por ahora tiene solamente SecretCombination y la única funcionalidad de devolverlo. Después de esto creamos el servicio y el controlador para la clase de Board. En este punto la arquitectura sería:
+
+![Arquitectura1](Documentation/Arquitectura1.PNG)
+
+Hemos decidido seguir este camino porque es el que nos ha parecido más correcto de cara a los próximos desarrollos. Pero este no es el único camino que podíamos haber seguido, podríamos haber empezado directamente por el Secret combination y que devolviera los colores directamente. Ya que hasta este punto no tenemos la necesidad de crear un enumerado de colores o la clase combination, porque hasta este punto no tenemos ninguna necesidad de crear esas clases extras. Pero decidimos crear estas clases ya que sabemos que en el futuro vamos a tener otra clase ProposalCombination que va a usar la clase combination, por eso decidimos crear estas clases de antemano para no tener que volver a modificar y adaptar el código. Esta primera funcionalidad también podríamos no haber creado la clase Board y devolver directamente el SecretCombination usando el Service y el Controlador, pero por la misma razón de no volver a modificar el código decidimos crear esta clase ya que sabemos que se va a utilizar en el futuro y lo vamos a necesitar.
+
+#### ProposalCombination
+Para la segunda funcionalidad usamos un TDD más adaptado a nuestra aplicación, donde no hacíamos un commit después de cada pequeña funcionalidad sino después de haber desarrollado toda la funcionalidad de un método al completo. 
+La segunda funcionalidad que decidimos desarrollar fue la de ProposalCombination, esta clase ProposalCombination extiende a la clase Combination y devuelve la lista de colores que tiene. Después de esto modificamos la clase Board, para añadirle otros dos atributos, un array de ProposalCombination y el actualIntent. También se han añadido las funcionalidades de obtener estos dos atributos y de poder añadir una combinación de colores indicada por el usuario al array de ProposalCombination del Board.
+
+![Arquitectura2](Documentation/Arquitectura2.PNG)
+
+#### Result 
+
+### Frontend
+#### SecretCombination
+para la primera funcionalidad del front también decidimos usar el TDD puro con la técnica de outside-in.
+La primera funcionalidad del front que decidimos desarrollar también fue la del SecretCombination, se hizo de esta manera para poder seguir con la indicación que nos daba Kent Beck en su libro. Donde decía que había que desarrollar una funcionalidad desde lo más abajo hasta el usuario de manera vertical. 
+
+Empezamos creando la clase Board que tiene como atributo la clase SecretCombination, también hemos creado el componente, el HTML y el CSS correspondiente a esta clase Board. al principio de este desarrollo el componente Board sacaba sus datos de un mock, pero luego creamos el servicio para el Board y lo conectamos al Backend, para que de esta manera los datos obtenidos fueran reales. No hemos creado la clase SecretCombination, ya que SecretCombination solamente lo vamos a mostrar y no vamos a hacer ningún otro tipo de gestión con él. Por eso, lo hemos creado como atributo de la clase Board que es a su vez un objeto que tiene una combinación y maxWidth.
+
+#### ProposalCombination 
+Para la segunda funcionalidad siguiendo el ejemplo del Backend decidimos usar un TDD más adaptado a nuestra aplicación, haciendo un commit por la funcionalidad completa del método.
+Para el ProposalCombination sí que creamos una clase aparte, ya que éste ProposalCombination no solamente se va a mostrar al usuario, sino que también lo tenemos que mandar al Backend dónde va a ser añadido a la lista del Board y comprobado si coincide con nuestra combinación secreta. Esta clase de ProposalCombination se añadió a la clase Board como un array.
+
+#### Result
 
 
 ### Bibliografía
