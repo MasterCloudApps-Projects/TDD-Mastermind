@@ -48,11 +48,21 @@ public class BoardControllerTest {
 	
 	@Test
 	public void getProposalCombinationControllerTest() {
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
 		
 		Board board = this.boardController.getBoard().getBody();
+		int firstIntent = board.getActualIntent();		
 		
-		ProposalCombination proposal = this.boardController.getProposalCombination();
-		assertEquals(board.getProposalCombination(0), proposal);
+		ProposalCombination proposal = this.boardController.getProposalCombination(firstIntent);
+		assertEquals(board.getProposalCombination(firstIntent), proposal);
 		
+		this.boardController.addProposalCombination(proposalCombination);
+		
+		proposal = this.boardController.getProposalCombination(firstIntent);
+		assertEquals(board.getProposalCombination(firstIntent), proposal);
 	}
 }
