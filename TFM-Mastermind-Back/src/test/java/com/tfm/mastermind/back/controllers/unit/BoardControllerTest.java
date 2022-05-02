@@ -85,6 +85,6 @@ public class BoardControllerTest {
 	
 	@Test
 	public void getActualIntentControllerTest() {
-		assertEquals(this.boardController.getActualIntent(), Integer.MIN_VALUE);
+		assertEquals(this.boardController.getActualIntent(), this.boardController.getBoard().getBody().getActualIntent());
 	}
 }

@@ -38,6 +38,6 @@ public class BoardController {
 	}
 	
 	public int getActualIntent() {
-		return Integer.MIN_VALUE;
+		return this.boardService.getBoard().getActualIntent();
 	}
 }
