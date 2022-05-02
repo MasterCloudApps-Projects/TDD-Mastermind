@@ -53,20 +53,19 @@ public class BoardServiceTest {
 	@Test
 	public void addProposalCombinationToBoardServiceTest() {
 		BoardService boardService = new BoardService();
-		String[] stringProposalCombination = {"RED", "GREEN", "BLUE", "ORANGE"};
 		ProposalCombination proposalCombination = new ProposalCombination();
-		proposalCombination.combination.add(Color.getColor(stringProposalCombination[0]));
-		proposalCombination.combination.add(Color.getColor(stringProposalCombination[1]));
-		proposalCombination.combination.add(Color.getColor(stringProposalCombination[2]));
-		proposalCombination.combination.add(Color.getColor(stringProposalCombination[3]));
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
 		int firstIntent = boardService.getBoard().getActualIntent();		
 		assertNull(boardService.getBoard().getProposalCombination(firstIntent));
 		
-		boardService.addProposal(stringProposalCombination);
+		boardService.addProposal(proposalCombination);
 		
 		assertNotNull(boardService.getBoard().getProposalCombination(firstIntent));
 		assertEquals(proposalCombination.getColors(), 
-				boardService.getBoard().getProposalCombination(firstIntent).getColors());
+		boardService.getBoard().getProposalCombination(firstIntent).getColors());
 		
 	}
 }
