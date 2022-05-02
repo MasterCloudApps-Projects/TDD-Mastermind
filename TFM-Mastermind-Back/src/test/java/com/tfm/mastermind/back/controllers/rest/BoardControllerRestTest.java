@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.when;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BoardControllerRestTest {
@@ -54,5 +56,20 @@ public class BoardControllerRestTest {
 	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
 	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
     		.body("combination[3]", equalTo("GREEN"));
+    }
+    
+    @Test
+	public void getActualIntentRestTest() throws Exception {
+
+    	//Given
+		Response actualIntent = when()
+            .get("/api/board/actualIntent").thenReturn();
+		
+		when()
+	        .get("/api/board/")
+	    .then()
+	         .assertThat()
+	         .statusCode(200)
+	         .body("actualIntent", equalTo(Integer.parseInt(actualIntent.getBody().asString())));
     }
 }

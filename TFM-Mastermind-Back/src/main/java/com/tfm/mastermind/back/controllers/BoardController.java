@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +38,8 @@ public class BoardController {
 		return this.boardService.getBoard().getProposalCombination(intent);
 	}
 	
+	@GetMapping("/actualIntent")
+	@ResponseStatus(HttpStatus.OK)
 	public int getActualIntent() {
 		return this.boardService.getBoard().getActualIntent();
 	}
