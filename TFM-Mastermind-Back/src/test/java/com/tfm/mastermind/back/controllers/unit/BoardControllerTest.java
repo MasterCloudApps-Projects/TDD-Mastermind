@@ -82,4 +82,9 @@ public class BoardControllerTest {
 		proposal2 = this.boardController.getProposalCombination(actualIntent);
 		assertEquals(board2.getProposalCombination(actualIntent), proposal2);
 	}
+	
+	@Test
+	public void getActualIntentControllerTest() {
+		assertEquals(this.boardController.getActualIntent(), Integer.MIN_VALUE);
+	}
 }

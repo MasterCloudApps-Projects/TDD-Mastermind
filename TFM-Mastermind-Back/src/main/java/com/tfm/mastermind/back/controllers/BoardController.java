@@ -36,4 +36,8 @@ public class BoardController {
 	public ProposalCombination getProposalCombination(int intent) {
 		return this.boardService.getBoard().getProposalCombination(intent);
 	}
+	
+	public int getActualIntent() {
+		return Integer.MIN_VALUE;
+	}
 }
