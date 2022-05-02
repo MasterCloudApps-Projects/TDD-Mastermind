@@ -45,4 +45,14 @@ public class BoardControllerTest {
 		
 		
 	}
+	
+	@Test
+	public void getProposalCombinationControllerTest() {
+		
+		Board board = this.boardController.getBoard().getBody();
+		
+		ProposalCombination proposal = this.boardController.getProposalCombination();
+		assertEquals(board.getProposalCombination(0), proposal);
+		
+	}
 }
