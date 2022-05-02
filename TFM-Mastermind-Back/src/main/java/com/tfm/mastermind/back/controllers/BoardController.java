@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
 import com.tfm.mastermind.back.services.BoardService;
-import com.tfm.mastermind.back.utils.Color;
 
 @Controller
 @RequestMapping("/api/board")
@@ -24,14 +23,7 @@ public class BoardController {
 		return new ResponseEntity<>(this.boardService.getBoard(), HttpStatus.OK);
 	}
 	
-	public void addProposalCombination() {
-
-		ProposalCombination proposalCombination = new ProposalCombination();
-		proposalCombination.combination.add(Color.RED);
-		proposalCombination.combination.add(Color.BLUE);
-		proposalCombination.combination.add(Color.GREEN);
-		proposalCombination.combination.add(Color.ORANGE);
-		
+	public void addProposalCombination(ProposalCombination proposalCombination) {
 		this.boardService.addProposal(proposalCombination);
 	}
 }
