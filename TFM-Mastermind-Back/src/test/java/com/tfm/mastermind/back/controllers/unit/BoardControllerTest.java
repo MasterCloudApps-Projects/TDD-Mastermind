@@ -64,5 +64,22 @@ public class BoardControllerTest {
 		
 		proposal = this.boardController.getProposalCombination(firstIntent);
 		assertEquals(board.getProposalCombination(firstIntent), proposal);
+		
+		ProposalCombination proposalCombination2 = new ProposalCombination();
+		proposalCombination2.combination.add(Color.RED);
+		proposalCombination2.combination.add(Color.BLUE);
+		proposalCombination2.combination.add(Color.GREEN);
+		proposalCombination2.combination.add(Color.ORANGE);
+		
+		Board board2 = this.boardController.getBoard().getBody();
+		int actualIntent = board2.getActualIntent();		
+		
+		ProposalCombination proposal2 = this.boardController.getProposalCombination(actualIntent);
+		assertEquals(board2.getProposalCombination(actualIntent), proposal2);
+		
+		this.boardController.addProposalCombination(proposalCombination2);
+		
+		proposal2 = this.boardController.getProposalCombination(actualIntent);
+		assertEquals(board2.getProposalCombination(actualIntent), proposal2);
 	}
 }

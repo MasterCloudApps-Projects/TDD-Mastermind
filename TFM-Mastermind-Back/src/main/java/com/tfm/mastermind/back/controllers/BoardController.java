@@ -34,6 +34,6 @@ public class BoardController {
 	}
 	
 	public ProposalCombination getProposalCombination(int intent) {
-		return this.boardService.getBoard().getProposalCombination(0);
+		return this.boardService.getBoard().getProposalCombination(intent);
 	}
 }
