@@ -1,10 +1,9 @@
 package com.tfm.mastermind.back.controllers.rest;
 
-import static io.restassured.RestAssured.when;
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,5 +70,55 @@ public class BoardControllerRestTest {
 	         .assertThat()
 	         .statusCode(200)
 	         .body("actualIntent", equalTo(Integer.parseInt(actualIntent.getBody().asString())));
+    }
+    
+    @Test
+	public void getProposalCombinationRestTest() throws Exception {
+    	//Given
+		Response actualIntent = when()
+            .get("/api/board/actualIntent").thenReturn();
+    	Integer intent = Integer.parseInt(actualIntent.getBody().asString());
+    	
+    	
+    	given().
+	        request()
+	            .pathParam("intent", intent)
+	            .contentType(ContentType.JSON).
+        when()
+            .get("/api/board/proposal/{intent}")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(equalTo(""));
+    	
+    	given().
+	        request()
+	            .body("{ \"combination\" : [ \"BLUE\", \"YELLOW\", \"PURPLE\", \"GREEN\"] }")
+	            .contentType(ContentType.JSON).
+        when()
+            .put("/api/board/")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+	        .body("combination[0]", equalTo("BLUE"))//, YELLOW, PURPLE, GREEN]"));
+	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
+	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
+    		.body("combination[3]", equalTo("GREEN"));
+    	
+    	given().
+	    	request()
+            .pathParam("intent", intent)
+	        .contentType(ContentType.JSON).
+        when()
+	        .get("/api/board/proposal/{intent}") 
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+	        .body("combination[0]", equalTo("BLUE"))//, YELLOW, PURPLE, GREEN]"));
+	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
+	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
+    		.body("combination[3]", equalTo("GREEN"));
     }
 }
