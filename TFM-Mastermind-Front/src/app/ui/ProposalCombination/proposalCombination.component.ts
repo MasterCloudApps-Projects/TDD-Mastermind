@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ProposalCombination {
 
+  public proposalCombination:string[] = ['black', 'red', 'green', 'blue'];
   constructor(
   ) {
   }
