@@ -11,6 +11,7 @@ import { AppComponent } from './ui/app/app.component';
 import { BoardComponent } from './ui/board/board.component';
 import { HomeComponent } from './ui/home/home.component';
 import { MainMenuComponent } from './ui/home/menu/menu.component';
+import { ProposalCombination } from './ui/ProposalCombination/proposalcombination.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MainMenuComponent } from './ui/home/menu/menu.component';
     AppComponent,
     HomeComponent,
     BoardComponent,
+    ProposalCombination,
     MainMenuComponent,
     CapitalizePipe,
   ],
