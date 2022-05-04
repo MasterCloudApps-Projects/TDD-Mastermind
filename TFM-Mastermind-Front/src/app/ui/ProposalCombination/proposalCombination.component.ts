@@ -12,5 +12,8 @@ export class ProposalCombination {
   ) {
   }
 
+  public addProposalCombination(){
+    this.proposalCombination = ['black', 'red', 'green', 'blue'];
+  }
 }
 

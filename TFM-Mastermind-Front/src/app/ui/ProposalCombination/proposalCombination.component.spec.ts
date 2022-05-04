@@ -28,4 +28,12 @@ describe('ProposalCombination', () => {
     expect(component.proposalCombination).toBeTruthy();
   });
 
+  it(`add proposal combination by method and check length before and after`, () => {
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination.length).toHaveSize(0);
+    
+    component.addProposalCombination();
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination).toHaveSize(4);
+  });
 });
