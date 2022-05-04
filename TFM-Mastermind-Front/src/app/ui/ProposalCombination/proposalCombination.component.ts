@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'proposal-combination',
   templateUrl: './proposalCombination.component.html',
   styleUrls: ['./proposalCombination.component.scss']
 })
 export class ProposalCombination {
 
-  public proposalCombination:string[] = ['black', 'red', 'green', 'blue'];
+  public proposalCombination:string[] = [];
   constructor(
   ) {
   }

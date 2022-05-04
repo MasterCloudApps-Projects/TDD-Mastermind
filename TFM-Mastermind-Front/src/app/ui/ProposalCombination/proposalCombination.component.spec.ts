@@ -26,7 +26,6 @@ describe('ProposalCombination', () => {
 
   it(`get proposal combination`, () => {
     expect(component.proposalCombination).toBeTruthy();
-    expect(component.proposalCombination.length).toEqual(4);
   });
 
 });
