@@ -1,6 +1,49 @@
 <mat-card style="max-width: 50%" fxLayout="row" fxLayoutAlign="space-between center">
-    <mat-card style="border-radius: 50%; max-width: 3rem" >{{proposalCombination[0]}}</mat-card>
-    <mat-card style="border-radius: 50%; max-width: 3rem" >{{proposalCombination[1]}}</mat-card>
-    <mat-card style="border-radius: 50%; max-width: 3rem" >{{proposalCombination[2]}}</mat-card>
-    <mat-card style="border-radius: 50%; max-width: 3rem" >{{proposalCombination[3]}}</mat-card>
+    <mat-card [style.background-color]="proposalCombination[0]" [style.color]="proposalCombination[0]" 
+            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    <mat-card [style.background-color]="proposalCombination[1]" [style.color]="proposalCombination[1]" 
+            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    <mat-card [style.background-color]="proposalCombination[2]" [style.color]="proposalCombination[2]" 
+            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    <mat-card [style.background-color]="proposalCombination[3]" [style.color]="proposalCombination[3]" 
+            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
 </mat-card>
+
+<div fxLayout="column" style="max-width: 68vw;">
+    <div class="example-container" gdColumn="auto / span 6">
+        <h2>Proposal</h2>
+        <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            #doingList="cdkDropList"
+            [cdkDropListData]="proposal"
+            [cdkDropListConnectedTo]="[doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event, 'doingList')">
+            <div class="example-box" *ngFor="let color of proposal | keyvalue" cdkDrag 
+            [style.background-color]="color.value" [style.color]="color.value">----</div>
+        </div>
+    </div>
+    <button mat-icon-button type="button" (click)="addProposalCombination()">
+        Submit proposal
+    </button>
+    
+</div>
+
+<div class="example-container" style="max-width: 68vw;">
+    <h2>Colors</h2>
+
+    <div
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        #doneList="cdkDropList"
+        [cdkDropListData]="colorList"
+        [cdkDropListConnectedTo]="[doingList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event, 'doneList')">
+        <div class="example-box" *ngFor="let color of colorList | keyvalue" cdkDrag 
+        [style.background-color]="color.value" [style.color]="color.value">----</div>
+    </div>
+</div>
+  
+  

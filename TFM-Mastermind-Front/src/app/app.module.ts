@@ -1,3 +1,5 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,7 +13,7 @@ import { AppComponent } from './ui/app/app.component';
 import { BoardComponent } from './ui/board/board.component';
 import { HomeComponent } from './ui/home/home.component';
 import { MainMenuComponent } from './ui/home/menu/menu.component';
-import { ProposalCombination } from './ui/ProposalCombination/proposalcombination.component';
+import { ProposalCombination } from './ui/ProposalCombination/proposalCombination.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ProposalCombination } from './ui/ProposalCombination/proposalcombinatio
     FormsModule, ReactiveFormsModule,
     FlexLayoutModule,
     AppRoutingModule,
-    UIMaterialModule
+    UIMaterialModule,
+    DragDropModule,
   ],
   providers: [
   ],
