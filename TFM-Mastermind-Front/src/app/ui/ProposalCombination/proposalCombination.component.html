@@ -1,12 +1,8 @@
-<mat-card style="max-width: 50%" fxLayout="row" fxLayoutAlign="space-between center">
-    <mat-card [style.background-color]="proposalCombination[0]" [style.color]="proposalCombination[0]" 
-            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-    <mat-card [style.background-color]="proposalCombination[1]" [style.color]="proposalCombination[1]" 
-            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-    <mat-card [style.background-color]="proposalCombination[2]" [style.color]="proposalCombination[2]" 
-            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-    <mat-card [style.background-color]="proposalCombination[3]" [style.color]="proposalCombination[3]" 
-            style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+<mat-card style="max-width: 50%" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="proposalCombination?.combination as prop">
+    <mat-card [style.background-color]="prop[0]" [style.color]="prop[0]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    <mat-card [style.background-color]="prop[1]" [style.color]="prop[1]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    <mat-card [style.background-color]="prop[2]" [style.color]="prop[2]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    <mat-card [style.background-color]="prop[3]" [style.color]="prop[3]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
 </mat-card>
 
 <div fxLayout="column" style="max-width: 68vw;">

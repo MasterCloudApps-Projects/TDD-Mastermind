@@ -37,38 +37,38 @@ describe('ProposalCombination', () => {
 
   it(`add proposal combination by user as proposal list check length and content before and after`, () => {
     expect(component.proposalCombination).toBeTruthy();
-    expect(component.proposalCombination.length).toHaveSize(0);
+    expect(component.proposalCombination?.combination).toBeFalsy();
     
     component.addProposalCombination();
     expect(component.proposalCombination).toBeTruthy();
-    expect(component.proposalCombination).toHaveSize(0);
+    expect(component.proposalCombination?.combination).toBeFalsy();
 
     component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE);
     component.addProposalCombination();
     
-    expect(component.proposalCombination).toHaveSize(4);
-    expect(component.proposalCombination).toEqual(component.proposal);
+    expect(component.proposalCombination?.combination).toHaveSize(4);
+    expect(component.proposalCombination?.combination).toEqual(component.proposal);
 
   });
 
   it(`add proposal combination by user as proposal list and check the proposal to be 4 color`, () => {
     expect(component.proposalCombination).toBeTruthy();
-    expect(component.proposalCombination.length).toHaveSize(0);
+    expect(component.proposalCombination?.combination).toBeFalsy();
     
     component.addProposalCombination();
     expect(component.proposalCombination).toBeTruthy();
-    expect(component.proposalCombination).toHaveSize(0);
+    expect(component.proposalCombination?.combination).toBeFalsy();
 
     component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE);
     component.addProposalCombination();
     
-    expect(component.proposalCombination).toHaveSize(0);
-    expect(component.proposalCombination).not.toEqual(component.proposal);
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    expect(component.proposalCombination?.combination).not.toEqual(component.proposal);
 
     component.proposal.push(ColorEnum.RED);
     component.addProposalCombination();
     
-    expect(component.proposalCombination).toHaveSize(4);
-    expect(component.proposalCombination).toEqual(component.proposal);
+    expect(component.proposalCombination?.combination).toHaveSize(4);
+    expect(component.proposalCombination?.combination).toEqual(component.proposal);
   });
 });
