@@ -6,6 +6,7 @@ import { BusService } from "../common/bus";
 import { IForm } from "../interfaces/IForm";
 import { take } from 'rxjs/operators';
 import { Board } from "../domain/Board";
+import { Proposal } from "../domain/proposal";
 
 const PREFIX = `${environment.baseUrl}/board`;
 
@@ -34,5 +35,11 @@ export class BoardService implements IForm<Board>{
     //Recupera todos los atributos de un cliente
     public getSecretcombination (): Observable<Board> {
         return this.http.get<Board>(`${PREFIX}/`).pipe(take(1));
+    }
+
+    //Recupera todos los atributos de un cliente
+    public addProposalCombination (proposal: Proposal): Proposal {
+        proposal.maxWidth = 4;
+        return proposal;
     }
 }

@@ -14,12 +14,15 @@ import { Proposal } from 'src/app/domain/proposal';
 export class ProposalCombination {
   public proposalCombination: Proposal = {};
   
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar,
+    private boardService: BoardService) {
   }
 
   public addProposalCombination(){
     if (this.proposal.length == 4) {
       this.proposalCombination.combination = this.proposal;
+      this.proposalCombination = this.boardService.addProposalCombination(this.proposalCombination);
+
     } else {
       this.snackBar.open('The proposal has to have 4 color.','', {
         duration: 2000
