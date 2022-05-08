@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ColorEnum } from 'src/app/domain/Color';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'proposal-combination',
@@ -11,11 +12,18 @@ import { ColorEnum } from 'src/app/domain/Color';
 export class ProposalCombination {
   public proposalCombination:string[] = [];
   
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
   }
 
   public addProposalCombination(){
-    this.proposalCombination = this.proposal;
+    if (this.proposal.length == 4) {
+      this.proposalCombination = this.proposal;
+    } else {
+      this.snackBar.open('The proposal has to have 4 color.','', {
+        duration: 2000
+      });
+    }
+    
   }
   
   public proposal: string[] = [];

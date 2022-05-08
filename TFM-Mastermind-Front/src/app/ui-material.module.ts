@@ -1,4 +1,5 @@
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
 import { NgModule } from '@angular/core';
@@ -85,6 +86,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FlexLayoutModule,
     MatCommonModule,
     MatTooltipModule,
+    DragDropModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es' }],
   bootstrap: [],
@@ -132,6 +134,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CdkAccordionModule,
     FlexLayoutModule,
     MatTooltipModule,
+    DragDropModule,
   ],
 })
 export class UIMaterialModule {
