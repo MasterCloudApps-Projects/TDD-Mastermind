@@ -38,8 +38,7 @@ export class BoardService implements IForm<Board>{
     }
 
     //Recupera todos los atributos de un cliente
-    public addProposalCombination (proposal: Proposal): Proposal {
-        proposal.maxWidth = 4;
-        return proposal;
+    public addProposalCombination (proposal: Proposal): Observable<Proposal> {
+        return this.http.put<Proposal>(`${PREFIX}/`, proposal).pipe(take(1));
     }
 }

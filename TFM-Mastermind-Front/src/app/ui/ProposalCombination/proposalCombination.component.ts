@@ -20,9 +20,10 @@ export class ProposalCombination {
 
   public addProposalCombination(){
     if (this.proposal.length == 4) {
-      this.proposalCombination.combination = this.proposal;
-      this.proposalCombination = this.boardService.addProposalCombination(this.proposalCombination);
-
+      let proposalRequest: Proposal = {combination: this.proposal};
+      this.boardService.addProposalCombination(proposalRequest).subscribe((proposalResponse: Proposal) => {
+        this.proposalCombination = proposalResponse;
+      });
     } else {
       this.snackBar.open('The proposal has to have 4 color.','', {
         duration: 2000
