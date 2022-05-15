@@ -11,6 +11,11 @@ import { Proposal } from "src/app/domain/proposal";
 import { BoardService } from "src/app/services/board-service";
 import { ProposalCombination } from "./proposalCombination.component";
 
+const BOARD = { secretCombination: {
+  "combination":["PURPLE","GREEN","RED","BLUE"],
+  "maxWidth":4}
+}
+
 const PROPOSALCOMBINATION = {
   "combination":["PURPLE","GREEN","RED","BLUE"],
   "maxWidth":4
@@ -31,7 +36,7 @@ describe('ProposalCombination', () => {
         NoopAnimationsModule,
       ],
       declarations: [
-        ProposalCombination
+        ProposalCombination,
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(ProposalCombination);
@@ -141,4 +146,9 @@ describe('ProposalCombination', () => {
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: component.proposal});
     
   }));
+
+  it(`eventEmitter not to be null`,() => {
+    expect(component.eventEmitter).not.toBeNull();
+  });
+
 });

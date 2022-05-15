@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ColorEnum } from 'src/app/domain/Color';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BoardService } from 'src/app/services/board-service';
 import { Proposal } from 'src/app/domain/proposal';
+import { Board } from 'src/app/domain/Board';
 
 @Component({
   selector: 'proposal-combination',
@@ -13,6 +14,12 @@ import { Proposal } from 'src/app/domain/proposal';
 })
 export class ProposalCombination {
   public proposalCombination: Proposal = {};
+
+  @Input()
+  public board: Board = {};
+
+  @Output()
+  public eventEmitter = new EventEmitter<Board>();
   
   constructor(private snackBar: MatSnackBar,
     private boardService: BoardService) {
