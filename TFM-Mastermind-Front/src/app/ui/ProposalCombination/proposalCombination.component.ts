@@ -64,4 +64,8 @@ export class ProposalCombination {
     }
   }
     
+  public emitEvent(){
+    this.eventEmitter.emit(this.board);
+  }
+
 }

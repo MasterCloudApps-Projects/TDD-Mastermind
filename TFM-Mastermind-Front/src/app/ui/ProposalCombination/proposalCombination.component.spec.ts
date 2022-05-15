@@ -6,6 +6,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from "rxjs";
+import { Board } from "src/app/domain/Board";
 import { ColorEnum } from "src/app/domain/Color";
 import { Proposal } from "src/app/domain/proposal";
 import { BoardService } from "src/app/services/board-service";
@@ -151,4 +152,22 @@ describe('ProposalCombination', () => {
     expect(component.eventEmitter).not.toBeNull();
   });
 
+  
+  it(`send board to boardComponent`, fakeAsync(() => {
+    let board: Board = {};
+    component.board = BOARD;
+    expect(component.eventEmitter).not.toBeNull();
+    
+    expect(component.board).not.toBeNull();
+    component.eventEmitter.subscribe((value: Board) => board = value);
+    
+    fixture.detectChanges();
+    tick();
+    component.emitEvent();
+
+
+    expect(board.secretCombination?.combination).toEqual(BOARD.secretCombination.combination);
+    expect(board.secretCombination?.maxWidth).toEqual(4);
+    
+  }));
 });
