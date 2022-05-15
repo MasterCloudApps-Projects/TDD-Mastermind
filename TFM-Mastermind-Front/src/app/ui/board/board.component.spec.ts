@@ -61,7 +61,7 @@ describe('BoardComponent', () => {
     let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(SECRETCOMBINATION));
     fixture.detectChanges();
     tick();
-
+    
     let combination1: Board = {};
     boardService.getSecretcombination().subscribe((combination: Board) => {
       combination1 = combination;
@@ -75,8 +75,14 @@ describe('BoardComponent', () => {
     
     component.getSecretCombination();
     expect(component.secretCombination).toEqual(combination1);
-
+    
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
     
+  }));
+  
+  it(`Board component to have proposal-combination`, fakeAsync(() => {
+    
+    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination')).not.toBeNull();
+
   }));
 });
