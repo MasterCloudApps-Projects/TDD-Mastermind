@@ -85,4 +85,27 @@ describe('BoardComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('proposal-combination')).not.toBeNull();
 
   }));
+
+  it(`send board from boardComponent`, fakeAsync(() => {
+    let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.callThrough();
+    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(SECRETCOMBINATION));
+    tick();
+    
+    component.getSecretCombination();
+    fixture.detectChanges();
+
+    expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
+    
+    expect(component.secretCombination).toBeTruthy();
+    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
+    expect(component.secretCombination?.secretCombination?.combination).toHaveSize(4);
+
+    
+    fixture.debugElement.nativeElement.querySelector('proposal-combination').board = component.secretCombination;
+    
+    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.secretCombination);
+
+    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
+    
+  }));
 });
