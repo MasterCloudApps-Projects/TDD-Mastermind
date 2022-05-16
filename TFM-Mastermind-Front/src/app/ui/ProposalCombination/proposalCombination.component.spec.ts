@@ -170,4 +170,35 @@ describe('ProposalCombination', () => {
     expect(board.secretCombination?.maxWidth).toEqual(4);
     
   }));
+
+  it(`add proposal combination by method and send event to the boardcomponent`, fakeAsync(() => {
+    let addProposalCombinationMethod = spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+    
+    let board: Board = {};
+    component.board = BOARD;
+    component.eventEmitter.subscribe((value: Board) => board = value);
+    
+    fixture.detectChanges();
+    tick();
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE);
+
+    component.addProposalCombination();
+
+    expect(addProposalCombinationMethod).toHaveBeenCalledTimes(1);
+    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: component.proposal});
+    
+
+    expect(board.secretCombination?.combination).toEqual(BOARD.secretCombination.combination);
+    expect(board.secretCombination?.maxWidth).toEqual(4);
+    expect(board.proposalCombination).not.toBeNull();
+    expect(board.proposalCombination).toContain(PROPOSALCOMBINATION);
+    expect(board.proposalCombination![0]).toEqual(PROPOSALCOMBINATION);
+  
+  }));
+
 });

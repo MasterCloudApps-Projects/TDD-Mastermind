@@ -30,6 +30,13 @@ export class ProposalCombination {
       let proposalRequest: Proposal = {combination: this.proposal};
       this.boardService.addProposalCombination(proposalRequest).subscribe((proposalResponse: Proposal) => {
         this.proposalCombination = proposalResponse;
+        console.log(this.board);
+        if (this.board.proposalCombination == null) {
+          this.board.proposalCombination = [];
+        }
+        this.board.proposalCombination.unshift(this.proposalCombination);
+        console.log(this.board);
+        this.emitEvent();
       });
     } else {
       this.snackBar.open('The proposal has to have 4 color.','', {
