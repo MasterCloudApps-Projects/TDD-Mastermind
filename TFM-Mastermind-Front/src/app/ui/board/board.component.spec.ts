@@ -1,10 +1,16 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { EventEmitter } from '@angular/core';
 import { TestBed, async, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { Board } from 'src/app/domain/Board';
 import { BoardService } from 'src/app/services/board-service';
+import { ProposalCombination } from '../ProposalCombination/proposalCombination.component';
 import { BoardComponent } from './board.component';
 
 const BOARD = { 
@@ -27,6 +33,9 @@ describe('BoardComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
+        MatSnackBarModule,
+        FormsModule,
+        DragDropModule
       ],
       declarations: [
         BoardComponent
@@ -150,4 +159,26 @@ describe('BoardComponent', () => {
     expect(component.secretCombination).toEqual(BOARD);
     
   });
+
+  it(`setBoard in boardComponent with parameters from proposalCombination`, fakeAsync(() => {
+    expect(component.secretCombination).toEqual({});
+    let setBoard = spyOn(component, 'setBoard').withArgs(BOARD).and.callThrough();
+    
+    fixture.debugElement.nativeElement.querySelector('proposal-combination').eventEmitter = BOARD;
+    
+    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').eventEmitter).toEqual(BOARD);
+    
+    component.setBoard(BOARD);
+
+    expect(setBoard).toHaveBeenCalledWith(BOARD);
+
+    expect(component.secretCombination).toBeTruthy();
+    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
+    expect(component.secretCombination?.actualIntent).toEqual(1);
+    expect(component.secretCombination?.secretCombination).toEqual(BOARD.secretCombination);
+    expect(component.secretCombination?.proposalCombination).toEqual(BOARD.proposalCombination);
+    expect(component.secretCombination).toEqual(BOARD);
+    
+  }));
+
 });
