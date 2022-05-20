@@ -36,6 +36,7 @@ export class ProposalCombination {
         this.board.proposalCombination.unshift(this.proposalCombination);
         this.emitEvent();
         this.proposal = [];
+        this.colorList = Object.values(ColorEnum);
       });
     } else {
       this.snackBar.open('The proposal has to have 4 color.','', {

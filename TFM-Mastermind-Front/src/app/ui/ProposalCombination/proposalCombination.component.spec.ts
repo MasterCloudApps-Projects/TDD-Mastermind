@@ -234,4 +234,50 @@ describe('ProposalCombination', () => {
     expect(component.proposal).toHaveSize(0);
     
   });
+
+  it(`add proposal combination and after incorrect add, check colorList not to be on initial value`, () => {
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE);
+    spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    expect(component.colorList).toEqual(Object.values(ColorEnum));
+    
+    component.colorList.shift();
+    component.colorList.shift();
+    
+    expect(component.colorList).not.toEqual(Object.values(ColorEnum));
+    
+    component.addProposalCombination();
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    
+    expect(component.colorList).not.toEqual(Object.values(ColorEnum));
+    
+  });
+
+  it(`add proposal combination and after correct add, check colorList to be on initial value`, () => {
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.RED);
+    spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    expect(component.colorList).toEqual(Object.values(ColorEnum));
+    
+    component.colorList.shift();
+    component.colorList.shift();
+    
+    expect(component.colorList).not.toEqual(Object.values(ColorEnum));
+    
+    component.addProposalCombination();
+    
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toHaveSize(4);
+    expect(component.colorList).toEqual(Object.values(ColorEnum));
+
+  });
 });
