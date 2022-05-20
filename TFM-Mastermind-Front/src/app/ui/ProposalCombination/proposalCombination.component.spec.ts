@@ -144,7 +144,7 @@ describe('ProposalCombination', () => {
     expect(proposalCombination2?.combination).toHaveSize(4);
     expect(proposalCombination2?.maxWidth).toEqual(4);
 
-    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: component.proposal});
+    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, proposalCombination1);
     
   }));
 
@@ -190,7 +190,7 @@ describe('ProposalCombination', () => {
     component.addProposalCombination();
 
     expect(addProposalCombinationMethod).toHaveBeenCalledTimes(1);
-    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: component.proposal});
+    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: [ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE]});
     
 
     expect(board.secretCombination?.combination).toEqual(BOARD.secretCombination.combination);
@@ -201,4 +201,37 @@ describe('ProposalCombination', () => {
   
   }));
 
+  it(`add proposal combination and after incorrect add check proposal lenght still not 0`, () => {
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE);
+    spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    
+    component.addProposalCombination();
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    expect(component.proposal).toHaveSize(3);
+    
+  });
+
+  it(`add proposal combination and after correct add check proposal lenght is 0`, () => {
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.RED);
+    spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeFalsy();
+    expect(component.proposal).toHaveSize(4);
+    
+    component.addProposalCombination();
+
+    expect(component.proposalCombination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toBeTruthy();
+    expect(component.proposalCombination?.combination).toHaveSize(4);
+    expect(component.proposal).toHaveSize(0);
+    
+  });
 });
