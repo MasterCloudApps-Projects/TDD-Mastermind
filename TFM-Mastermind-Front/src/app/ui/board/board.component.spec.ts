@@ -137,10 +137,10 @@ describe('BoardComponent', () => {
     
   }));
 
-  it(`setBoard in boardComponent`, fakeAsync(() => {
+  it(`setBoard in boardComponent with parameters`, () => {
     expect(component.secretCombination).toEqual({});
     
-    component.setBoard();
+    component.setBoard(BOARD);
 
     expect(component.secretCombination).toBeTruthy();
     expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
@@ -148,8 +148,6 @@ describe('BoardComponent', () => {
     expect(component.secretCombination?.secretCombination).toEqual(BOARD.secretCombination);
     expect(component.secretCombination?.proposalCombination).toEqual(BOARD.proposalCombination);
     expect(component.secretCombination).toEqual(BOARD);
-
     
-    
-  }));
+  });
 });

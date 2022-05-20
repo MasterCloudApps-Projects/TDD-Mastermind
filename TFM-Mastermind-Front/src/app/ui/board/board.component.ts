@@ -26,17 +26,8 @@ export class BoardComponent {
     });
   }
 
-  public setBoard(){
-    this.secretCombination = { 
-      secretCombination: {
-      "combination":["PURPLE","GREEN","RED","BLUE"],
-      "maxWidth":4},
-      proposalCombination: [{
-        "combination":["PURPLE","GREEN","RED","BLUE"],
-        "maxWidth":4}],
-      actualIntent : 1
-        
-    }
+  public setBoard(board: Board){
+    this.secretCombination = board;
   }
 }
 
