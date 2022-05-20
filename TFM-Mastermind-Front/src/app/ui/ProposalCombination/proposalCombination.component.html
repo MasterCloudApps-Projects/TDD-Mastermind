@@ -1,0 +1,47 @@
+<div *ngFor="let proposalCombi of board?.proposalCombination">
+    <mat-card style="max-width: 50%" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="proposalCombi?.combination as prop">
+        <mat-card [style.background-color]="prop[0]" [style.color]="prop[0]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+        <mat-card [style.background-color]="prop[1]" [style.color]="prop[1]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+        <mat-card [style.background-color]="prop[2]" [style.color]="prop[2]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+        <mat-card [style.background-color]="prop[3]" [style.color]="prop[3]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    </mat-card>
+</div>
+
+<div fxLayout="column" style="max-width: 68vw;">
+    <div class="example-container" gdColumn="auto / span 6">
+        <h2>Proposal</h2>
+        <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            #doingList="cdkDropList"
+            [cdkDropListData]="proposal"
+            [cdkDropListConnectedTo]="[doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event, 'doingList')">
+            <div class="example-box" *ngFor="let color of proposal | keyvalue" cdkDrag 
+            [style.background-color]="color.value" [style.color]="color.value">----</div>
+        </div>
+    </div>
+    <button mat-icon-button type="button" (click)="addProposalCombination()">
+        Submit proposal
+    </button>
+    
+</div>
+
+<div class="example-container" style="max-width: 68vw;">
+    <h2>Colors</h2>
+
+    <div
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        #doneList="cdkDropList"
+        [cdkDropListData]="colorList"
+        [cdkDropListConnectedTo]="[doingList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event, 'doneList')">
+        <div class="example-box" *ngFor="let color of colorList | keyvalue" cdkDrag 
+        [style.background-color]="color.value" [style.color]="color.value">----</div>
+    </div>
+</div>
+  
+  

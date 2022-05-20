@@ -1,8 +1,9 @@
+import { Proposal } from "./proposal";
+
 export class Board {
-    secretCombination?: {
-        combination?: string[];
-        maxWidth?: Number;
-    }
+    secretCombination?: Proposal;
+    proposalCombination?: Proposal[];
+    actualIntent?: number;
 
     constructor(fields: Partial<Board> = {}) {
         Object.assign(this, fields);        
