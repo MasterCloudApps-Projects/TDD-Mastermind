@@ -10,7 +10,7 @@ import { BoardService } from 'src/app/services/board-service';
 export class BoardComponent {
   public title = 'mastermind-front';
   
-  public secretCombination: Board = {};
+  public board: Board = {};
 
   constructor(
     private boardService: BoardService
@@ -22,12 +22,12 @@ export class BoardComponent {
 
   public getSecretCombination(){
     this.boardService.getSecretcombination().subscribe((combination: Board) => {
-      this.secretCombination = combination;
+      this.board = combination;
     });
   }
 
   public setBoard(board: Board){
-    this.secretCombination = board;
+    this.board = board;
   }
 }
 

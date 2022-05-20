@@ -56,17 +56,17 @@ describe('BoardComponent', () => {
   });
 
   it(`get secret combination`, () => {
-    expect(component.secretCombination).toBeTruthy();
+    expect(component.board).toBeTruthy();
   });
 
   it(`get secret combination by method and check length before and after`, () => {
     let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.returnValue(of(BOARD));
-    expect(component.secretCombination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toBeFalsy();
+    expect(component.board).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toBeFalsy();
     
     component.getSecretCombination();
-    expect(component.secretCombination.secretCombination?.combination).toBeTruthy();
-    expect(component.secretCombination.secretCombination?.combination).toHaveSize(4);
+    expect(component.board.secretCombination?.combination).toBeTruthy();
+    expect(component.board.secretCombination?.combination).toHaveSize(4);
     expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
   });
 
@@ -88,7 +88,7 @@ describe('BoardComponent', () => {
     expect(combination1.secretCombination?.combination).toHaveSize(4);
     
     component.getSecretCombination();
-    expect(component.secretCombination).toEqual(combination1);
+    expect(component.board).toEqual(combination1);
     
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
     
@@ -110,14 +110,14 @@ describe('BoardComponent', () => {
 
     expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
     
-    expect(component.secretCombination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toHaveSize(4);
+    expect(component.board).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toHaveSize(4);
 
     
-    fixture.debugElement.nativeElement.querySelector('proposal-combination').board = component.secretCombination;
+    fixture.debugElement.nativeElement.querySelector('proposal-combination').board = component.board;
     
-    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.secretCombination);
+    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.board);
 
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
     
@@ -133,35 +133,35 @@ describe('BoardComponent', () => {
 
     expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
     
-    expect(component.secretCombination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toHaveSize(4);
+    expect(component.board).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toHaveSize(4);
 
     
-    fixture.debugElement.nativeElement.querySelector('proposal-combination').board = component.secretCombination;
+    fixture.debugElement.nativeElement.querySelector('proposal-combination').board = component.board;
     
-    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.secretCombination);
+    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.board);
 
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
     
   }));
 
   it(`setBoard in boardComponent with parameters`, () => {
-    expect(component.secretCombination).toEqual({});
+    expect(component.board).toEqual({});
     
     component.setBoard(BOARD);
 
-    expect(component.secretCombination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
-    expect(component.secretCombination?.actualIntent).toEqual(1);
-    expect(component.secretCombination?.secretCombination).toEqual(BOARD.secretCombination);
-    expect(component.secretCombination?.proposalCombination).toEqual(BOARD.proposalCombination);
-    expect(component.secretCombination).toEqual(BOARD);
+    expect(component.board).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toBeTruthy();
+    expect(component.board?.actualIntent).toEqual(1);
+    expect(component.board?.secretCombination).toEqual(BOARD.secretCombination);
+    expect(component.board?.proposalCombination).toEqual(BOARD.proposalCombination);
+    expect(component.board).toEqual(BOARD);
     
   });
 
   it(`setBoard in boardComponent with parameters from proposalCombination`, fakeAsync(() => {
-    expect(component.secretCombination).toEqual({});
+    expect(component.board).toEqual({});
     let setBoard = spyOn(component, 'setBoard').withArgs(BOARD).and.callThrough();
     
     fixture.debugElement.nativeElement.querySelector('proposal-combination').eventEmitter = BOARD;
@@ -172,12 +172,12 @@ describe('BoardComponent', () => {
 
     expect(setBoard).toHaveBeenCalledWith(BOARD);
 
-    expect(component.secretCombination).toBeTruthy();
-    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
-    expect(component.secretCombination?.actualIntent).toEqual(1);
-    expect(component.secretCombination?.secretCombination).toEqual(BOARD.secretCombination);
-    expect(component.secretCombination?.proposalCombination).toEqual(BOARD.proposalCombination);
-    expect(component.secretCombination).toEqual(BOARD);
+    expect(component.board).toBeTruthy();
+    expect(component.board?.secretCombination?.combination).toBeTruthy();
+    expect(component.board?.actualIntent).toEqual(1);
+    expect(component.board?.secretCombination).toEqual(BOARD.secretCombination);
+    expect(component.board?.proposalCombination).toEqual(BOARD.proposalCombination);
+    expect(component.board).toEqual(BOARD);
     
   }));
 
