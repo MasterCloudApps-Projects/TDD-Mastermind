@@ -7,9 +7,14 @@ import { Board } from 'src/app/domain/Board';
 import { BoardService } from 'src/app/services/board-service';
 import { BoardComponent } from './board.component';
 
-const SECRETCOMBINATION = { secretCombination: {
+const BOARD = { 
+  secretCombination: {
   "combination":["PURPLE","GREEN","RED","BLUE"],
-  "maxWidth":4}
+  "maxWidth":4},
+  proposalCombination: [{
+    "combination":["PURPLE","GREEN","RED","BLUE"],
+    "maxWidth":4}],
+  actualIntent : 1
 }
 
 describe('BoardComponent', () => {
@@ -46,7 +51,7 @@ describe('BoardComponent', () => {
   });
 
   it(`get secret combination by method and check length before and after`, () => {
-    let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.returnValue(of(SECRETCOMBINATION));
+    let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.returnValue(of(BOARD));
     expect(component.secretCombination).toBeTruthy();
     expect(component.secretCombination?.secretCombination?.combination).toBeFalsy();
     
@@ -58,7 +63,7 @@ describe('BoardComponent', () => {
 
   it(`get secret combination by method using the board service and compare`, fakeAsync(() => {
     let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.callThrough();
-    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(SECRETCOMBINATION));
+    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(BOARD));
     fixture.detectChanges();
     tick();
     
@@ -88,7 +93,7 @@ describe('BoardComponent', () => {
 
   it(`send board from boardComponent`, fakeAsync(() => {
     let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.callThrough();
-    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(SECRETCOMBINATION));
+    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(BOARD));
     tick();
     
     component.getSecretCombination();
@@ -106,6 +111,45 @@ describe('BoardComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.secretCombination);
 
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
+    
+  }));
+
+  it(`send board from boardComponent`, fakeAsync(() => {
+    let getSecretCombinationMethod = spyOn(boardService, 'getSecretcombination').and.callThrough();
+    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(BOARD));
+    tick();
+    
+    component.getSecretCombination();
+    fixture.detectChanges();
+
+    expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
+    
+    expect(component.secretCombination).toBeTruthy();
+    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
+    expect(component.secretCombination?.secretCombination?.combination).toHaveSize(4);
+
+    
+    fixture.debugElement.nativeElement.querySelector('proposal-combination').board = component.secretCombination;
+    
+    expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').board).toEqual(component.secretCombination);
+
+    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
+    
+  }));
+
+  it(`setBoard in boardComponent`, fakeAsync(() => {
+    expect(component.secretCombination).toEqual({});
+    
+    component.setBoard();
+
+    expect(component.secretCombination).toBeTruthy();
+    expect(component.secretCombination?.secretCombination?.combination).toBeTruthy();
+    expect(component.secretCombination?.actualIntent).toEqual(1);
+    expect(component.secretCombination?.secretCombination).toEqual(BOARD.secretCombination);
+    expect(component.secretCombination?.proposalCombination).toEqual(BOARD.proposalCombination);
+    expect(component.secretCombination).toEqual(BOARD);
+
+    
     
   }));
 });

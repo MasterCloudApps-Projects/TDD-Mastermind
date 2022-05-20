@@ -25,5 +25,18 @@ export class BoardComponent {
       this.secretCombination = combination;
     });
   }
+
+  public setBoard(){
+    this.secretCombination = { 
+      secretCombination: {
+      "combination":["PURPLE","GREEN","RED","BLUE"],
+      "maxWidth":4},
+      proposalCombination: [{
+        "combination":["PURPLE","GREEN","RED","BLUE"],
+        "maxWidth":4}],
+      actualIntent : 1
+        
+    }
+  }
 }
 
