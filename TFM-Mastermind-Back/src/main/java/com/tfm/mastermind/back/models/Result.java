@@ -11,4 +11,8 @@ public class Result {
 	public int getWhites() {
 		return white;
 	}
+
+	public int getBlack() {
+		return Integer.MIN_VALUE;
+	}
 }

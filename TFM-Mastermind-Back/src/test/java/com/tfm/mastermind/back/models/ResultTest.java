@@ -14,4 +14,10 @@ public class ResultTest {
 		Result result2 = new Result(3);
 		assertEquals(result2.getWhites(), 3);		
 	}
+	
+	@Test
+	public void getWrongBlackTest() {
+		Result result = new Result(1);
+		assertEquals(result.getBlack(), Integer.MIN_VALUE);		
+	}
 }
