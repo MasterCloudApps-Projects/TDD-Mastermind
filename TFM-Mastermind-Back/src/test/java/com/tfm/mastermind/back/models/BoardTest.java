@@ -92,4 +92,10 @@ public class BoardTest {
 		assertNotNull(board.getProposalCombination(i2));		
 		assertEquals(proposalCombination, board.getProposalCombination(i2));
 	}
+	
+	@Test
+	public void getNullResultBoardTest() {
+		Board board = new Board();
+		assertNull(board.getResult());
+	}
 }

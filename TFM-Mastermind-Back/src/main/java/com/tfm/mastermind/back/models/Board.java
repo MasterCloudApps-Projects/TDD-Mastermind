@@ -1,5 +1,7 @@
 package com.tfm.mastermind.back.models;
 
+import java.util.Map;
+
 public class Board {
 
 	private int actualIntent;
@@ -31,5 +33,9 @@ public class Board {
 	
 	public int getActualIntent() {
 		return this.actualIntent;
+	}
+	
+	public Map<String, Integer> getResult(){
+		return null;
 	}
 }
