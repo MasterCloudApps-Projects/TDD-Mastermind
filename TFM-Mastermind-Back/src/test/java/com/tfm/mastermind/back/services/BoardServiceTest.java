@@ -68,4 +68,10 @@ public class BoardServiceTest {
 		boardService.getBoard().getProposalCombination(firstIntent).getColors());
 		
 	}
+	
+	@Test
+	public void getNullResultFromBoardServiceTest() {
+		BoardService boardService = new BoardService();
+		assertNull(boardService.getResult());
+	}
 }

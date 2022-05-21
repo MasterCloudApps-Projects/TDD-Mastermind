@@ -1,5 +1,7 @@
 package com.tfm.mastermind.back.services;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.tfm.mastermind.back.models.Board;
@@ -20,5 +22,9 @@ public class BoardService {
 	
 	public void addProposal(ProposalCombination proposalCombination) {
 		this.board.addProposal(proposalCombination);
+	}
+	
+	public Map<String, Integer> getResult(){
+		return null;
 	}
 }
