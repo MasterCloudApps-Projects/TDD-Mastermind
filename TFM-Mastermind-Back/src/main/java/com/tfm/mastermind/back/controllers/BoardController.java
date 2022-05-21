@@ -1,6 +1,8 @@
 package com.tfm.mastermind.back.controllers;
 
-import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,8 +49,9 @@ public class BoardController {
 		return this.boardService.getBoard().getActualIntent();
 	}
 
-	public JSONObject getResult() {
-		JSONObject result = new JSONObject();
+	@GetMapping("/result")
+	public Map<String, Integer> getResult() {
+		Map<String, Integer> result =  new HashMap<>();
 		result.put("black", 2);
 		result.put("white", 2);
 		return result;

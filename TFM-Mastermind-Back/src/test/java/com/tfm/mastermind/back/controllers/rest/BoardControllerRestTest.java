@@ -121,4 +121,17 @@ public class BoardControllerRestTest {
 	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
     		.body("combination[3]", equalTo("GREEN"));
     }
+    
+    @Test
+	public void getResultRestTest() throws Exception {
+    	//Given
+		when()
+            .get("/api/board/result")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+            .body("black", notNullValue())
+    		.body("white", notNullValue());
+    }
 }

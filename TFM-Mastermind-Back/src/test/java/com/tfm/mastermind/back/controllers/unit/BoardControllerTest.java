@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +98,7 @@ public class BoardControllerTest {
 	
 	@Test
 	public void getNotEmptyResultControllerTest() {
-		JSONObject result = this.boardController.getResult();
+		JSONObject result = new JSONObject(this.boardController.getResult());
 		assertTrue(result.has("black"));
 		assertTrue(result.has("white"));
 	}
