@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.tfm.mastermind.back.controllers.BoardController;
 import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
+import com.tfm.mastermind.back.models.Result;
 import com.tfm.mastermind.back.utils.Color;
 
 
@@ -101,5 +102,24 @@ public class BoardControllerTest {
 		JSONObject result = new JSONObject(this.boardController.getResult());
 		assertTrue(result.has("black"));
 		assertTrue(result.has("white"));
+	}
+	
+	@Test
+	public void addProposalCombinationAndGetNullResultControllerTest() {
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		
+		Board board = this.boardController.getBoard().getBody();
+		int firstIntent = board.getActualIntent();		
+		assertNull(board.getProposalCombination(firstIntent));
+		
+		Result result = this.boardController.addProposalCombination(proposalCombination);
+		
+		assertNull(result);
+		
+		
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
+import com.tfm.mastermind.back.models.Result;
 import com.tfm.mastermind.back.services.BoardService;
 
 @RestController
@@ -32,9 +33,9 @@ public class BoardController {
 	
 	@PutMapping("/")
 	@ResponseStatus(HttpStatus.OK)
-	public ProposalCombination addProposalCombination(@RequestBody ProposalCombination proposalCombination) {
+	public Result addProposalCombination(@RequestBody ProposalCombination proposalCombination) {
 		this.boardService.addProposal(proposalCombination);
-		return this.boardService.getBoard().getProposalCombination(this.boardService.getBoard().getActualIntent()-1);
+		return null;
 	}
 	
 	@GetMapping("/proposal/{intent}")

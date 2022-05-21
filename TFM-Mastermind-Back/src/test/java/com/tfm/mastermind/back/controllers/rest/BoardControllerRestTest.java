@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,11 +51,7 @@ public class BoardControllerRestTest {
         .then()
             .assertThat()
             .statusCode(200)
-            .body(notNullValue())
-	        .body("combination[0]", equalTo("BLUE"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
-    		.body("combination[3]", equalTo("GREEN"));
+            .body(equalTo(""));
     }
     
     @Test
@@ -100,11 +97,7 @@ public class BoardControllerRestTest {
         .then()
             .assertThat()
             .statusCode(200)
-            .body(notNullValue())
-	        .body("combination[0]", equalTo("BLUE"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
-    		.body("combination[3]", equalTo("GREEN"));
+            .body(equalTo(""));
     	
     	given().
 	    	request()
