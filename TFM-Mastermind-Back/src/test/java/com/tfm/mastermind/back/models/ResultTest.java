@@ -16,8 +16,8 @@ public class ResultTest {
 	}
 	
 	@Test
-	public void getWrongBlackTest() {
+	public void getBlackTest() {
 		Result result = new Result(1);
-		assertEquals(result.getBlack(), Integer.MIN_VALUE);		
+		assertEquals(result.getBlack(), 0);		
 	}
 }
