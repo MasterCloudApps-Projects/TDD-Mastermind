@@ -26,6 +26,9 @@ public class BoardService {
 	}
 	
 	public Map<String, Integer> getResult(){
-		return new HashMap<>();
+		Map<String, Integer> result =  new HashMap<>();
+		result.put("black", 2);
+		result.put("white", 2);
+		return result;
 	}
 }
