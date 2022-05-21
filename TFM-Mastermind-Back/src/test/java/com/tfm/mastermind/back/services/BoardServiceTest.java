@@ -70,8 +70,8 @@ public class BoardServiceTest {
 	}
 	
 	@Test
-	public void getNullResultFromBoardServiceTest() {
+	public void getNotNullResultFromBoardServiceTest() {
 		BoardService boardService = new BoardService();
-		assertNull(boardService.getResult());
+		assertNotNull(boardService.getResult());
 	}
 }

@@ -1,5 +1,6 @@
 package com.tfm.mastermind.back.services;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +26,6 @@ public class BoardService {
 	}
 	
 	public Map<String, Integer> getResult(){
-		return null;
+		return new HashMap<>();
 	}
 }
