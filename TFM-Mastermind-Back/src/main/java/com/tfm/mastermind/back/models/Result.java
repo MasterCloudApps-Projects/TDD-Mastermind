@@ -5,9 +5,9 @@ public class Result {
 	private int white;
 	private int black;
 	
-	public Result(int white) {
+	public Result(int white, int black) {
 		this.white = white;
-		this.black = 0;
+		this.black = black;
 	}
 	
 	public int getWhites() {
