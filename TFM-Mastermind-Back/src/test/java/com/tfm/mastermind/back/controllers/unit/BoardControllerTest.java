@@ -99,9 +99,9 @@ public class BoardControllerTest {
 	
 	@Test
 	public void getNotEmptyResultControllerTest() {
-		JSONObject result = new JSONObject(this.boardController.getResult());
-		assertTrue(result.has("black"));
-		assertTrue(result.has("white"));
+		Result result = this.boardController.getResult();
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhite());
 	}
 	
 	@Test

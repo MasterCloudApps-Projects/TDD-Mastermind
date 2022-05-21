@@ -51,7 +51,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/result")
-	public Map<String, Integer> getResult() {
-		return this.boardService.getResult();
+	public Result getResult() {
+		return new Result(1, 2);
 	}
 }
