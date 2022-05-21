@@ -120,7 +120,7 @@ public class BoardControllerTest {
 		
 		assertNotNull(result);
 		assertNotNull(result.getBlack());
-		assertNotNull(result.getWhites());
+		assertNotNull(result.getWhite());
 		
 	}
 }

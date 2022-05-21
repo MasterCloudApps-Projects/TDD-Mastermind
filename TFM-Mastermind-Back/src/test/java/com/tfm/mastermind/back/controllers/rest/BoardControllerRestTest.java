@@ -53,8 +53,8 @@ public class BoardControllerRestTest {
             .assertThat()
             .statusCode(200)
             .body(notNullValue())
-	        .body("whites", equalTo(1))
-	        .body("black", equalTo(1));
+	        .body("white", is(not(nullValue())))
+	        .body("black", is(not(nullValue())));
     }
     
     @Test
@@ -101,7 +101,7 @@ public class BoardControllerRestTest {
             .assertThat()
             .statusCode(200)
             .body(notNullValue())
-	        .body("whites", is(not(nullValue())))
+	        .body("white", is(not(nullValue())))
 	        .body("black", is(not(nullValue())));
     	
     	given().

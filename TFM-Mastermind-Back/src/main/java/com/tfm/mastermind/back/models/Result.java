@@ -10,7 +10,7 @@ public class Result {
 		this.black = black;
 	}
 	
-	public int getWhites() {
+	public int getWhite() {
 		return white;
 	}
 

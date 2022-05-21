@@ -11,10 +11,10 @@ public class ResultTest {
 	@Test
 	public void getWhiteValueAfterSetResultTest() {
 		Result result = new Result(1, 0);
-		assertEquals(result.getWhites(), 1);		
+		assertEquals(result.getWhite(), 1);		
 
 		Result result2 = new Result(3, 0);
-		assertEquals(result2.getWhites(), 3);		
+		assertEquals(result2.getWhite(), 3);		
 	}
 	
 	@Test
