@@ -7,8 +7,11 @@ import org.junit.jupiter.api.Test;
 public class ResultTest {
 
 	@Test
-	public void getWhiteValueTest() {
-		Result result = new Result();
-		assertEquals(result.getWhites(), 0);		
+	public void getWhiteValueAfterSetResultTest() {
+		Result result = new Result(1);
+		assertEquals(result.getWhites(), 1);		
+
+		Result result2 = new Result(3);
+		assertEquals(result2.getWhites(), 3);		
 	}
 }

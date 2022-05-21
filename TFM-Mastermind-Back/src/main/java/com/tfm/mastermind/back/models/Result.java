@@ -4,8 +4,8 @@ public class Result {
 
 	private int white;
 	
-	public Result() {
-		white = 0;
+	public Result(int white) {
+		this.white = white;
 	}
 	
 	public int getWhites() {
