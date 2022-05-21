@@ -48,6 +48,6 @@ public class BoardController {
 	}
 
 	public JSONObject getResult() {
-		return null;
+		return new JSONObject();
 	}
 }
