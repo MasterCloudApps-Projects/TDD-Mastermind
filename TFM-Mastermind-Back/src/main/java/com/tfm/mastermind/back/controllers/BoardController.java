@@ -48,6 +48,9 @@ public class BoardController {
 	}
 
 	public JSONObject getResult() {
-		return new JSONObject();
+		JSONObject result = new JSONObject();
+		result.put("black", 2);
+		result.put("white", 2);
+		return result;
 	}
 }

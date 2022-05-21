@@ -3,7 +3,9 @@ package com.tfm.mastermind.back.controllers.unit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -91,5 +93,12 @@ public class BoardControllerTest {
 	@Test
 	public void getNotNullResultControllerTest() {
 		assertNotNull(this.boardController.getResult());
+	}
+	
+	@Test
+	public void getNotEmptyResultControllerTest() {
+		JSONObject result = this.boardController.getResult();
+		assertTrue(result.has("black"));
+		assertTrue(result.has("white"));
 	}
 }
