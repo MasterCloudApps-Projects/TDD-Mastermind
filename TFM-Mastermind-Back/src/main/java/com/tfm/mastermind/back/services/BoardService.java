@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
+import com.tfm.mastermind.back.models.Result;
 
 @Service
 public class BoardService {
@@ -21,8 +22,9 @@ public class BoardService {
 		return this.board;
 	}
 	
-	public void addProposal(ProposalCombination proposalCombination) {
+	public Result addProposal(ProposalCombination proposalCombination) {
 		this.board.addProposal(proposalCombination);
+		return null;
 	}
 	
 	public Map<String, Integer> getResult(){

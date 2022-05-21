@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import com.tfm.mastermind.back.models.ProposalCombination;
+import com.tfm.mastermind.back.models.Result;
 import com.tfm.mastermind.back.utils.Color;
 
 public class BoardServiceTest {
@@ -84,5 +85,22 @@ public class BoardServiceTest {
 		JSONObject result = new JSONObject(boardService.getResult());
 		assertTrue(result.has("black"));
 		assertTrue(result.has("white"));
+	}
+	
+	@Test
+	public void addProposalCombinationToBoardServiceAndGetNullResultTest() {
+		BoardService boardService = new BoardService();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		int firstIntent = boardService.getBoard().getActualIntent();		
+		assertNull(boardService.getBoard().getProposalCombination(firstIntent));
+		
+		Result result = boardService.addProposal(proposalCombination);
+		
+		assertNull(result);
+		
 	}
 }
