@@ -35,7 +35,7 @@ public class BoardController {
 	@ResponseStatus(HttpStatus.OK)
 	public Result addProposalCombination(@RequestBody ProposalCombination proposalCombination) {
 		this.boardService.addProposal(proposalCombination);
-		return null;
+		return new Result(1, 1);
 	}
 	
 	@GetMapping("/proposal/{intent}")

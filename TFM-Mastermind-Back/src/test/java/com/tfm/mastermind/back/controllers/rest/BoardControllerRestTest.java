@@ -3,6 +3,8 @@ package com.tfm.mastermind.back.controllers.rest;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 
@@ -47,11 +49,12 @@ public class BoardControllerRestTest {
             .contentType(ContentType.JSON).
         when()
             .put("/api/board/")
-            
         .then()
             .assertThat()
             .statusCode(200)
-            .body(equalTo(""));
+            .body(notNullValue())
+	        .body("whites", equalTo(1))
+	        .body("black", equalTo(1));
     }
     
     @Test
@@ -86,7 +89,7 @@ public class BoardControllerRestTest {
         .then()
             .assertThat()
             .statusCode(200)
-            .body(equalTo(""));
+            .body(notNullValue());
     	
     	given().
 	        request()
@@ -97,7 +100,9 @@ public class BoardControllerRestTest {
         .then()
             .assertThat()
             .statusCode(200)
-            .body(equalTo(""));
+            .body(notNullValue())
+	        .body("whites", is(not(nullValue())))
+	        .body("black", is(not(nullValue())));
     	
     	given().
 	    	request()

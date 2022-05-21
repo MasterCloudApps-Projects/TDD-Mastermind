@@ -105,7 +105,7 @@ public class BoardControllerTest {
 	}
 	
 	@Test
-	public void addProposalCombinationAndGetNullResultControllerTest() {
+	public void addProposalCombinationAndGetResultControllerTest() throws JSONException {
 		ProposalCombination proposalCombination = new ProposalCombination();
 		proposalCombination.combination.add(Color.RED);
 		proposalCombination.combination.add(Color.BLUE);
@@ -118,8 +118,9 @@ public class BoardControllerTest {
 		
 		Result result = this.boardController.addProposalCombination(proposalCombination);
 		
-		assertNull(result);
-		
+		assertNotNull(result);
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhites());
 		
 	}
 }
