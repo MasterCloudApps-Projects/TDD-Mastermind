@@ -19,6 +19,6 @@ public class Result {
 	}
 	
 	public boolean isWinner() {
-		return false;
+		return this.black == 4;
 	}
 }
