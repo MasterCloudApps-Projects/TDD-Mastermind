@@ -1,5 +1,6 @@
 package com.tfm.mastermind.back.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
@@ -36,6 +37,6 @@ public class Board {
 	}
 	
 	public Map<String, Integer> getResult(){
-		return null;
+		return new HashMap<>();
 	}
 }

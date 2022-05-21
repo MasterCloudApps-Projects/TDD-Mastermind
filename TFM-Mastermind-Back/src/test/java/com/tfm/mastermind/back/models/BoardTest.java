@@ -94,8 +94,8 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void getNullResultBoardTest() {
+	public void getNotNullResultBoardTest() {
 		Board board = new Board();
-		assertNull(board.getResult());
+		assertNotNull(board.getResult());
 	}
 }
