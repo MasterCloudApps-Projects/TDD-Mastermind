@@ -17,4 +17,8 @@ public class Result {
 	public int getBlack() {
 		return black;
 	}
+	
+	public boolean isWinner() {
+		return false;
+	}
 }

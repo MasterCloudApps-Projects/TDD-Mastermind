@@ -1,6 +1,7 @@
 package com.tfm.mastermind.back.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +23,11 @@ public class ResultTest {
 
 		Result result2 = new Result(1, 3);
 		assertEquals(result2.getBlack(), 3);		
+	}
+	
+	@Test
+	public void checkWinnerAndGetFalseTest() {
+		Result result = new Result(1, 1);
+		assertFalse(result.isWinner());		
 	}
 }
