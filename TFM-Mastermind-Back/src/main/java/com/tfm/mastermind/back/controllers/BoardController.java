@@ -1,5 +1,6 @@
 package com.tfm.mastermind.back.controllers;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +45,9 @@ public class BoardController {
 	@ResponseStatus(HttpStatus.OK)
 	public int getActualIntent() {
 		return this.boardService.getBoard().getActualIntent();
+	}
+
+	public JSONObject getResult() {
+		return null;
 	}
 }
