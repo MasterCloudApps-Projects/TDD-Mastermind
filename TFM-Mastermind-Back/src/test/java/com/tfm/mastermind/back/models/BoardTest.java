@@ -137,8 +137,9 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void getNullResultListFromBoardTest() {
+	public void getNotNullResultListFromBoardTest() {
 		Board board = new Board();
-		assertNull(board.getResults());
+		assertNotNull(board.getResults());
+		assertNotEquals(board.getResults().length, 0);
 	}
 }

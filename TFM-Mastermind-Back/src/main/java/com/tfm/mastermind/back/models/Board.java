@@ -46,7 +46,7 @@ public class Board {
 	}
 	
 	public Result[] getResults() {
-		return null;
+		return this.results;
 	}
 	
 }
