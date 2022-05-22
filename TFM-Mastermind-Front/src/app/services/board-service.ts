@@ -7,6 +7,7 @@ import { IForm } from "../interfaces/IForm";
 import { take } from 'rxjs/operators';
 import { Board } from "../domain/Board";
 import { Proposal } from "../domain/proposal";
+import { Result } from "../domain/Result";
 
 const PREFIX = `${environment.baseUrl}/board`;
 
@@ -42,7 +43,7 @@ export class BoardService implements IForm<Board>{
         return this.http.put<Proposal>(`${PREFIX}/`, proposal).pipe(take(1));
     }
 
-    public getResults(): any{
-		return [];
+    public getResults(): Result[]{
+		return [new Result({"white": 1, "black": 2}), new Result({"white": 1, "black": 2})];
     }
 }

@@ -287,4 +287,12 @@ describe('ProposalCombination', () => {
     let result = boardService.getResults();
     expect(result).toBeTruthy();
   });
+
+  it(`get Result object using board service`, () => {
+    spyOn(boardService, 'getResults').and.callThrough();
+
+    let result = boardService.getResults();
+    expect(result).toBeTruthy();
+    expect(result.length).toBeGreaterThan(0);
+  });
 });
