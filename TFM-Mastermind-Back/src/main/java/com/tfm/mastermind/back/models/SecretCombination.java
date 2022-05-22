@@ -21,7 +21,7 @@ public class SecretCombination extends Combination{
 		return this.combination;
 	}
 	
-	public Result getResult() {
+	public Result getResult(ProposalCombination proposalCombination) {
 		return new Result(1, 2);
 	}
 }

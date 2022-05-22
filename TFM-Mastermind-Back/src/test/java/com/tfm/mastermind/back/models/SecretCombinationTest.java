@@ -23,6 +23,8 @@ public class SecretCombinationTest {
 	@Test
 	public void getNotNullResultSecretCombinationTest() {
 		SecretCombination secretCombination = new SecretCombination();
-		assertNotNull(secretCombination.getResult());
+		ProposalCombination proposalCombination = new ProposalCombination();
+		assertNotNull(secretCombination.getResult(proposalCombination));
 	}
+	
 }
