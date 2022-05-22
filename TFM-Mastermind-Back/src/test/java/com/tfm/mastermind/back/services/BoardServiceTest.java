@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import com.tfm.mastermind.back.models.ProposalCombination;
@@ -82,13 +80,13 @@ public class BoardServiceTest {
 	public void getNotEmptyResultFromBoardServiceTest() {
 		BoardService boardService = new BoardService();
 		assertNotNull(boardService.getResult());
-		JSONObject result = new JSONObject(boardService.getResult());
-		assertTrue(result.has("black"));
-		assertTrue(result.has("white"));
+		Result result = boardService.getResult();
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhite());
 	}
 	
 	@Test
-	public void addProposalCombinationToBoardServiceAndGetNullResultTest() {
+	public void addProposalCombinationToBoardServiceAndGetResultTest() {
 		BoardService boardService = new BoardService();
 		ProposalCombination proposalCombination = new ProposalCombination();
 		proposalCombination.combination.add(Color.RED);
