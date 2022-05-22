@@ -26,4 +26,8 @@ public class BoardService {
 	public Result getResult(){
 		return this.board.getResult();
 	}
+	
+	public Result[] getResults() {
+		return null;
+	}
 }
