@@ -1,5 +1,6 @@
 package com.tfm.mastermind.back.models;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -35,6 +36,25 @@ public class SecretCombinationTest {
 		assertNotNull(result);
 		assertNotNull(result.getBlack());
 		assertNotNull(result.getWhite());
+	}
+	
+	@Test
+	public void addProposalAndCheckResultFuncionalityTest() {
+		SecretCombination secretCombination = new SecretCombination();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		Result result = secretCombination.getResult(proposalCombination);
 		
+		assertNotNull(result);
+		assertNotEquals(result.getBlack(), 4);
+		
+		proposalCombination.combination = secretCombination.combination;
+		Result result2 = secretCombination.getResult(proposalCombination);
+		
+		assertNotEquals(result, result2);
+		assertEquals(result2.getBlack(), 4);
 	}
 }
