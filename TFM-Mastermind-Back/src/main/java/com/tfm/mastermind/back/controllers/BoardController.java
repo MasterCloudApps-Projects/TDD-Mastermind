@@ -58,6 +58,8 @@ public class BoardController {
 		return this.boardService.getResults();
 	}
 	
+	@GetMapping("/proposals")
+	@ResponseStatus(HttpStatus.OK)
 	public ProposalCombination[] getProposalCombinations() {
 		return new ProposalCombination[10];
 	}

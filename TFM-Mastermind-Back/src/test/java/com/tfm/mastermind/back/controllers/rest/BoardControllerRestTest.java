@@ -145,11 +145,21 @@ public class BoardControllerRestTest {
     
     @Test
 	public void getResultListRestTest() throws Exception {
-    	
-    	
     	//Given
 		when()
             .get("/api/board/results")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+            .body("size()", is(not(0)));
+    }
+    
+    @Test
+	public void getProposaltListRestTest() throws Exception {
+    	//Given
+		when()
+            .get("/api/board/proposals")
         .then()
             .assertThat()
             .statusCode(200)
