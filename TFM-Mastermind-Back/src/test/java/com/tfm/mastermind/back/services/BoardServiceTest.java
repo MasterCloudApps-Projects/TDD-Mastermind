@@ -100,7 +100,8 @@ public class BoardServiceTest {
 		
 		Result result = boardService.addProposal(proposalCombination);
 		
-		assertNull(result);
-		
+		assertNotNull(result);
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhite());
 	}
 }

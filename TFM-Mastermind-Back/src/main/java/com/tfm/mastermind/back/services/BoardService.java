@@ -24,7 +24,7 @@ public class BoardService {
 	
 	public Result addProposal(ProposalCombination proposalCombination) {
 		this.board.addProposal(proposalCombination);
-		return null;
+		return new Result(1, 2);
 	}
 	
 	public Map<String, Integer> getResult(){
