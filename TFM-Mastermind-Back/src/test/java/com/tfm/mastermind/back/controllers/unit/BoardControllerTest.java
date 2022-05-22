@@ -137,8 +137,9 @@ public class BoardControllerTest {
 	}
 	
 	@Test
-	public void getNullProposalListControllerTest() {
-		assertNull(this.boardController.getProposalCombinations());
+	public void getNotNullProposalListControllerTest() {
+		assertNotNull(this.boardController.getProposalCombinations());
+		assertNotEquals(this.boardController.getProposalCombinations().length, 0);
 	}
 	
 }
