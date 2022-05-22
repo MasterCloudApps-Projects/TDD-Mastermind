@@ -43,7 +43,7 @@ export class BoardService implements IForm<Board>{
         return this.http.put<Proposal>(`${PREFIX}/`, proposal).pipe(take(1));
     }
 
-    public getResults(): Result[]{
-		return [new Result({"white": 1, "black": 2}), new Result({"white": 1, "black": 2})];
+    public getResults(): Observable<Result[]>{
+		return this.http.get<Result[]>(`${PREFIX}/results`).pipe(take(1));
     }
 }

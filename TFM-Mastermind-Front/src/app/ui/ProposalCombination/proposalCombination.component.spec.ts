@@ -9,6 +9,7 @@ import { of } from "rxjs";
 import { Board } from "src/app/domain/Board";
 import { ColorEnum } from "src/app/domain/Color";
 import { Proposal } from "src/app/domain/proposal";
+import { Result } from "src/app/domain/Result";
 import { BoardService } from "src/app/services/board-service";
 import { ProposalCombination } from "./proposalCombination.component";
 
@@ -21,6 +22,19 @@ const PROPOSALCOMBINATION = {
   "combination":["PURPLE","GREEN","RED","BLUE"],
   "maxWidth":4
 }
+
+const RESULTS = [
+  {
+    "white": 3,
+    "black": 0,
+    "winner": false
+  },
+  {
+    "white": 3,
+    "black": 0,
+    "winner": false
+  }
+]
 
 describe('ProposalCombination', () => {
   let component: ProposalCombination;
@@ -288,11 +302,20 @@ describe('ProposalCombination', () => {
     expect(result).toBeTruthy();
   });
 
-  it(`get Result object using board service`, () => {
+  it(`get Result object using board service and http call`, fakeAsync(() => {
     spyOn(boardService, 'getResults').and.callThrough();
+    let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(RESULTS));
+    fixture.detectChanges();
+    tick();
+    
+    let results: Result[] = []
+    boardService.getResults().subscribe((result: Result[]) => {
+      results = result;
+    });
 
-    let result = boardService.getResults();
-    expect(result).toBeTruthy();
-    expect(result.length).toBeGreaterThan(0);
-  });
+    expect(results).toBeTruthy();
+    expect(results.length).toBeGreaterThan(0);
+
+    expect(httpClientMethod).toHaveBeenCalledTimes(1);
+  }));
 });
