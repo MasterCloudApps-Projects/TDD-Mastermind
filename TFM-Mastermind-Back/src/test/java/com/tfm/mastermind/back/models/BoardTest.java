@@ -135,4 +135,10 @@ public class BoardTest {
 		assertNotNull(result.getBlack());
 		assertNotNull(result.getWhite());
 	}
+	
+	@Test
+	public void getNullResultListFromBoardTest() {
+		Board board = new Board();
+		assertNull(board.getResults());
+	}
 }

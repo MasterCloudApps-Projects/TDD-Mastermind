@@ -44,4 +44,9 @@ public class Board {
 	public Result getResult(){
 		return this.results[actualIntent-1];
 	}
+	
+	public Result[] getResults() {
+		return null;
+	}
+	
 }
