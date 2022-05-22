@@ -28,6 +28,6 @@ public class BoardService {
 	}
 	
 	public Result[] getResults() {
-		return null;
+		return new Result[10];
 	}
 }
