@@ -124,8 +124,9 @@ public class BoardServiceTest {
 	}
 	
 	@Test
-	public void getNullProposalListServiceTest() {
+	public void getNotNullProposalListServiceTest() {
 		BoardService boardService = new BoardService();
-		assertNotNull(boardService.getResults());
+		assertNotNull(boardService.getProposalCombinations());
+		assertNotEquals(boardService.getProposalCombinations().length, 0);
 	}
 }
