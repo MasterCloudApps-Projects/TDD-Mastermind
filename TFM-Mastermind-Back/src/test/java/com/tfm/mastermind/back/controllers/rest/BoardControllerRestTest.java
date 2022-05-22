@@ -7,7 +7,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.core.IsEqual;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -176,5 +180,42 @@ public class BoardControllerRestTest {
 	        .statusCode(200)
 	        .body("actualIntent", equalTo(0));
 	    
+    }
+    
+    @SuppressWarnings("unlikely-arg-type")
+	@Test
+	public void doNewGameAndGetNewBoardRestTest() throws Exception {
+    	given().
+        request()
+            .body("{ \"combination\" : [ \"BLUE\", \"YELLOW\", \"PURPLE\", \"GREEN\"] }")
+            .contentType(ContentType.JSON).
+	    when()
+	        .put("/api/board/")
+	    .then()
+	        .assertThat()
+	        .statusCode(200)
+	        .body(notNullValue())
+	        .body("white", is(not(nullValue())))
+	        .body("black", is(not(nullValue())));
+    	
+    	when()
+        	.get("/api/board/actualIntent")
+	    .then()
+	         .assertThat()
+	         .statusCode(200)
+	         .body(not(is(0)));
+    	
+	    when()
+	        .put("/api/board/newGame")
+	    .then()
+	        .assertThat()
+	        .statusCode(200)
+	        .body("actualIntent", equalTo(0));
+	    
+	    Response actualIntent = when()
+	            .get("/api/board/actualIntent").thenReturn();
+	    
+	    assertEquals(Integer.parseInt(actualIntent.getBody().asString()), 0);
+	
     }
 }

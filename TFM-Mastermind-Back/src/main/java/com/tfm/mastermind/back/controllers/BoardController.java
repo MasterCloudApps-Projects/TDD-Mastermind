@@ -67,6 +67,6 @@ public class BoardController {
 	@PutMapping("/newGame")
 	@ResponseStatus(HttpStatus.OK)
 	public Board startNewGame() {
-		return new Board();
+		return this.boardService.startNewGame();
 	}
 }
