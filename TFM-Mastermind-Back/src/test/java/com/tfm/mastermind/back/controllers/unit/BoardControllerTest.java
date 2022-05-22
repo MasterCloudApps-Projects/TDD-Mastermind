@@ -3,10 +3,8 @@ package com.tfm.mastermind.back.controllers.unit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -99,6 +97,13 @@ public class BoardControllerTest {
 	
 	@Test
 	public void getNotEmptyResultControllerTest() {
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		this.boardController.addProposalCombination(proposalCombination);
+		
 		Result result = this.boardController.getResult();
 		assertNotNull(result.getBlack());
 		assertNotNull(result.getWhite());

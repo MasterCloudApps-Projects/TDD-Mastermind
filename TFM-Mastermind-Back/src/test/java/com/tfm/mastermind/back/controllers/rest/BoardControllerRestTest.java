@@ -63,7 +63,7 @@ public class BoardControllerRestTest {
     	//Given
 		Response actualIntent = when()
             .get("/api/board/actualIntent").thenReturn();
-		
+
 		when()
 	        .get("/api/board/")
 	    .then()
@@ -122,6 +122,16 @@ public class BoardControllerRestTest {
     
     @Test
 	public void getResultRestTest() throws Exception {
+    	given().
+        request()
+            .body("{ \"combination\" : [ \"BLUE\", \"YELLOW\", \"PURPLE\", \"GREEN\"] }")
+            .contentType(ContentType.JSON).
+	    when()
+	        .put("/api/board/")
+	    .then()
+	        .assertThat()
+	        .statusCode(200);
+    	
     	//Given
 		when()
             .get("/api/board/result")

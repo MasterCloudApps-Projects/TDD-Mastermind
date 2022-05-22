@@ -20,11 +20,10 @@ public class BoardService {
 	}
 	
 	public Result addProposal(ProposalCombination proposalCombination) {
-		this.board.addProposal(proposalCombination);
-		return new Result(1, 2);
+		return this.board.addProposal(proposalCombination);
 	}
 	
 	public Result getResult(){
-		return new Result(1, 2);
+		return this.board.getResult();
 	}
 }

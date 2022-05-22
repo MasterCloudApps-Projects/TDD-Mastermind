@@ -1,5 +1,7 @@
 package com.tfm.mastermind.back.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Board {
 
 	private int actualIntent;
@@ -25,6 +27,7 @@ public class Board {
 		return this.secretCombination;
 	}
 	
+	@JsonIgnore
 	public ProposalCombination getProposalCombination() {
 		return this.proposalCombinations[actualIntent];
 	}
@@ -37,6 +40,7 @@ public class Board {
 		return this.actualIntent;
 	}
 	
+	@JsonIgnore
 	public Result getResult(){
 		return this.results[actualIntent-1];
 	}

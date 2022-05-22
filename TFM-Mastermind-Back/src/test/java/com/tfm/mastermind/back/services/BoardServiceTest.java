@@ -73,13 +73,26 @@ public class BoardServiceTest {
 	@Test
 	public void getNotNullResultFromBoardServiceTest() {
 		BoardService boardService = new BoardService();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		boardService.addProposal(proposalCombination);
+		
 		assertNotNull(boardService.getResult());
 	}
 	
 	@Test
 	public void getNotEmptyResultFromBoardServiceTest() {
 		BoardService boardService = new BoardService();
-		assertNotNull(boardService.getResult());
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		boardService.addProposal(proposalCombination);
+		
 		Result result = boardService.getResult();
 		assertNotNull(result.getBlack());
 		assertNotNull(result.getWhite());
