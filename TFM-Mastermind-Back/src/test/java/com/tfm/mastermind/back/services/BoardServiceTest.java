@@ -129,4 +129,10 @@ public class BoardServiceTest {
 		assertNotNull(boardService.getProposalCombinations());
 		assertNotEquals(boardService.getProposalCombinations().length, 0);
 	}
+	
+	@Test
+	public void getNullBoardNewGameServiceTest() {
+		BoardService boardService = new BoardService();
+		assertNull(boardService.startNewGame());
+	}
 }
