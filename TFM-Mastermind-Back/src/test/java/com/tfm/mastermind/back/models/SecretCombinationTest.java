@@ -2,6 +2,7 @@ package com.tfm.mastermind.back.models;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,5 +19,11 @@ public class SecretCombinationTest {
 		SecretCombination secretCombination = new SecretCombination();
 		SecretCombination secretCombination2 = new SecretCombination();
 		assertNotEquals(secretCombination.getColors().toString(), secretCombination2.getColors().toString());
+	}
+	
+	@Test
+	public void getNullResultSecretCombinationTest() {
+		SecretCombination secretCombination = new SecretCombination();
+		assertNull(secretCombination.getResult());
 	}
 }

@@ -20,4 +20,8 @@ public class SecretCombination extends Combination{
 	public List<Color> getColors(){
 		return this.combination;
 	}
+	
+	public Result getResult() {
+		return null;
+	}
 }
