@@ -49,4 +49,7 @@ public class Board {
 		return this.results;
 	}
 	
+	public ProposalCombination[] getProposalCombinations() {
+		return null;
+	}
 }
