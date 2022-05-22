@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
@@ -136,4 +135,10 @@ public class BoardControllerTest {
 		assertNotNull(this.boardController.getResults());
 		assertNotEquals(this.boardController.getResults().length, 0);
 	}
+	
+	@Test
+	public void getNullProposalListControllerTest() {
+		assertNull(this.boardController.getProposalCombinations());
+	}
+	
 }

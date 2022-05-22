@@ -57,4 +57,8 @@ public class BoardController {
 	public Result[] getResults() {
 		return this.boardService.getResults();
 	}
+	
+	public ProposalCombination[] getProposalCombinations() {
+		return null;
+	}
 }
