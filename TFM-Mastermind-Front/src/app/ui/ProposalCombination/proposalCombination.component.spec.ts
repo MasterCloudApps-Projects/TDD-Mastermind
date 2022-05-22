@@ -280,4 +280,11 @@ describe('ProposalCombination', () => {
     expect(component.colorList).toEqual(Object.values(ColorEnum));
 
   });
+
+  it(`get null result using board service`, () => {
+    spyOn(boardService, 'getResults').and.callThrough();
+
+    let result = boardService.getResults();
+    expect(result).toBeNull();
+  });
 });

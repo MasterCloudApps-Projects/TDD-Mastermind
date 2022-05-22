@@ -41,4 +41,8 @@ export class BoardService implements IForm<Board>{
     public addProposalCombination (proposal: Proposal): Observable<Proposal> {
         return this.http.put<Proposal>(`${PREFIX}/`, proposal).pipe(take(1));
     }
+
+    public getResults(): any{
+		return null;
+    }
 }
