@@ -32,6 +32,6 @@ public class BoardService {
 	}
 	
 	public ProposalCombination[] getProposalCombinations() {
-		return new ProposalCombination[10];
+		return this.board.getProposalCombinations();
 	}
 }
