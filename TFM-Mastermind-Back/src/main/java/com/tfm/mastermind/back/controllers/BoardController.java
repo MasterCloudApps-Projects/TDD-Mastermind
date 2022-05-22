@@ -55,6 +55,6 @@ public class BoardController {
 	@GetMapping("/results")
 	@ResponseStatus(HttpStatus.OK)
 	public Result[] getResults() {
-		return new Result[10];
+		return this.boardService.getResults();
 	}
 }
