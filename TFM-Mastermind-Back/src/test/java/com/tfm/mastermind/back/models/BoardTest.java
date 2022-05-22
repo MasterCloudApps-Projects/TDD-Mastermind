@@ -92,4 +92,61 @@ public class BoardTest {
 		assertNotNull(board.getProposalCombination(i2));		
 		assertEquals(proposalCombination, board.getProposalCombination(i2));
 	}
+	
+	@Test
+	public void getNotNullResultBoardTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		board.addProposal(proposalCombination);
+		
+		assertNotNull(board.getResult());
+	}
+	
+	@Test
+	public void getNotEmptyResultBoardTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		board.addProposal(proposalCombination);
+		
+		Result result = board.getResult();
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhite());
+	}
+	
+	@Test
+	public void addProposalAndGetResultTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		
+		Result result = board.addProposal(proposalCombination);
+		assertNotNull(result);
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhite());
+	}
+	
+	@Test
+	public void getNotNullResultListFromBoardTest() {
+		Board board = new Board();
+		assertNotNull(board.getResults());
+		assertNotEquals(board.getResults().length, 0);
+	}
+	
+	@Test
+	public void getNotNullProposalListFromBoardTest() {
+		Board board = new Board();
+		assertNotNull(board.getProposalCombinations());
+		assertNotEquals(board.getResults().length, 0);
+	}
 }

@@ -3,8 +3,15 @@ package com.tfm.mastermind.back.controllers.rest;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.core.IsEqual;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,15 +53,12 @@ public class BoardControllerRestTest {
             .contentType(ContentType.JSON).
         when()
             .put("/api/board/")
-            
         .then()
             .assertThat()
             .statusCode(200)
             .body(notNullValue())
-	        .body("combination[0]", equalTo("BLUE"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
-    		.body("combination[3]", equalTo("GREEN"));
+	        .body("white", is(not(nullValue())))
+	        .body("black", is(not(nullValue())));
     }
     
     @Test
@@ -63,7 +67,7 @@ public class BoardControllerRestTest {
     	//Given
 		Response actualIntent = when()
             .get("/api/board/actualIntent").thenReturn();
-		
+
 		when()
 	        .get("/api/board/")
 	    .then()
@@ -89,7 +93,7 @@ public class BoardControllerRestTest {
         .then()
             .assertThat()
             .statusCode(200)
-            .body(equalTo(""));
+            .body(notNullValue());
     	
     	given().
 	        request()
@@ -101,10 +105,8 @@ public class BoardControllerRestTest {
             .assertThat()
             .statusCode(200)
             .body(notNullValue())
-	        .body("combination[0]", equalTo("BLUE"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
-	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
-    		.body("combination[3]", equalTo("GREEN"));
+	        .body("white", is(not(nullValue())))
+	        .body("black", is(not(nullValue())));
     	
     	given().
 	    	request()
@@ -120,5 +122,100 @@ public class BoardControllerRestTest {
 	        .body("combination[1]", equalTo("YELLOW"))//, YELLOW, PURPLE, GREEN]"));
 	        .body("combination[2]", equalTo("PURPLE"))//, YELLOW, PURPLE, GREEN]"));
     		.body("combination[3]", equalTo("GREEN"));
+    }
+    
+    @Test
+	public void getResultRestTest() throws Exception {
+    	given().
+        request()
+            .body("{ \"combination\" : [ \"BLUE\", \"YELLOW\", \"PURPLE\", \"GREEN\"] }")
+            .contentType(ContentType.JSON).
+	    when()
+	        .put("/api/board/")
+	    .then()
+	        .assertThat()
+	        .statusCode(200);
+    	
+    	//Given
+		when()
+            .get("/api/board/result")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+            .body("black", notNullValue())
+    		.body("white", notNullValue());
+    }
+    
+    @Test
+	public void getResultListRestTest() throws Exception {
+    	//Given
+		when()
+            .get("/api/board/results")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+            .body("size()", is(not(0)));
+    }
+    
+    @Test
+	public void getProposaltListRestTest() throws Exception {
+    	//Given
+		when()
+            .get("/api/board/proposals")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+            .body("size()", is(not(0)));
+    }
+    
+    @Test
+	public void getNewGameBoardRestTest() throws Exception {
+	    when()
+	        .put("/api/board/newGame")
+	    .then()
+	        .assertThat()
+	        .statusCode(200)
+	        .body("actualIntent", equalTo(0));
+	    
+    }
+    
+    @SuppressWarnings("unlikely-arg-type")
+	@Test
+	public void doNewGameAndGetNewBoardRestTest() throws Exception {
+    	given().
+        request()
+            .body("{ \"combination\" : [ \"BLUE\", \"YELLOW\", \"PURPLE\", \"GREEN\"] }")
+            .contentType(ContentType.JSON).
+	    when()
+	        .put("/api/board/")
+	    .then()
+	        .assertThat()
+	        .statusCode(200)
+	        .body(notNullValue())
+	        .body("white", is(not(nullValue())))
+	        .body("black", is(not(nullValue())));
+    	
+    	when()
+        	.get("/api/board/actualIntent")
+	    .then()
+	         .assertThat()
+	         .statusCode(200)
+	         .body(not(is(0)));
+    	
+	    when()
+	        .put("/api/board/newGame")
+	    .then()
+	        .assertThat()
+	        .statusCode(200)
+	        .body("actualIntent", equalTo(0));
+	    
+	    Response actualIntent = when()
+	            .get("/api/board/actualIntent").thenReturn();
+	    
+	    assertEquals(Integer.parseInt(actualIntent.getBody().asString()), 0);
+	
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
+import com.tfm.mastermind.back.models.Result;
 
 @Service
 public class BoardService {
@@ -18,7 +19,24 @@ public class BoardService {
 		return this.board;
 	}
 	
-	public void addProposal(ProposalCombination proposalCombination) {
-		this.board.addProposal(proposalCombination);
+	public Result addProposal(ProposalCombination proposalCombination) {
+		return this.board.addProposal(proposalCombination);
+	}
+	
+	public Result getResult(){
+		return this.board.getResult();
+	}
+	
+	public Result[] getResults() {
+		return this.board.getResults();
+	}
+	
+	public ProposalCombination[] getProposalCombinations() {
+		return this.board.getProposalCombinations();
+	}
+	
+	public Board startNewGame() {
+		this.board = new Board();
+		return this.board;
 	}
 }

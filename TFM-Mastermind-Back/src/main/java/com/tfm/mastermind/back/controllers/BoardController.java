@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
+import com.tfm.mastermind.back.models.Result;
 import com.tfm.mastermind.back.services.BoardService;
 
 @RestController
@@ -29,9 +30,8 @@ public class BoardController {
 	
 	@PutMapping("/")
 	@ResponseStatus(HttpStatus.OK)
-	public ProposalCombination addProposalCombination(@RequestBody ProposalCombination proposalCombination) {
-		this.boardService.addProposal(proposalCombination);
-		return this.boardService.getBoard().getProposalCombination(this.boardService.getBoard().getActualIntent()-1);
+	public Result addProposalCombination(@RequestBody ProposalCombination proposalCombination) {
+		return this.boardService.addProposal(proposalCombination);
 	}
 	
 	@GetMapping("/proposal/{intent}")
@@ -44,5 +44,29 @@ public class BoardController {
 	@ResponseStatus(HttpStatus.OK)
 	public int getActualIntent() {
 		return this.boardService.getBoard().getActualIntent();
+	}
+
+	@GetMapping("/result")
+	@ResponseStatus(HttpStatus.OK)
+	public Result getResult() {
+		return this.boardService.getResult();
+	}
+	
+	@GetMapping("/results")
+	@ResponseStatus(HttpStatus.OK)
+	public Result[] getResults() {
+		return this.boardService.getResults();
+	}
+	
+	@GetMapping("/proposals")
+	@ResponseStatus(HttpStatus.OK)
+	public ProposalCombination[] getProposalCombinations() {
+		return this.boardService.getProposalCombinations();
+	}
+	
+	@PutMapping("/newGame")
+	@ResponseStatus(HttpStatus.OK)
+	public Board startNewGame() {
+		return this.boardService.startNewGame();
 	}
 }
