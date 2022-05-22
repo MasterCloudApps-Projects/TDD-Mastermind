@@ -116,9 +116,16 @@ public class BoardServiceTest {
 		assertNotNull(result.getWhite());
 	}
 	
+	@Test
 	public void getNotNullResultListServiceTest() {
 		BoardService boardService = new BoardService();
 		assertNotNull(boardService.getResults());
 		assertNotEquals(boardService.getResults().length, 0);
+	}
+	
+	@Test
+	public void getNullProposalListServiceTest() {
+		BoardService boardService = new BoardService();
+		assertNotNull(boardService.getResults());
 	}
 }

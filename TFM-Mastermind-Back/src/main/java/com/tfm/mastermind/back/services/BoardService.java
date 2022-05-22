@@ -30,4 +30,8 @@ public class BoardService {
 	public Result[] getResults() {
 		return this.board.getResults();
 	}
+	
+	public ProposalCombination[] getProposalCombinations() {
+		return null;
+	}
 }
