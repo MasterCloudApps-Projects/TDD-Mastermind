@@ -1,8 +1,5 @@
 package com.tfm.mastermind.back.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,8 +31,7 @@ public class BoardController {
 	@PutMapping("/")
 	@ResponseStatus(HttpStatus.OK)
 	public Result addProposalCombination(@RequestBody ProposalCombination proposalCombination) {
-		this.boardService.addProposal(proposalCombination);
-		return new Result(1, 1);
+		return this.boardService.addProposal(proposalCombination);
 	}
 	
 	@GetMapping("/proposal/{intent}")
@@ -52,6 +48,6 @@ public class BoardController {
 
 	@GetMapping("/result")
 	public Result getResult() {
-		return new Result(1, 2);
+		return this.boardService.getResult();
 	}
 }
