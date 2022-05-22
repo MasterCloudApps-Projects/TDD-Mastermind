@@ -22,6 +22,6 @@ public class SecretCombination extends Combination{
 	}
 	
 	public Result getResult() {
-		return null;
+		return new Result(1, 2);
 	}
 }
