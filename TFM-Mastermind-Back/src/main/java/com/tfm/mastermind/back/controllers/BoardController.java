@@ -64,6 +64,8 @@ public class BoardController {
 		return this.boardService.getProposalCombinations();
 	}
 	
+	@PutMapping("/newGame")
+	@ResponseStatus(HttpStatus.OK)
 	public Board startNewGame() {
 		return new Board();
 	}

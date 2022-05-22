@@ -34,4 +34,8 @@ public class BoardService {
 	public ProposalCombination[] getProposalCombinations() {
 		return this.board.getProposalCombinations();
 	}
+	
+	public Board startNewGame() {
+		return null;
+	}
 }

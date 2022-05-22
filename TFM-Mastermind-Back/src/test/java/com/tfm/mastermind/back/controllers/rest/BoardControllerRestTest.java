@@ -166,4 +166,15 @@ public class BoardControllerRestTest {
             .body(notNullValue())
             .body("size()", is(not(0)));
     }
+    
+    @Test
+	public void getNewGameBoardRestTest() throws Exception {
+	    when()
+	        .put("/api/board/newGame")
+	    .then()
+	        .assertThat()
+	        .statusCode(200)
+	        .body("actualIntent", equalTo(0));
+	    
+    }
 }
