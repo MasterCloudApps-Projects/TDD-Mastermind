@@ -63,4 +63,8 @@ public class BoardController {
 	public ProposalCombination[] getProposalCombinations() {
 		return this.boardService.getProposalCombinations();
 	}
+	
+	public Board startNewGame() {
+		return null;
+	}
 }

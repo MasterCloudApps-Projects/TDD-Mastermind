@@ -142,4 +142,9 @@ public class BoardControllerTest {
 		assertNotEquals(this.boardController.getProposalCombinations().length, 0);
 	}
 	
+	@Test
+	public void getNullBoardAfterNewGameControllerTest() {
+		assertNull(this.boardController.startNewGame());
+	}
+	
 }
