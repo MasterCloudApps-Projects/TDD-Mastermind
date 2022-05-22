@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import com.tfm.mastermind.back.models.Board;
 import com.tfm.mastermind.back.models.ProposalCombination;
 import com.tfm.mastermind.back.models.Result;
 import com.tfm.mastermind.back.utils.Color;
@@ -131,8 +132,10 @@ public class BoardServiceTest {
 	}
 	
 	@Test
-	public void getNullBoardNewGameServiceTest() {
+	public void getNotNullBoardNewGameServiceTest() {
 		BoardService boardService = new BoardService();
-		assertNull(boardService.startNewGame());
+		Board board = boardService.startNewGame();
+		assertNotNull(board);
+		assertEquals(board.getActualIntent(), 0);
 	}
 }

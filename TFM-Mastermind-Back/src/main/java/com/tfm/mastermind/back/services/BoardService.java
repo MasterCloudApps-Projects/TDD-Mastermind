@@ -36,6 +36,7 @@ public class BoardService {
 	}
 	
 	public Board startNewGame() {
-		return null;
+		this.board = new Board();
+		return this.board;
 	}
 }
