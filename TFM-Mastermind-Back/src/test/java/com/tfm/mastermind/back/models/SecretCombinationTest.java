@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
+import com.tfm.mastermind.back.utils.Color;
+
 public class SecretCombinationTest {
 
 	@Test
@@ -21,10 +23,18 @@ public class SecretCombinationTest {
 	}
 	
 	@Test
-	public void getNotNullResultSecretCombinationTest() {
+	public void getResultCheckAddedProposalToSecretCombinationTest() {
 		SecretCombination secretCombination = new SecretCombination();
 		ProposalCombination proposalCombination = new ProposalCombination();
-		assertNotNull(secretCombination.getResult(proposalCombination));
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		Result result = secretCombination.getResult(proposalCombination);
+		
+		assertNotNull(result);
+		assertNotNull(result.getBlack());
+		assertNotNull(result.getWhite());
+		
 	}
-	
 }
