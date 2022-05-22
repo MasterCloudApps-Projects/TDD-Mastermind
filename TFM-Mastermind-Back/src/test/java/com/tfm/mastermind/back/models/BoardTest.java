@@ -109,4 +109,17 @@ public class BoardTest {
 		assertTrue(result.has("black"));
 		assertTrue(result.has("white"));
 	}
+	
+	@Test
+	public void addProposalAndGetNullResultTest() {
+		Board board = new Board();
+		ProposalCombination proposalCombination = new ProposalCombination();
+		proposalCombination.combination.add(Color.RED);
+		proposalCombination.combination.add(Color.BLUE);
+		proposalCombination.combination.add(Color.GREEN);
+		proposalCombination.combination.add(Color.ORANGE);
+		
+		Result result = board.addProposal(proposalCombination);
+		assertNull(result);
+	}
 }
