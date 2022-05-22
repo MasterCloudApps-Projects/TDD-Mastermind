@@ -144,8 +144,9 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void getNullProposalListFromBoardTest() {
+	public void getNotNullProposalListFromBoardTest() {
 		Board board = new Board();
-		assertNull(board.getProposalCombinations());
+		assertNotNull(board.getProposalCombinations());
+		assertNotEquals(board.getResults().length, 0);
 	}
 }

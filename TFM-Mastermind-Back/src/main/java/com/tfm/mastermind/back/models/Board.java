@@ -50,6 +50,6 @@ public class Board {
 	}
 	
 	public ProposalCombination[] getProposalCombinations() {
-		return null;
+		return this.proposalCombinations;
 	}
 }
