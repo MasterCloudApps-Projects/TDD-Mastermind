@@ -1,8 +1,5 @@
 package com.tfm.mastermind.back.models;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Board {
 
 	private int actualIntent;
@@ -40,10 +37,7 @@ public class Board {
 		return this.actualIntent;
 	}
 	
-	public Map<String, Integer> getResult(){
-		Map<String, Integer> result =  new HashMap<>();
-		result.put("black", 2);
-		result.put("white", 2);
-		return result;
+	public Result getResult(){
+		return this.results[actualIntent-1];
 	}
 }
