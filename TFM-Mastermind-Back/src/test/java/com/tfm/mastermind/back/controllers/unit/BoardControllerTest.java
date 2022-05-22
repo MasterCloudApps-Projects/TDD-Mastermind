@@ -143,8 +143,10 @@ public class BoardControllerTest {
 	}
 	
 	@Test
-	public void getNullBoardAfterNewGameControllerTest() {
-		assertNull(this.boardController.startNewGame());
+	public void getNotNullBoardAfterNewGameControllerTest() {
+		Board board = this.boardController.startNewGame();
+		assertNotNull(board);
+		assertEquals(board.getActualIntent(), 0);
 	}
 	
 }

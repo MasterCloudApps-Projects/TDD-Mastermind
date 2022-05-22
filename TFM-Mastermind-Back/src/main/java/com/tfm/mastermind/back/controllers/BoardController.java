@@ -65,6 +65,6 @@ public class BoardController {
 	}
 	
 	public Board startNewGame() {
-		return null;
+		return new Board();
 	}
 }
