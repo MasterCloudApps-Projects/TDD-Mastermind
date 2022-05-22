@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BoardService } from 'src/app/services/board-service';
 import { Proposal } from 'src/app/domain/proposal';
 import { Board } from 'src/app/domain/Board';
+import { Result } from 'src/app/domain/Result';
 
 @Component({
   selector: 'proposal-combination',
@@ -28,8 +29,8 @@ export class ProposalCombination {
   public addProposalCombination(){
     if (this.proposal.length == 4) {
       let proposalRequest: Proposal = {combination: this.proposal};
-      this.boardService.addProposalCombination(proposalRequest).subscribe((proposalResponse: Proposal) => {
-        this.proposalCombination = proposalResponse;
+      this.boardService.addProposalCombination(proposalRequest).subscribe((result: Result) => {
+        this.proposalCombination = new Proposal({combination: this.proposal, maxWidth: 4});
         if (this.board.proposalCombination == null) {
           this.board.proposalCombination = [];
         }

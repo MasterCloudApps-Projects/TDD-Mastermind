@@ -23,6 +23,11 @@ const PROPOSALCOMBINATION = {
   "maxWidth":4
 }
 
+const RESULT = {
+  "white": 3,
+  "black": 0,
+  "winner": false
+}
 const RESULTS = [
   {
     "white": 3,
@@ -69,7 +74,7 @@ describe('ProposalCombination', () => {
   });
 
   it(`add proposal combination by user as proposal list check length and content before and after`, () => {
-    spyOn(boardService, 'addProposalCombination').and.returnValue(of(PROPOSALCOMBINATION));
+    spyOn(boardService, 'addProposalCombination').and.returnValue(of(RESULT));
     
     expect(component.proposalCombination).toBeTruthy();
     
@@ -77,7 +82,7 @@ describe('ProposalCombination', () => {
     expect(component.proposalCombination).toBeTruthy();
     expect(component.proposalCombination?.combination).toBeFalsy();
 
-    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE);
+    component.proposal.push(ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED, ColorEnum.BLUE);
     component.addProposalCombination();
 
     expect(component.proposalCombination?.combination).toHaveSize(4);
@@ -86,7 +91,7 @@ describe('ProposalCombination', () => {
   });
 
   it(`add proposal combination by user as proposal list and check the proposal to be 4 color`, () => {
-    spyOn(boardService, 'addProposalCombination').and.returnValue(of(PROPOSALCOMBINATION));
+    spyOn(boardService, 'addProposalCombination').and.returnValue(of(RESULT));
     
     expect(component.proposalCombination).toBeTruthy();
     
@@ -94,13 +99,13 @@ describe('ProposalCombination', () => {
     expect(component.proposalCombination).toBeTruthy();
     expect(component.proposalCombination?.combination).toBeFalsy();
   
-    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE);
+    component.proposal.push(ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED);
     component.addProposalCombination();
     
     expect(component.proposalCombination?.combination).toBeFalsy();
     expect(component.proposalCombination?.combination).not.toEqual(component.proposal);
   
-    component.proposal.push(ColorEnum.RED);
+    component.proposal.push(ColorEnum.BLUE);
     component.addProposalCombination();
     fixture.detectChanges();
 
@@ -109,10 +114,10 @@ describe('ProposalCombination', () => {
   });
 
   it(`add proposal combination and use boardSerive to submit and get proposal`, fakeAsync(() => {
-    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE);
+    component.proposal.push(ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED, ColorEnum.BLUE);
 
     spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
-    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(RESULT));
     
     expect(component.proposalCombination).toBeTruthy();
     expect(component.proposalCombination?.combination).toBeFalsy();
@@ -127,9 +132,9 @@ describe('ProposalCombination', () => {
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
 
-  it(`add proposal combination by method using the board service and compare`, fakeAsync(() => {
+  it(`add proposal combination by method using the board service and compare the Result`, fakeAsync(() => {
     let addProposalCombinationMethod = spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
-    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(PROPOSALCOMBINATION));
+    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(RESULT));
   
     fixture.detectChanges();
     tick();
@@ -137,13 +142,13 @@ describe('ProposalCombination', () => {
     expect(component.proposalCombination).toBeTruthy();
     expect(component.proposalCombination?.combination).toBeFalsy();
     
-    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE);
+    component.proposal.push(ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED, ColorEnum.BLUE);
 
     let proposalCombination1: Proposal = {combination: component.proposal};
 
-    let proposalCombination2: Proposal = {};
-    boardService.addProposalCombination(proposalCombination1).subscribe((combination: Proposal) => {
-      proposalCombination2 = combination;
+    let result: Result = {};
+    boardService.addProposalCombination(proposalCombination1).subscribe((res: Result) => {
+      result = res;
     });
     
     expect(addProposalCombinationMethod).toHaveBeenCalledTimes(1);
@@ -153,10 +158,10 @@ describe('ProposalCombination', () => {
     expect(proposalCombination1?.combination).toHaveSize(4);
     expect(proposalCombination1?.maxWidth).not.toEqual(4);
     
-    expect(proposalCombination2).toBeTruthy();
-    expect(proposalCombination2?.combination).toBeTruthy();
-    expect(proposalCombination2?.combination).toHaveSize(4);
-    expect(proposalCombination2?.maxWidth).toEqual(4);
+    expect(result).toBeTruthy();
+    expect(result?.black).toEqual(RESULT.black);
+    expect(result?.white).toEqual(RESULT.white);
+    expect(result?.winner).toEqual(RESULT.winner);
 
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, proposalCombination1);
     
@@ -199,19 +204,19 @@ describe('ProposalCombination', () => {
     expect(component.proposalCombination).toBeTruthy();
     expect(component.proposalCombination?.combination).toBeFalsy();
     
-    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE);
+    component.proposal.push(ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED, ColorEnum.BLUE);
 
     component.addProposalCombination();
 
     expect(addProposalCombinationMethod).toHaveBeenCalledTimes(1);
-    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: [ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.PURPLE]});
+    expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`, {combination: [ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED, ColorEnum.BLUE]});
     
-
+    let proposal = new Proposal({...PROPOSALCOMBINATION})
     expect(board.secretCombination?.combination).toEqual(BOARD.secretCombination.combination);
     expect(board.secretCombination?.maxWidth).toEqual(4);
     expect(board.proposalCombination).not.toBeNull();
-    expect(board.proposalCombination).toContain(PROPOSALCOMBINATION);
-    expect(board.proposalCombination![0]).toEqual(PROPOSALCOMBINATION);
+    expect(board.proposalCombination).toContain(proposal);
+    expect(board.proposalCombination![0]).toEqual(proposal);
   
   }));
 
@@ -318,4 +323,6 @@ describe('ProposalCombination', () => {
 
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
+
+
 });

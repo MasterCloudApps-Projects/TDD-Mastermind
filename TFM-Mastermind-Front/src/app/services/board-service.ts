@@ -39,8 +39,8 @@ export class BoardService implements IForm<Board>{
     }
 
     //Recupera todos los atributos de un cliente
-    public addProposalCombination (proposal: Proposal): Observable<Proposal> {
-        return this.http.put<Proposal>(`${PREFIX}/`, proposal).pipe(take(1));
+    public addProposalCombination (proposal: Proposal): Observable<Result> {
+        return this.http.put<Result>(`${PREFIX}/`, proposal).pipe(take(1));
     }
 
     public getResults(): Observable<Result[]>{
