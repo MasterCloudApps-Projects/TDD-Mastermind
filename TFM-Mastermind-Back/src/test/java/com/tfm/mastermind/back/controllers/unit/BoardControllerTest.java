@@ -1,8 +1,10 @@
 package com.tfm.mastermind.back.controllers.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
@@ -130,7 +132,8 @@ public class BoardControllerTest {
 	}
 	
 	@Test
-	public void getNullResultListControllerTest() {
-		assertNull(this.boardController.getResults());
+	public void getNotNullResultListControllerTest() {
+		assertNotNull(this.boardController.getResults());
+		assertNotEquals(this.boardController.getResults().length, 0);
 	}
 }

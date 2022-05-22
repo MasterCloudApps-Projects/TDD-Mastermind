@@ -52,6 +52,6 @@ public class BoardController {
 	}
 	
 	public Result[] getResults() {
-		return null;
+		return new Result[10];
 	}
 }
