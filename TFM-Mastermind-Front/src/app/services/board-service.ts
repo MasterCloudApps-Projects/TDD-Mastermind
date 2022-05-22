@@ -43,6 +43,6 @@ export class BoardService implements IForm<Board>{
     }
 
     public getResults(): any{
-		return null;
+		return [];
     }
 }

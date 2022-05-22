@@ -281,10 +281,10 @@ describe('ProposalCombination', () => {
 
   });
 
-  it(`get null result using board service`, () => {
+  it(`get not null result using board service`, () => {
     spyOn(boardService, 'getResults').and.callThrough();
 
     let result = boardService.getResults();
-    expect(result).toBeNull();
+    expect(result).toBeTruthy();
   });
 });
