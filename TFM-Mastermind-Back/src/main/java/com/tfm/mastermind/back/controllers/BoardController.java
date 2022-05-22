@@ -50,4 +50,8 @@ public class BoardController {
 	public Result getResult() {
 		return this.boardService.getResult();
 	}
+	
+	public Result[] getResults() {
+		return null;
+	}
 }

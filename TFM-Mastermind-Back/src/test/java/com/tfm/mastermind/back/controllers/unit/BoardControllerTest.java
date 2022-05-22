@@ -128,4 +128,9 @@ public class BoardControllerTest {
 		assertNotNull(result.getWhite());
 		
 	}
+	
+	@Test
+	public void getNullResultListControllerTest() {
+		assertNull(this.boardController.getResults());
+	}
 }
