@@ -47,10 +47,13 @@ public class BoardController {
 	}
 
 	@GetMapping("/result")
+	@ResponseStatus(HttpStatus.OK)
 	public Result getResult() {
 		return this.boardService.getResult();
 	}
 	
+	@GetMapping("/results")
+	@ResponseStatus(HttpStatus.OK)
 	public Result[] getResults() {
 		return new Result[10];
 	}

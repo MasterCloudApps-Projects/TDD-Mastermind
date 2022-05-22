@@ -142,4 +142,18 @@ public class BoardControllerRestTest {
             .body("black", notNullValue())
     		.body("white", notNullValue());
     }
+    
+    @Test
+	public void getResultListRestTest() throws Exception {
+    	
+    	
+    	//Given
+		when()
+            .get("/api/board/results")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(notNullValue())
+            .body("size()", is(not(0)));
+    }
 }
