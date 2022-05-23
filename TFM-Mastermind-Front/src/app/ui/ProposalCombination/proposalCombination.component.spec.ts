@@ -1,6 +1,7 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { HttpClient } from "@angular/common/http";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { not } from "@angular/compiler/src/output/output_ast";
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -324,9 +325,10 @@ describe('ProposalCombination', () => {
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
 
-  it(`get null Results color lista`, fakeAsync(() => {
+  it(`get not null Results color lista`, fakeAsync(() => {
     let resultList = component.getResultListColor();
-    expect(resultList).toBeNull();
+    expect(resultList).not.toBeNull();
+    expect(resultList).toBeTruthy();
   }));
 
 });

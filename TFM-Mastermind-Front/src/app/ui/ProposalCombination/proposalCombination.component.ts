@@ -77,7 +77,7 @@ export class ProposalCombination {
   }
 
   public getResultListColor(): any{
-    return null;
+    return [];
   }
 
 }
