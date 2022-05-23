@@ -47,7 +47,20 @@ export class BoardService implements IForm<Board>{
 		return this.http.get<Result[]>(`${PREFIX}/results`).pipe(take(1));
     } 
 
-	public newGame(): null{
-		return null;
+	public newGame(): Board{
+		return new Board({ 
+			secretCombination: {
+			"combination":["PURPLE","GREEN","RED","BLUE"],
+			"maxWidth":4},
+			proposalCombinations: [{
+			  "combination":["PURPLE","GREEN","RED","BLUE"],
+			  "maxWidth":4}],
+			actualIntent : 1,
+			results : [{
+				"white": 3,
+				"black": 0,
+				"winner": false
+			  }]
+		  });
 	}
 }

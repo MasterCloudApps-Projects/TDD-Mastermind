@@ -227,9 +227,13 @@ describe('BoardComponent', () => {
 
   });
 
-  it(`get null Board on new game`, () => {
+  it(`get not null Board on new game`, () => {
     let board = boardService.newGame();
-    expect(board).toBeNull();
+    expect(board).toBeTruthy();
+    expect(board.actualIntent).toBeTruthy();
+    expect(board.proposalCombinations).toBeTruthy();
+    expect(board.results).toBeTruthy();
+    expect(board.secretCombination).toBeTruthy();
   });
 
 });
