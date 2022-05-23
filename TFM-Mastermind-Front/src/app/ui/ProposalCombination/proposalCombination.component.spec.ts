@@ -325,10 +325,11 @@ describe('ProposalCombination', () => {
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
 
-  it(`get not null Results color lista`, fakeAsync(() => {
+  it(`get not null Results color lista as string list`, fakeAsync(() => {
     let resultList = component.getResultListColor();
     expect(resultList).not.toBeNull();
     expect(resultList).toBeTruthy();
+    expect(resultList?.length).toBeGreaterThanOrEqual(0);
   }));
 
 });

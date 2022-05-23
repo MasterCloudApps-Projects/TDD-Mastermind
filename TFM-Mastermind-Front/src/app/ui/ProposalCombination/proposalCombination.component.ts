@@ -76,8 +76,10 @@ export class ProposalCombination {
     this.eventEmitter.emit(this.board);
   }
 
-  public getResultListColor(): any{
-    return [];
+  public getResultListColor():  string[] | null{
+    let resultColorList: string[] = [];
+
+    return resultColorList;
   }
 
 }
