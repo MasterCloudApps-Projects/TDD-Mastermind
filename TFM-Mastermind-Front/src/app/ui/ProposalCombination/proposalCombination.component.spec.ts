@@ -206,7 +206,8 @@ describe('ProposalCombination', () => {
     expect(component.proposalCombination?.combination).toBeFalsy();
     
     component.proposal.push(ColorEnum.PURPLE, ColorEnum.GREEN, ColorEnum.RED, ColorEnum.BLUE);
-
+    
+    component.board.actualIntent = 0;
     component.addProposalCombination();
 
     expect(addProposalCombinationMethod).toHaveBeenCalledTimes(1);
@@ -217,7 +218,6 @@ describe('ProposalCombination', () => {
     expect(board.secretCombination?.maxWidth).toEqual(4);
     expect(board.proposalCombinations).not.toBeNull();
     expect(board.proposalCombinations).toContain(proposal);
-    expect(board.proposalCombinations![0]).toEqual(proposal);
   
   }));
 
@@ -346,11 +346,28 @@ describe('ProposalCombination', () => {
     spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
     spyOn(httpClient, 'put').and.returnValue(of(RESULT));
 
+    component.board.actualIntent = 0;
     component.addProposalCombination();
     
     expect(component.board.results).toBeTruthy();
     expect(component.board.results).toContain(RESULT);
 
+  });
+
+  it(`add proposal actualIntent position, check result and proposal on correct position and intent is intent+1`, () => {
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.RED);
+    spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    spyOn(httpClient, 'put').and.returnValue(of(RESULT));
+
+    component.board.actualIntent = 0;
+    let actualIntent = component.board.actualIntent;
+    component.addProposalCombination();
+    
+    expect(component.board.results).toBeTruthy();
+    expect(component.board.results).toContain(RESULT);
+    expect(component.board.proposalCombinations![actualIntent]).not.toBeFalsy();
+    expect(component.board.results![actualIntent]).not.toBeFalsy();
+    expect(component.board.actualIntent).toEqual(actualIntent+1);
   });
 
 });

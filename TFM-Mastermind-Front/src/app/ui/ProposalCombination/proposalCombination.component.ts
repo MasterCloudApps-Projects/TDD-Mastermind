@@ -35,13 +35,13 @@ export class ProposalCombination {
         if (this.board.proposalCombinations == null) {
           this.board.proposalCombinations = [];
         }
-        this.board.proposalCombinations.unshift(this.proposalCombination);
+        this.board.proposalCombinations[this.board.actualIntent!] = this.proposalCombination;
 
         if (this.board.results == null) {
           this.board.results = [];
         }
-        this.board.results?.unshift(result);
-        
+        this.board.results[this.board.actualIntent!] = result;
+        this.board.actualIntent = this.board.actualIntent! + 1;
         this.emitEvent();
         this.proposal = [];
         this.colorList = Object.values(ColorEnum);
