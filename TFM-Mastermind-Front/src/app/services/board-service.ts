@@ -45,5 +45,9 @@ export class BoardService implements IForm<Board>{
 
     public getResults(): Observable<Result[]>{
 		return this.http.get<Result[]>(`${PREFIX}/results`).pipe(take(1));
-    }
+    } 
+
+	public newGame(): null{
+		return null;
+	}
 }
