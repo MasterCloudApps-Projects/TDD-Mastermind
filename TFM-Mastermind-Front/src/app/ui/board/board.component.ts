@@ -31,6 +31,9 @@ export class BoardComponent {
   }
 
   public isFinished(): boolean{
+    if (this.board.results![this.board.actualIntent!-1].winner || this.board.actualIntent == 10) {
+      return true;
+    }
     return false;
   }
 }

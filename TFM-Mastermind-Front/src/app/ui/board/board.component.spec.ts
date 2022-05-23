@@ -8,6 +8,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { Board } from 'src/app/domain/Board';
+import { Result } from 'src/app/domain/Result';
 import { BoardService } from 'src/app/services/board-service';
 import { BoardComponent } from './board.component';
 
@@ -18,7 +19,12 @@ const BOARD = {
   proposalCombinations: [{
     "combination":["PURPLE","GREEN","RED","BLUE"],
     "maxWidth":4}],
-  actualIntent : 1
+  actualIntent : 1,
+  results : [{
+      "white": 3,
+      "black": 0,
+      "winner": false
+    }]
 }
 
 describe('BoardComponent', () => {
@@ -175,8 +181,46 @@ describe('BoardComponent', () => {
     
   });
 
-  it(`check if game is finished get incorrect value`, () => {
+  it(`check if game is finished get correct value`, () => {
+    let board: Board = { 
+      secretCombination: {
+      "combination":["PURPLE","GREEN","RED","BLUE"],
+      "maxWidth":4},
+      proposalCombinations: [{
+        "combination":["PURPLE","GREEN","RED","BLUE"],
+        "maxWidth":4}],
+      actualIntent : 1,
+      results : [{
+          "white": 3,
+          "black": 0,
+          "winner": false
+        }]
+    }
+    component.setBoard(board);
     expect(component.isFinished()).toBeFalse();
+
+    board.results= [{}, {}, {}, {}, {}, {}, {}, {}, {}, {
+      "white": 1,
+      "black": 3,
+      "winner": false
+    }]
+    board.actualIntent = 10;
+    component.setBoard(board);
+    expect(component.isFinished()).toBeTrue();
+
+    board.actualIntent = 1;
+    component.setBoard(board);
+    expect(component.isFinished()).toBeFalse();
+
+    board.results= [{
+      "white": 0,
+      "black": 4,
+      "winner": true
+    }]
+    board.actualIntent = 1;
+    component.setBoard(board);
+    expect(component.isFinished()).toBeTrue();
+
   });
 
 });
