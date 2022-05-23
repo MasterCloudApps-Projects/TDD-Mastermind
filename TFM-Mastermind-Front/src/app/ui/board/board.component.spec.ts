@@ -1,7 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { EventEmitter } from '@angular/core';
 import { TestBed, async, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -10,7 +9,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { Board } from 'src/app/domain/Board';
 import { BoardService } from 'src/app/services/board-service';
-import { ProposalCombination } from '../ProposalCombination/proposalCombination.component';
 import { BoardComponent } from './board.component';
 
 const BOARD = { 

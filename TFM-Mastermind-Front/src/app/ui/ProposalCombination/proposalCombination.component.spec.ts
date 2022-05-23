@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from "rxjs";
 import { Board } from "src/app/domain/Board";
 import { ColorEnum } from "src/app/domain/Color";
-import { Proposal } from "src/app/domain/proposal";
+import { Proposal } from "src/app/domain/Proposal";
 import { Result } from "src/app/domain/Result";
 import { BoardService } from "src/app/services/board-service";
 import { ProposalCombination } from "./proposalCombination.component";
@@ -313,7 +313,7 @@ describe('ProposalCombination', () => {
     fixture.detectChanges();
     tick();
     
-    let results: Result[] = []
+    let results: Result[] = [];
     boardService.getResults().subscribe((result: Result[]) => {
       results = result;
     });
@@ -323,6 +323,5 @@ describe('ProposalCombination', () => {
 
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
-
 
 });

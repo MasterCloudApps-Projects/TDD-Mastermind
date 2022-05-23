@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { ColorEnum } from 'src/app/domain/Color';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BoardService } from 'src/app/services/board-service';
-import { Proposal } from 'src/app/domain/proposal';
+import { Proposal } from 'src/app/domain/Proposal';
 import { Board } from 'src/app/domain/Board';
+import { ColorEnum } from "src/app/domain/Color";
 import { Result } from 'src/app/domain/Result';
 
 @Component({

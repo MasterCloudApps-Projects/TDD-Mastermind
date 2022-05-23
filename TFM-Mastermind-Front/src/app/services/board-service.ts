@@ -6,7 +6,7 @@ import { BusService } from "../common/bus";
 import { IForm } from "../interfaces/IForm";
 import { take } from 'rxjs/operators';
 import { Board } from "../domain/Board";
-import { Proposal } from "../domain/proposal";
+import { Proposal } from "../domain/Proposal";
 import { Result } from "../domain/Result";
 
 const PREFIX = `${environment.baseUrl}/board`;
