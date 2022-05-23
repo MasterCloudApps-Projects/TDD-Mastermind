@@ -77,9 +77,22 @@ export class ProposalCombination {
   }
 
   public getResultListColor(result: Result):  string[] | null{
-    let resultColorList: string[] = [];
-    
-    return resultColorList;
+    if (result != null) {
+      let resultColorList: string[] = [];
+      let white: number = result?.white ?? 0;
+      let black: number = result?.black ?? 0;
+      while (white > 0) {
+        resultColorList.push("WHITE");
+        white = white - 1;
+      }
+      while (black > 0){
+        resultColorList.push("BLACK");
+        black--;
+      }
+  
+      return resultColorList;
+    }
+    return null;
   }
 
 }

@@ -25,8 +25,8 @@ const PROPOSALCOMBINATION = {
 }
 
 const RESULT = {
-  "white": 3,
-  "black": 0,
+  "white": 1,
+  "black": 2,
   "winner": false
 }
 const RESULTS = [
@@ -325,11 +325,20 @@ describe('ProposalCombination', () => {
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
 
-  it(`get not null Results color lista as string list`, fakeAsync(() => {
+  it(`get not null Results color lista as string list`, () => {
     let resultList = component.getResultListColor(RESULT);
     expect(resultList).not.toBeNull();
     expect(resultList).toBeTruthy();
     expect(resultList?.length).toBeGreaterThanOrEqual(0);
-  }));
+  });
+
+  it(`pass result as parameter and get not null Results color lista as string list`, () => {
+    let resultList = component.getResultListColor(RESULT);
+    expect(resultList).not.toBeNull();
+    expect(resultList).toBeTruthy();
+    expect(resultList?.length).toBeGreaterThan(0);
+    expect(resultList).toContain("BLACK");
+    expect(resultList).toContain("WHITE");
+  });
 
 });

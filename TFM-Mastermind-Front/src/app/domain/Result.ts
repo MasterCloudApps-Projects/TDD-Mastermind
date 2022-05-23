@@ -1,7 +1,7 @@
 export class Result {
-    white?: Number;
-    black?: Number;
-    winner?: Boolean;
+    white?: number;
+    black?: number;
+    winner?: boolean;
 
     constructor(fields: Partial<Result> = {}) {
         Object.assign(this, fields);        
