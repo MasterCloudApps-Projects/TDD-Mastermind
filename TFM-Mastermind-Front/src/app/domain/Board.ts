@@ -3,7 +3,7 @@ import { Result } from "./Result";
 
 export class Board {
     secretCombination?: Proposal;
-    proposalCombination?: Proposal[];
+    proposalCombinations?: Proposal[];
     actualIntent?: number;
     results?: Result[];
 

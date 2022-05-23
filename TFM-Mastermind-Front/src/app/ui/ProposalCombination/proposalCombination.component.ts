@@ -32,10 +32,10 @@ export class ProposalCombination {
       this.boardService.addProposalCombination(proposalRequest).subscribe((result: Result) => {
         this.proposalCombination = new Proposal({combination: this.proposal, maxWidth: 4});
         
-        if (this.board.proposalCombination == null) {
-          this.board.proposalCombination = [];
+        if (this.board.proposalCombinations == null) {
+          this.board.proposalCombinations = [];
         }
-        this.board.proposalCombination.unshift(this.proposalCombination);
+        this.board.proposalCombinations.unshift(this.proposalCombination);
 
         if (this.board.results == null) {
           this.board.results = [];

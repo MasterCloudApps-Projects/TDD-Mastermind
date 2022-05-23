@@ -215,9 +215,9 @@ describe('ProposalCombination', () => {
     let proposal = new Proposal({...PROPOSALCOMBINATION})
     expect(board.secretCombination?.combination).toEqual(BOARD.secretCombination.combination);
     expect(board.secretCombination?.maxWidth).toEqual(4);
-    expect(board.proposalCombination).not.toBeNull();
-    expect(board.proposalCombination).toContain(proposal);
-    expect(board.proposalCombination![0]).toEqual(proposal);
+    expect(board.proposalCombinations).not.toBeNull();
+    expect(board.proposalCombinations).toContain(proposal);
+    expect(board.proposalCombinations![0]).toEqual(proposal);
   
   }));
 

@@ -15,7 +15,7 @@ const BOARD = {
   secretCombination: {
   "combination":["PURPLE","GREEN","RED","BLUE"],
   "maxWidth":4},
-  proposalCombination: [{
+  proposalCombinations: [{
     "combination":["PURPLE","GREEN","RED","BLUE"],
     "maxWidth":4}],
   actualIntent : 1
@@ -153,30 +153,26 @@ describe('BoardComponent', () => {
     expect(component.board?.secretCombination?.combination).toBeTruthy();
     expect(component.board?.actualIntent).toEqual(1);
     expect(component.board?.secretCombination).toEqual(BOARD.secretCombination);
-    expect(component.board?.proposalCombination).toEqual(BOARD.proposalCombination);
+    expect(component.board?.proposalCombinations).toEqual(BOARD.proposalCombinations);
     expect(component.board).toEqual(BOARD);
     
   });
 
-  it(`setBoard in boardComponent with parameters from proposalCombination`, fakeAsync(() => {
+  it(`setBoard in boardComponent with parameters from proposalCombination`, () => {
     expect(component.board).toEqual({});
-    let setBoard = spyOn(component, 'setBoard').withArgs(BOARD).and.callThrough();
-    
     fixture.debugElement.nativeElement.querySelector('proposal-combination').eventEmitter = BOARD;
     
     expect(fixture.debugElement.nativeElement.querySelector('proposal-combination').eventEmitter).toEqual(BOARD);
     
     component.setBoard(BOARD);
-
-    expect(setBoard).toHaveBeenCalledWith(BOARD);
-
+    
     expect(component.board).toBeTruthy();
     expect(component.board?.secretCombination?.combination).toBeTruthy();
     expect(component.board?.actualIntent).toEqual(1);
     expect(component.board?.secretCombination).toEqual(BOARD.secretCombination);
-    expect(component.board?.proposalCombination).toEqual(BOARD.proposalCombination);
+    expect(component.board?.proposalCombinations).toEqual(BOARD.proposalCombinations);
     expect(component.board).toEqual(BOARD);
     
-  }));
+  });
 
 });
