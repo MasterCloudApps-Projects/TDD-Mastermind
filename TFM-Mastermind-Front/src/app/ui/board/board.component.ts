@@ -29,5 +29,9 @@ export class BoardComponent {
   public setBoard(board: Board){
     this.board = board;
   }
+
+  public isFinished(): boolean{
+    return false;
+  }
 }
 

@@ -175,4 +175,8 @@ describe('BoardComponent', () => {
     
   });
 
+  it(`check if game is finished get incorrect value`, () => {
+    expect(component.isFinished()).toBeFalse();
+  });
+
 });
