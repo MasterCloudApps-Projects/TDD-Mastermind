@@ -227,13 +227,22 @@ describe('BoardComponent', () => {
 
   });
 
-  it(`get not null Board on new game`, () => {
-    let board = boardService.newGame();
+  it(`get not null Board on new game and made http call`, fakeAsync(() => {
+    spyOn(boardService, 'newGame').and.callThrough();
+    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(BOARD));
+    tick();
+    fixture.detectChanges();
+
+    let board: Board = {};
+    boardService.newGame().subscribe((boardRes: Board) => {
+      board = boardRes;
+    });
     expect(board).toBeTruthy();
     expect(board.actualIntent).toBeTruthy();
     expect(board.proposalCombinations).toBeTruthy();
     expect(board.results).toBeTruthy();
     expect(board.secretCombination).toBeTruthy();
-  });
+    expect(httpClientMethod).toHaveBeenCalledTimes(1);
+  }));
 
 });
