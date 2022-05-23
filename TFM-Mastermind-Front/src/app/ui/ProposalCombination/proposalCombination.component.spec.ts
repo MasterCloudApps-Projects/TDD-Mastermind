@@ -326,7 +326,7 @@ describe('ProposalCombination', () => {
   }));
 
   it(`get not null Results color lista as string list`, fakeAsync(() => {
-    let resultList = component.getResultListColor();
+    let resultList = component.getResultListColor(RESULT);
     expect(resultList).not.toBeNull();
     expect(resultList).toBeTruthy();
     expect(resultList?.length).toBeGreaterThanOrEqual(0);
