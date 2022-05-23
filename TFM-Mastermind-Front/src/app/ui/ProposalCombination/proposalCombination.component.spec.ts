@@ -324,4 +324,9 @@ describe('ProposalCombination', () => {
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
 
+  it(`get null Results color lista`, fakeAsync(() => {
+    let resultList = component.getResultListColor();
+    expect(resultList).toBeNull();
+  }));
+
 });
