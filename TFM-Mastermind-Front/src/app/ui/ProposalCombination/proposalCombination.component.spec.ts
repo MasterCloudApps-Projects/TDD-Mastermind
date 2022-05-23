@@ -341,4 +341,16 @@ describe('ProposalCombination', () => {
     expect(resultList).toContain("WHITE");
   });
 
+  it(`add proposal combination and after correct add, check result in the board`, () => {
+    component.proposal.push(ColorEnum.BLUE, ColorEnum.GREEN, ColorEnum.ORANGE, ColorEnum.RED);
+    spyOn(boardService, 'addProposalCombination').withArgs({combination: component.proposal}).and.callThrough();
+    spyOn(httpClient, 'put').and.returnValue(of(RESULT));
+
+    component.addProposalCombination();
+    
+    expect(component.board.results).toBeTruthy();
+    expect(component.board.results).toContain(RESULT);
+
+  });
+
 });

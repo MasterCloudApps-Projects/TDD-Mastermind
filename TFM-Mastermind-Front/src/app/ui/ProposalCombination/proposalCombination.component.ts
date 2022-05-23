@@ -31,10 +31,17 @@ export class ProposalCombination {
       let proposalRequest: Proposal = {combination: this.proposal};
       this.boardService.addProposalCombination(proposalRequest).subscribe((result: Result) => {
         this.proposalCombination = new Proposal({combination: this.proposal, maxWidth: 4});
+        
         if (this.board.proposalCombination == null) {
           this.board.proposalCombination = [];
         }
         this.board.proposalCombination.unshift(this.proposalCombination);
+
+        if (this.board.results == null) {
+          this.board.results = [];
+        }
+        this.board.results?.unshift(result);
+        
         this.emitEvent();
         this.proposal = [];
         this.colorList = Object.values(ColorEnum);
