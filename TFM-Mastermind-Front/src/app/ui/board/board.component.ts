@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Board } from 'src/app/domain/Board';
 import { BoardService } from 'src/app/services/board-service';
 
@@ -36,5 +36,10 @@ export class BoardComponent {
     }
     return false;
   }
-}
 
+  public reStartGame(){
+    this.boardService.newGame().subscribe((boardRes: Board) => {
+      this.board = boardRes;
+    });
+  }
+}

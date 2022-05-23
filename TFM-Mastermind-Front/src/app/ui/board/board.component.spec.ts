@@ -245,4 +245,29 @@ describe('BoardComponent', () => {
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
   }));
 
+  it(`get Board on new game and check the component board is changed`, fakeAsync(() => {
+    spyOn(boardService, 'newGame').and.callThrough();
+    let httpClientMethod = spyOn(httpClient, 'put').and.returnValue(of(BOARD));
+    
+    component.board = {};
+    expect(component.board).toEqual({});
+    let board1 = component.board;
+    expect(board1).toEqual({});
+    
+    component.reStartGame();
+    let board2 = component.board;
+    tick();
+    fixture.detectChanges();
+    
+    expect(board2).not.toEqual({});
+    expect(board2).toBeTruthy();
+    expect(board2.actualIntent).toBeTruthy();
+    expect(board2.actualIntent).toEqual(1);
+    expect(board2.proposalCombinations).toBeTruthy();
+    expect(board2.results).toBeTruthy();
+    expect(board2.secretCombination).toBeTruthy();
+    expect(httpClientMethod).toHaveBeenCalledTimes(1);
+
+
+  }));
 });
