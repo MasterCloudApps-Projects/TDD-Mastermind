@@ -1,8 +1,1 @@
-<mat-card style="max-width: 50%;" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="board?.secretCombination?.combination as combi">
-    <mat-card [style.background-color]="combi[0]" [style.color]="combi[0]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-    <mat-card [style.background-color]="combi[1]" [style.color]="combi[1]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-    <mat-card [style.background-color]="combi[2]" [style.color]="combi[2]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-    <mat-card [style.background-color]="combi[3]" [style.color]="combi[3]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
-</mat-card>
-
 <proposal-combination [board]="board" (eventEmitter)="setBoard($event)"></proposal-combination>

@@ -29,7 +29,6 @@ export class BoardComponent {
   }
 
   public setBoard(board: Board){
-    debugger
     this.board = board;
     if (this.isFinished()) {
       let resultMessage: string = "";
@@ -37,7 +36,13 @@ export class BoardComponent {
         resultMessage = "LOSS";
       }
       resultMessage = "WIN";
-      const dialogRef = this.finishDialog.open(FinishElementsDialog, { disableClose: true , data: resultMessage});
+      const dialogRef = this.finishDialog.open(FinishElementsDialog, { 
+        disableClose: true , 
+        data: {
+          resultMessage: resultMessage,
+          secretCombination: this.board.secretCombination
+        }
+      });
       dialogRef.afterClosed().subscribe(() => {
         this.reStartGame();
       }
@@ -62,12 +67,18 @@ export class BoardComponent {
 
 @Component({
   selector: 'finish-elements-dialog',
-  template: `<h1 mat-dialog-title>You {{data}} the match.</h1>
+  template: `<h1 mat-dialog-title>You {{data.resultMessage}} the match.</h1>
+  <mat-card id="secretBoard" style="max-width: 50%;" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="data.secretCombination?.combination as combi">
+        <mat-card [style.background-color]="combi[0]" [style.color]="combi[0]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+        <mat-card [style.background-color]="combi[1]" [style.color]="combi[1]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+        <mat-card [style.background-color]="combi[2]" [style.color]="combi[2]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+        <mat-card [style.background-color]="combi[3]" [style.color]="combi[3]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    </mat-card>
   <div mat-dialog-actions>
     <button mat-button color="primary" matDialogClose>Close</button>
   </div>
   `,
 })
 export class FinishElementsDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
 }
