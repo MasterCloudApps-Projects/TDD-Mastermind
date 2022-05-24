@@ -20,4 +20,20 @@ public class SecretCombination extends Combination{
 	public List<Color> getColors(){
 		return this.combination;
 	}
+	
+	public Result getResult(ProposalCombination proposalCombination) {
+		int blacks = 0;
+		for (int i = 0; i < this.combination.size(); i++) {
+			if (proposalCombination.combination.get(i) == this.combination.get(i)) {
+				blacks++;
+			}
+		}
+		int whites = 0;
+		for (Color color : this.combination) {
+			if (proposalCombination.combination.contains(color)) {
+				whites++;
+			}
+		}
+		return new Result(whites - blacks, blacks);
+	}
 }

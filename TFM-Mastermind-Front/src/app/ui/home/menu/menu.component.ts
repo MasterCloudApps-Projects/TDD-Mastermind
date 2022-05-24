@@ -10,7 +10,7 @@ export class MainMenuComponent {
   activeLink: string = "/";
 
   public links = [
-    { route: '/', icon: 'home'}
+    { route: '/boardComponent', icon: 'home'}
   ];
 
   constructor(private location: Location) {
