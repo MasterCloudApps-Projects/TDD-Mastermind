@@ -8,7 +8,7 @@ import { BusService } from './common/bus';
 import { CapitalizePipe } from './common/capitalize-pipe';
 import { UIMaterialModule } from './ui-material.module';
 import { AppComponent } from './ui/app/app.component';
-import { BoardComponent } from './ui/board/board.component';
+import { BoardComponent, FinishElementsDialog } from './ui/board/board.component';
 import { HomeComponent } from './ui/home/home.component';
 import { MainMenuComponent } from './ui/home/menu/menu.component';
 import { ProposalCombination } from './ui/ProposalCombination/proposalCombination.component';
@@ -20,6 +20,7 @@ import { ProposalCombination } from './ui/ProposalCombination/proposalCombinatio
     HomeComponent,
     BoardComponent,
     ProposalCombination,
+    FinishElementsDialog,
     MainMenuComponent,
     CapitalizePipe,
   ],

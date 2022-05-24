@@ -1,9 +1,15 @@
-<div *ngFor="let proposalCombi of board?.proposalCombination">
-    <mat-card style="max-width: 50%" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="proposalCombi?.combination as prop">
+<div id="proposalResultDiv" fxLayout="row" fxLayout.lt-sm="column" *ngFor="let proposalCombi of board?.proposalCombinations; let i = index" >
+    <mat-card fxLayout="row" fxFlex="60" fxLayoutAlign="space-between center" *ngIf="proposalCombi?.combination as prop">
         <mat-card [style.background-color]="prop[0]" [style.color]="prop[0]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
         <mat-card [style.background-color]="prop[1]" [style.color]="prop[1]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
         <mat-card [style.background-color]="prop[2]" [style.color]="prop[2]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
         <mat-card [style.background-color]="prop[3]" [style.color]="prop[3]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
+    </mat-card>
+    <mat-card fxLayout="row" fxFlex="20" fxLayoutAlign="space-between center" *ngIf="getResultListColor(board?.results![i]) as res">
+        <mat-card *ngIf="res[0] != null" [style.background-color]="res[0]" [style.color]="res[0]" style="border-radius: 50%; max-width: 1rem" ></mat-card>
+        <mat-card *ngIf="res[1] != null" [style.background-color]="res[1]" [style.color]="res[1]" style="border-radius: 50%; max-width: 1rem" ></mat-card>
+        <mat-card *ngIf="res[2] != null" [style.background-color]="res[2]" [style.color]="res[2]" style="border-radius: 50%; max-width: 1rem" ></mat-card>
+        <mat-card *ngIf="res[3] != null" [style.background-color]="res[3]" [style.color]="res[3]" style="border-radius: 50%; max-width: 1rem" ></mat-card>
     </mat-card>
 </div>
 

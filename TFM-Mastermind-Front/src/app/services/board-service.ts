@@ -6,7 +6,8 @@ import { BusService } from "../common/bus";
 import { IForm } from "../interfaces/IForm";
 import { take } from 'rxjs/operators';
 import { Board } from "../domain/Board";
-import { Proposal } from "../domain/proposal";
+import { Proposal } from "../domain/Proposal";
+import { Result } from "../domain/Result";
 
 const PREFIX = `${environment.baseUrl}/board`;
 
@@ -38,7 +39,15 @@ export class BoardService implements IForm<Board>{
     }
 
     //Recupera todos los atributos de un cliente
-    public addProposalCombination (proposal: Proposal): Observable<Proposal> {
-        return this.http.put<Proposal>(`${PREFIX}/`, proposal).pipe(take(1));
+    public addProposalCombination (proposal: Proposal): Observable<Result> {
+        return this.http.put<Result>(`${PREFIX}/`, proposal).pipe(take(1));
     }
+
+    public getResults(): Observable<Result[]>{
+		return this.http.get<Result[]>(`${PREFIX}/results`).pipe(take(1));
+    } 
+
+	public newGame(): Observable<Board> {
+        return this.http.put<Board>(`${PREFIX}/newGame`,'').pipe(take(1));
+	}
 }
