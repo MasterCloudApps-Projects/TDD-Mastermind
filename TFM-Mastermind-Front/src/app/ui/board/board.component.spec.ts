@@ -3,16 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TestBed, async, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { Board } from 'src/app/domain/Board';
-import { Result } from 'src/app/domain/Result';
 import { BoardService } from 'src/app/services/board-service';
-import { BoardComponent } from './board.component';
+import { BoardComponent, FinishElementsDialog } from './board.component';
 
 const BOARD = { 
   secretCombination: {
@@ -43,10 +40,13 @@ describe('BoardComponent', () => {
         FormsModule,
         DragDropModule,
         MatDialogModule,
-        NoopAnimationsModule
       ],
       declarations: [
         BoardComponent
+      ],
+      providers: [
+        { provide: MatDialog, 
+          useValue: { open: () => of({id: 1}) }}
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(BoardComponent);
@@ -186,6 +186,8 @@ describe('BoardComponent', () => {
   });
 
   it(`check if game is finished get correct value`, () => {
+    let dialog = TestBed.inject(MatDialog);
+    spyOn(dialog, 'open').and.returnValue({afterClosed: () => of({id: 1})} as MatDialogRef<typeof FinishElementsDialog>);
     let board: Board = { 
       secretCombination: {
       "combination":["PURPLE","GREEN","RED","BLUE"],
@@ -267,7 +269,56 @@ describe('BoardComponent', () => {
     expect(board2.results).toBeTruthy();
     expect(board2.secretCombination).toBeTruthy();
     expect(httpClientMethod).toHaveBeenCalledTimes(1);
+  }));
 
+  it(`set board and check if game is finished and call open dialog`, fakeAsync(() => {
+    let dialog = TestBed.inject(MatDialog);
+    spyOn(dialog, 'open').and.returnValue({afterClosed: () => of({id: 1})} as MatDialogRef<typeof FinishElementsDialog>);
+    tick();
+    fixture.detectChanges();
+
+    let board: Board = { 
+      secretCombination: {
+      "combination":["PURPLE","GREEN","RED","BLUE"],
+      "maxWidth":4},
+      proposalCombinations: [{
+        "combination":["PURPLE","GREEN","RED","BLUE"],
+        "maxWidth":4}],
+      actualIntent : 1,
+      results : [{
+          "white": 3,
+          "black": 0,
+          "winner": false
+        }]
+    }
+    component.setBoard(board);
+    expect(component.isFinished()).toBeFalse();
+    expect(dialog.open).toHaveBeenCalledTimes(0);
+
+    board.results= [{}, {}, {}, {}, {}, {}, {}, {}, {}, {
+      "white": 1,
+      "black": 3,
+      "winner": false
+    }]
+    board.actualIntent = 10;
+    component.setBoard(board);
+    expect(component.isFinished()).toBeTrue();
+    expect(dialog.open).toHaveBeenCalledTimes(1);
+
+    board.actualIntent = 1;
+    component.setBoard(board);
+    expect(component.isFinished()).toBeFalse();
+    expect(dialog.open).toHaveBeenCalledTimes(1);
+
+    board.results= [{
+      "white": 0,
+      "black": 4,
+      "winner": true
+    }]
+    board.actualIntent = 1;
+    component.setBoard(board);
+    expect(component.isFinished()).toBeTrue();
+    expect(dialog.open).toHaveBeenCalledTimes(2);
 
   }));
 });
