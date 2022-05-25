@@ -72,7 +72,7 @@ describe('BoardComponent', () => {
     expect(component.board).toBeTruthy();
     expect(component.board?.secretCombination?.combination).toBeFalsy();
     
-    component.getSecretCombination();
+    component.getBoard();
     expect(component.board.secretCombination?.combination).toBeTruthy();
     expect(component.board.secretCombination?.combination).toHaveSize(4);
     expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
@@ -95,7 +95,7 @@ describe('BoardComponent', () => {
     expect(combination1.secretCombination?.combination).toBeTruthy();
     expect(combination1.secretCombination?.combination).toHaveSize(4);
     
-    component.getSecretCombination();
+    component.getBoard();
     expect(component.board).toEqual(combination1);
     
     expect(httpClientMethod).toHaveBeenCalledWith(`/api/board/`);
@@ -113,7 +113,7 @@ describe('BoardComponent', () => {
     let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(BOARD));
     tick();
     
-    component.getSecretCombination();
+    component.getBoard();
     fixture.detectChanges();
 
     expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
@@ -136,7 +136,7 @@ describe('BoardComponent', () => {
     let httpClientMethod = spyOn(httpClient, 'get').and.returnValue(of(BOARD));
     tick();
     
-    component.getSecretCombination();
+    component.getBoard();
     fixture.detectChanges();
 
     expect(getSecretCombinationMethod).toHaveBeenCalledTimes(1);
@@ -320,5 +320,34 @@ describe('BoardComponent', () => {
     expect(component.isFinished()).toBeTrue();
     expect(dialog.open).toHaveBeenCalledTimes(2);
 
+  }));
+
+  it(`on reload page check if game is finished and call open dialog`, fakeAsync(() => {
+    let board: Board = { 
+      secretCombination: {
+      "combination":["PURPLE","GREEN","RED","BLUE"],
+      "maxWidth":4},
+      proposalCombinations: [{
+        "combination":["PURPLE","GREEN","RED","BLUE"],
+        "maxWidth":4}],
+      actualIntent : 1,
+      results : [{
+          "white": 3,
+          "black": 0,
+          "winner": true
+        }]
+    }
+    
+    let dialog = TestBed.inject(MatDialog);
+    spyOn(dialog, 'open').and.returnValue({afterClosed: () => of({id: 1})} as MatDialogRef<typeof FinishElementsDialog>);
+    spyOn(boardService, 'getSecretcombination').and.callThrough();
+    spyOn(httpClient, 'get').and.returnValue(of(board));
+    tick();
+    fixture.detectChanges();
+
+    
+    component.getBoard();
+    expect(component.isFinished()).toBeTrue();
+    expect(dialog.open).toHaveBeenCalledTimes(1);
   }));
 });
