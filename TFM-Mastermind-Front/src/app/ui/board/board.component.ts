@@ -17,14 +17,13 @@ export class BoardComponent {
     private boardService: BoardService,
     private finishDialog: MatDialog
   ) {
-    this.getSecretCombination();
+    this.getBoard();
   }
-
-
-
-  public getSecretCombination(){
+  
+  public getBoard(){
     this.boardService.getSecretcombination().subscribe((combination: Board) => {
       this.board = combination;
+      this.setBoard(this.board);
     });
   }
 
@@ -32,10 +31,11 @@ export class BoardComponent {
     this.board = board;
     if (this.isFinished()) {
       let resultMessage: string = "";
-      if (this.board.actualIntent == 10) {
+      if (this.board.results![this.board.actualIntent!-1].winner) {
+        resultMessage = "WIN";
+      }else {
         resultMessage = "LOSS";
       }
-      resultMessage = "WIN";
       const dialogRef = this.finishDialog.open(FinishElementsDialog, { 
         disableClose: true , 
         data: {
@@ -75,7 +75,7 @@ export class BoardComponent {
         <mat-card [style.background-color]="combi[3]" [style.color]="combi[3]" style="border-radius: 50%; max-width: 3rem" >----</mat-card>
     </mat-card>
   <div mat-dialog-actions>
-    <button mat-button color="primary" matDialogClose>Close</button>
+    <button mat-button color="primary" matDialogClose>New Game</button>
   </div>
   `,
 })
