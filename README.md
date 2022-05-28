@@ -1,8 +1,45 @@
 # Estudio de TDD aplicado en el dessarollo al Mastermind
 
 ## Indice
-
-## Resumen
+-   [1. Resumen](#1-resumen)
+-   [2. Objetivos](#2-objetivos)
+-   [3. TDD](#3-tdd)
+    -   [3.1 Introducción](#31-introducción)
+    -   [3.2 Las distintias corrientes del TDD](#32-las-distintias-corrientes-del-tdd)
+        -   [3.2.1 Inside-Out](#321-inside-out)
+        -   [3.2.2 Outside-in](#322-outside-in)
+    -   [3.3 Experimentos](#33-experimentos)
+        -   [3.3.1 Experimentos en IBM y Microsoft](#331-experimentos-en-ibm-y-microsoft)
+            -   [3.3.1.1 Las críticas](#3311-las-críticas)
+        -   [3.3.2 Experimentos de pares](#332-experimentos-de-pares)
+            -   [3.3.2.1 Las críticas](#3321-criticas)
+    -   [3.4 Resumen: ¿Vale la pena TDD?](#34-resumen-¿vale-la-pena-tdd)
+    -   [3.5 Los costes](#35-los-costes)
+-   [4. Aplicación y problemas encontrados](#4-aplicación-y-problemas-encontrados)
+    -   [4.1 Backend](#41-backend)
+        -   [4.1.1 Técnicas de desarrollo](#411-técnicas-de-desarrollo)
+        -   [4.1.2 Las dudas](#412-las-dudas)
+        -   [4.1.3 Conclusiones](#413-conclusiones)
+    -   [4.2 Frontend](#42-frontend)
+        -   [4.2.1 Técnicas de desarrollo](#421-técnicas-de-desarrollo)
+        -   [4.2.2 Las dudas](#422-las-dudas)
+        -   [4.2.3 Conclusiones](#423-conclusiones)
+-   [5. Desarrollo y aplicación final](#5-desarrollo-y-aplicación-final)
+    -   [5.1 Backend](#51-backend)
+        -   [5.1.1 SecretCombination](#511-secretcombination)
+        -   [5.1.2 ProposalCombination](#512-proposalcombination)
+        -   [5.1.3 Result](#513-result)
+    -   [5.2 Frontend](#52-frontend)
+        -   [5.2.1 SecretCombination](#521-secretcombination)
+        -   [5.2.2 ProposalCombination](#522-proposalcombination)
+        -   [5.2.3 Result](#523-result)
+    -   [5.3 Aplicación final](#53-aplicación-final)
+-   [6. Conclusiones](#6-conclusiones)
+    -   [6.1 Conclusiones generales](#61-conclusiones-generales)
+    -   [6.2 Conclusiones personales](#62-conclusiones-personales)
+-   [7. Bibliografía](#7-bibliografía)
+    
+## 1. Resumen
 La aplicación que se propone en el trabajo de fin de master es para el estudio sobre el TDD haciendo su uso durenate el desarrollo del juego. Para ello, se creará una api-rest en el back y una interfaz web en front, se podrá jugar al juego tanto usando la interfaz como haciendo peticiones a la api.
 
 A continuación, mostraremos la estructura de la memoria y describiremos brevemente los puntos:
@@ -13,16 +50,16 @@ A continuación, mostraremos la estructura de la memoria y describiremos breveme
 - En el último punto, `Conclusiones`, se reflexionará sobre el trabajo realizado y lecciones aprendidas de ello, también se hará una comparativa entre el TDD puro del libro y en que se difiere el TDD aplicado en un proyecto real. 
 
 
-## Objetivos
+## 2. Objetivos
 El objetivo de este proyecto es realizar un estudio sobre TDD y sus distintas técnicas aplicándolas al desarrollo del Mastermind. En el libro original de TDD de Kent Beck, no se habla de distintas técnicas, sino de un solo modo. Pero actualmente hay distintas técnicas Inside-out y Outside-in, en este proyecto vamos a aplicar estas dos técnicas. Además, la manera de hacer esto según el libro es, escribir la prueba primero para el código, luego hacer escribir el código mínimo para pasar la prueba y, por último, refactorizar el código si hace falta. En este proyecto también vamos a ver si ese planteamiento es el adecuado o no. Aparte de estos puntos también vamos a ver tratar algunas cuestiones que en el libro no están muy claros o que nos se indican. 
 LUIS: defines TDD clásico y luego te repites! Yo creo que aquí sería presentar el lío de varias escuelas: Chicago/Londres y decir que se va a experimentar con ambas en front y back!!! No definir solo TDD clásico
 
 Para el desarrollo del proyecto vamos a usar distintas tecnologías, para el front vamos a usar Angular y para la ejecución de los test unitarios en el front usamos Karma, y para el desarrollo del back vamos a usar el SpringBoot y los test unitarios con JUnit. Para el control de versiones vamos a usar GitHub con la técnica de GitFlow con una rama por funcionalidad. 
 
-## Introducción
+## 3. TDD
+## 3.1 Introducción
 [LUIS: no está bien jerarquizado, verdad?!?!?]
 
-## TDD
 TDD o Test-Driven Development (desarrollo dirigido por tests) es una práctica de programación que consiste en escribir primero las pruebas [LUIS: no sería pruebas en plural!!!!](generalmente unitarias), después escribir el código fuente que pase la prueba satisfactoriamente y, por último, refactorizar el código escrito.
 
 Para el uso del TDD se deben combinar 2 metodologías: Test-first development (escribir las pruebas primero) y Refactoring (refactorización de código). Para esto, se usa un ciclo de desarrollo que consta de 3 partes principales:
@@ -56,75 +93,7 @@ Los errores más comunes:
 - No escribir el código mínimo (suficiente para aprobar el test creado no más).
 [LUIS: no se dónde va pero más adelante, no?!?!?!]
 
-## Experimentos
-
-### Experimentos en IBM y Microsoft
-En 2008 se hicieron varios experimentos con varios equipos en igualdad de condiciones haciendo distintos desarrollos, esos equipos se dividieron en dos unos haciendo desarrollos con TDD y otros sin TDD. Todos los equipos eran similares entre sí en tamaño y velocidad y fueron seleccionados en función de sus diferentes características:
-- Tenía un nivel de experiencia de desarrollo diferente, de menor a mayor.
-- Tenía un nivel de experiencia de dominio diferente, de menor a mayor.
-- Utiliza diferentes lenguajes y entornos de programación: Java, C ++, .NET.
-
-Tras finalizar los experimentos, hallazgos fueron realmente interesantes:
-- Los equipos de TDD estaban creando software con menos errores.
-- Un equipo hizo un 40% menos de defectos que el equipo que no usaba a TDD.
-- Otro equipo hizo entre 60–90% menos defectos que los becarios que usaban no TDD.
-- Los equipos de TDD dedicaron entre un 15% y un 33% más de tiempo a escribir el código.
-- El aspecto importante para mejorar la calidad fue la creación de la infraestructura de prueba automatizada, pruebas unitarias, de integración y funcionales.
-- Los equipos que continuaron usando TDD después del experimento experimentaron una menor cantidad de defectos en la producción.
-- La información interesante provino de un equipo de IBM que participo en el experimento. Después del experimento, algunos de los miembros del equipo dejaron de ejecutar las pruebas unitarias de regresión. La situación resultó en una mayor cantidad de defectos en la producción. 
-[LUIS, tabla o estructurar lo que pone!!!!]
-
-#### Las críticas
-En los experimentos que realizó IBM, se ve una clara diferencia en la cantidad de los test unitarios realizados por los grupos que desarrollaban los distintos proyectos. El grupo que estaba haciendo el proyecto sin usar el TDD, no hizo los test unitarios hasta finalizar el desarrollo. Los test realizados después de la finalización fueron muy pobres y no tenían una buena cobertura. Por último, los test de aceptación que tenían que pasar los dos proyectos no se basaron en los test realizados por los grupos, sino que los tests los hizo un grupo distintos basándose en los requisitos del proyecto.
-
-Los equipos de Microsoft partían con un poco de ventajas, y era que los equipos hicieron reuniones para definir los requisitos y a la reunión también asistió el equipo encargado de crear las pruebas de aceptación que al final tenían que pasar los proyectos.  Microsoft tenía tres grupos distintos, uno de los grupos seguía el enfoque hibrido “Waterfall” de Royce, que consiste en la creación de prototipos antes del proyecto final, otro equipo tenia un código heredado y no siguió ninguna técnica de desarrollo y el ultimo, utilizó metodologías agiles con TDD. No había medidas de particular para ver que proyectos pasaban mas los test, solo se utilizó como medida la cobertura de pruebas de cada proyecto. 
-
-Tanto en el proyecto de IBM como en los de Microsoft, no hay medida homologada o eficaz para medir por completo como de bien funciona el TDD. Pero lo que si podemos saber con estos experimentos es que, si se utiliza el TDD desde etapas tempranas en los desarrollos, estos proyectos luego tienen un menos coste de mantenimiento. *Pero para tener unos números más exacto de la cuando es la diferencia si se utiliza o no el TDD* [LUIS, no se entiende], habría que hacer experimentos en un entorno mas controlado, tener unas medidas de evaluación más igualitarias y partir en los dos casos desde el mismo punto. 
-
-### Experimentos de pares
-Otro experimento se llevó a cabo entre 24 desarrolladores de software experimentados que se enfrentaron en pares. Donde un par escribía el código usando el TDD y otro par no. Los autores del experimento prepararon 20 pruebas de caja negra para verificar los resultados.
-
-Los hallazgos fueron:
-- Las aplicaciones escritas por los desarrolladores de TDD pasaron en promedio un 18% más de casos de prueba de caja negra que las aplicaciones escritas por desarrolladores que no son de TDD.
-- Después del experimento, los desarrolladores reconocieron que TDD ayuda a comprender mejor los requisitos comerciales y que TDD facilitó su trabajo al reducir el tiempo y la energía para la depuración.
-
-#### Criticas
-En el experimento que se hizo con 24 pares personas la mitad desarrollando usado TDD y los otros pares sin TDD, tanto los que usaban TDD como los que no, tenían que escribir pruebas para probar el funcionamiento de la aplicación. Pero de los 12 pares que no usaban TDD solo un par hizo suficientes pruebas como para considerar validas. Por tanto, sacar las conclusiones viendo la cobertura de test y haciendo pasar al código pruebas de caja negra, no es muy fiable. 
-
-De igual manera, decir que tardas mas en hacer el código si haces TDD es normal ya que no estas escribiendo pruebas?!?!??!?!??!?!?!??!?!? y por tanto tardas menos. Después de los experimentos por pares, se preguntó a los desarrolladores sobre la productividad, efectividad y la dificultad de adaptarse al TDD. 
-
-En cuanto la productividad, la mayoría de los desarrolladores creían que el enfoque TDD facilita una mejor comprensión de los requisitos y reduce el esfuerzo de depuración. 
-
-En cuanto a la efectividad, también la mayoría creían que TDD produce un código de mayor calidad y pensó que TDD promueve un diseño más simple. 
-
-En cuando a las dificultades en adoptarse al enfoque, casi la mitad de los desarrolladores profesionales pensaban que meterse en la mentalidad de TDD fue difícil, una minoría indicó que la falta de la fase de diseño inicial en TDD fue un obstáculo. Por lo tanto, tomando promedio de las respuestas, el 40% de los desarrolladores pensaron que el enfoque enfrenta dificultades en la adopción.
-
-
-#### Resumen: ¿Vale la pena TDD?
-El costo de la sobrecarga de tiempo para escribir las pruebas unitarias se paga rápidamente porque el costo de los cambios que deben realizarse más tarde sin una cobertura de prueba automatizada es mucho mayor, en escenarios pesimistas puede aumentar exponencialmente. 
-
-LUIS: esto no es comparable: TDD vs sin pruebas?!?!?
-
-`Fuentes confiables confirman que el desarrollo basado en pruebas se conecta directamente con la mayor calidad del código, lo que resulta en menos defectos. En los lenguajes orientados a objetos, TDD está bien examinado y el retorno de la inversión (ROI) de los proyectos está respaldado con la mejor calidad.`
-
-Pero las pruebas unitarias no debería ser la única capa de pruebas automatizadas de su sistema. También se expandir la capa de prueba unitaria mediante pruebas de integración, desarrollo impulsado por pruebas de aceptación (ATDD), desarrollo impulsado por el comportamiento (BDD) o, al menos, considerar dicha opción en su propio.
-LUIS y?!?!?
-
-#### Los costes
-¿El costo real del cambio es exponencial o es plano? 
-No hay razón para que el costo de realizar un cambio en el software deba ser tan alto como hace 30 años. Definitivamente se puede hacerlo mejor hoy, con mejores herramientas y formas mejores y más baratas de desarrollar software. Las claves para minimizar los costes del cambio pueden ser:
-
-LUIS ya no entiendo nada!!!!!!!!!!!
-
-- Poner el software en manos de los clientes lo más rápido posible. Es muy probable que ninguna organización realmente necesite impulsar cambios de software de 10 a 50 o 100 veces al día, pero tampoco se desea esperar meses o años para recibir comentarios. Entregar menos, pero más a menudo. Y debido a que se van a realizar entregas con más frecuencia, tiene sentido crear una canalización de entrega continua para que se puedan impulsar los cambios de manera eficiente y con confianza. Para el desarrollo de software usar lean y tal vez Kanban para identificar y eliminar el desperdicio y minimizar el tiempo del ciclo.
-- Es importante no perder tiempo y dinero iterando cuando no es necesario. Pasar suficiente tiempo por adelantado en la comprensión de los requisitos y en el diseño para hacerlo bien al menos en su mayor parte la primera vez, se puede ahorrar mucho, más adelante.
-- Ya sea que se esté trabajando de forma incremental e iterativa, o secuencialmente, tiene sentido detectar errores lo más temprano que se pueda, ya sea que se haga a través del desarrollo e implementación de prueba primero, o talleres de requisitos y revisiones de código, lo que sea que más funcional.
-
-Vemos el solo TDD ufffffffffffff no ayuda a mejorar el coste, sino es el conjunto de todas las buenas prácticas. El TDD nos ayuda a detectar los errores y a hacer un código mas limpio, pero decir que con solo la implementación del TDD podemos mejorar mucho el coste, no es cierto. Además, cuando se habla del coste no solo se habla de TDD, sino de otros muchos factores que afectan al coste.
-
-LUIS esto es tuyo o referenciaª!!!!!!!!!!!!!!!
-
-## Las distintias corrientes del TDD:
+## 3.2 Las distintias corrientes del TDD:
 
 LUIS: lee y añade ideas de https://martinfowler.com/articles/mocksArentStubs.html y https://groups.google.com/g/growing-object-oriented-software/c/dOmOIafFDcI
 http://codemanship.co.uk/parlezuml/blog/?postid=987
@@ -137,7 +106,7 @@ LUIS: ostiaaaaaaaaaaaaaaaaaaaaa fogata?!!!!!!!!!!!!!!!!!!
 En su libro Kent Beck no habla del outside-in, porque en el libro original no habla de mocks, pero si que habla del inside-out pero no es puro, sino que son como hilos de abajo-arriba en pequeñas verticales y no todas las funcionalidades. 
 
 Actualmente tenemos dos corrientes principales:
-### Inside-Out
+### 3.2.1 Inside-Out
 
 La escuela clásica (Inside-Out) se distingue por centrarse en la verificación del estado de los objetos, siendo por ello imprescindible que el contexto de los test siempre deba estar formado por `objetos reales`, configurados previamente. Para la correcta generación de estos contextos se pueden crear clases que nos ayuden.
 La existencia previa de estos `objetos reales`, implica que el diseño de nuestra solución irá creciendo poco a poco desde la base hasta la funcionalidad final. De ahí el sobrenombre de técnica Inside-out. 
@@ -170,7 +139,7 @@ LUIS Aqui paro!!! Revisa, reescribe .................. esta tabla no hay quien l
 |                                                                                |Probablemente terminará con un código que no será necesario en absoluto (YAGNI).                |
 		
 		
-### Outside-In
+### 3.2.2 Outside-In
 
 La escuela de Londres (Outside-In) toma un enfoque distinto, centrándose en verificar que el comportamiento de los objetos es el esperado. Dado que este el objetivo final, verificar las correctas interacciones entre objetos, y no el estado en sí mismo de los objetos, mediante este enfoque podremos ahorrarnos todo el trabajo con los objetos reales (creación y mantenimiento) sustituyéndolos por dobles de test.
 
@@ -198,10 +167,78 @@ También es importante remarcar el uso de la técnica del doble bucle:
 |  Con cada paso de desarrollo hacia la API, verá más fácil y rápido si es necesario un cambio. Esto le da más tiempo a la API para ser adaptada (o reemplazada por otra generalmente de Middleware) y el cambio de API no requerirá ningún cambio en el código como lo hace con Inside-Out.
 En consecuencia, no habrá muchos cambios oscilantes hacia arriba y hacia abajo de las capas.
 La API se puede adaptar a las necesidades del producto y no al revés.             |                                                                                              
-		
-## Aplicación y problemas encontrados
+
+## 3.3 Experimentos
+
+### 3.3.1 Experimentos en IBM y Microsoft
+En 2008 se hicieron varios experimentos con varios equipos en igualdad de condiciones haciendo distintos desarrollos, esos equipos se dividieron en dos unos haciendo desarrollos con TDD y otros sin TDD. Todos los equipos eran similares entre sí en tamaño y velocidad y fueron seleccionados en función de sus diferentes características:
+- Tenía un nivel de experiencia de desarrollo diferente, de menor a mayor.
+- Tenía un nivel de experiencia de dominio diferente, de menor a mayor.
+- Utiliza diferentes lenguajes y entornos de programación: Java, C ++, .NET.
+
+Tras finalizar los experimentos, hallazgos fueron realmente interesantes:
+- Los equipos de TDD estaban creando software con menos errores.
+- Un equipo hizo un 40% menos de defectos que el equipo que no usaba a TDD.
+- Otro equipo hizo entre 60–90% menos defectos que los becarios que usaban no TDD.
+- Los equipos de TDD dedicaron entre un 15% y un 33% más de tiempo a escribir el código.
+- El aspecto importante para mejorar la calidad fue la creación de la infraestructura de prueba automatizada, pruebas unitarias, de integración y funcionales.
+- Los equipos que continuaron usando TDD después del experimento experimentaron una menor cantidad de defectos en la producción.
+- La información interesante provino de un equipo de IBM que participo en el experimento. Después del experimento, algunos de los miembros del equipo dejaron de ejecutar las pruebas unitarias de regresión. La situación resultó en una mayor cantidad de defectos en la producción. 
+[LUIS, tabla o estructurar lo que pone!!!!]
+
+#### 3.3.1.1 Las críticas
+En los experimentos que realizó IBM, se ve una clara diferencia en la cantidad de los test unitarios realizados por los grupos que desarrollaban los distintos proyectos. El grupo que estaba haciendo el proyecto sin usar el TDD, no hizo los test unitarios hasta finalizar el desarrollo. Los test realizados después de la finalización fueron muy pobres y no tenían una buena cobertura. Por último, los test de aceptación que tenían que pasar los dos proyectos no se basaron en los test realizados por los grupos, sino que los tests los hizo un grupo distintos basándose en los requisitos del proyecto.
+
+Los equipos de Microsoft partían con un poco de ventajas, y era que los equipos hicieron reuniones para definir los requisitos y a la reunión también asistió el equipo encargado de crear las pruebas de aceptación que al final tenían que pasar los proyectos.  Microsoft tenía tres grupos distintos, uno de los grupos seguía el enfoque hibrido “Waterfall” de Royce, que consiste en la creación de prototipos antes del proyecto final, otro equipo tenia un código heredado y no siguió ninguna técnica de desarrollo y el ultimo, utilizó metodologías agiles con TDD. No había medidas de particular para ver que proyectos pasaban mas los test, solo se utilizó como medida la cobertura de pruebas de cada proyecto. 
+
+Tanto en el proyecto de IBM como en los de Microsoft, no hay medida homologada o eficaz para medir por completo como de bien funciona el TDD. Pero lo que si podemos saber con estos experimentos es que, si se utiliza el TDD desde etapas tempranas en los desarrollos, estos proyectos luego tienen un menos coste de mantenimiento. *Pero para tener unos números más exacto de la cuando es la diferencia si se utiliza o no el TDD* [LUIS, no se entiende], habría que hacer experimentos en un entorno mas controlado, tener unas medidas de evaluación más igualitarias y partir en los dos casos desde el mismo punto. 
+
+### 3.3.2 Experimentos de pares
+Otro experimento se llevó a cabo entre 24 desarrolladores de software experimentados que se enfrentaron en pares. Donde un par escribía el código usando el TDD y otro par no. Los autores del experimento prepararon 20 pruebas de caja negra para verificar los resultados.
+
+Los hallazgos fueron:
+- Las aplicaciones escritas por los desarrolladores de TDD pasaron en promedio un 18% más de casos de prueba de caja negra que las aplicaciones escritas por desarrolladores que no son de TDD.
+- Después del experimento, los desarrolladores reconocieron que TDD ayuda a comprender mejor los requisitos comerciales y que TDD facilitó su trabajo al reducir el tiempo y la energía para la depuración.
+
+#### 3.3.2.1 Criticas
+En el experimento que se hizo con 24 pares personas la mitad desarrollando usado TDD y los otros pares sin TDD, tanto los que usaban TDD como los que no, tenían que escribir pruebas para probar el funcionamiento de la aplicación. Pero de los 12 pares que no usaban TDD solo un par hizo suficientes pruebas como para considerar validas. Por tanto, sacar las conclusiones viendo la cobertura de test y haciendo pasar al código pruebas de caja negra, no es muy fiable. 
+
+De igual manera, decir que tardas mas en hacer el código si haces TDD es normal ya que no estas escribiendo pruebas?!?!??!?!??!?!?!??!?!? y por tanto tardas menos. Después de los experimentos por pares, se preguntó a los desarrolladores sobre la productividad, efectividad y la dificultad de adaptarse al TDD. 
+
+En cuanto la productividad, la mayoría de los desarrolladores creían que el enfoque TDD facilita una mejor comprensión de los requisitos y reduce el esfuerzo de depuración. 
+
+En cuanto a la efectividad, también la mayoría creían que TDD produce un código de mayor calidad y pensó que TDD promueve un diseño más simple. 
+
+En cuando a las dificultades en adoptarse al enfoque, casi la mitad de los desarrolladores profesionales pensaban que meterse en la mentalidad de TDD fue difícil, una minoría indicó que la falta de la fase de diseño inicial en TDD fue un obstáculo. Por lo tanto, tomando promedio de las respuestas, el 40% de los desarrolladores pensaron que el enfoque enfrenta dificultades en la adopción.
+
+
+## 3.4 Resumen: ¿Vale la pena TDD?
+El costo de la sobrecarga de tiempo para escribir las pruebas unitarias se paga rápidamente porque el costo de los cambios que deben realizarse más tarde sin una cobertura de prueba automatizada es mucho mayor, en escenarios pesimistas puede aumentar exponencialmente. 
+
+LUIS: esto no es comparable: TDD vs sin pruebas?!?!?
+
+> Fuentes confiables confirman que el desarrollo basado en pruebas se conecta directamente con la mayor calidad del código, lo que resulta en menos defectos. En los lenguajes orientados a objetos, TDD está bien examinado y el retorno de la inversión (ROI) de los proyectos está respaldado con la mejor calidad.
+
+Pero las pruebas unitarias no debería ser la única capa de pruebas automatizadas de su sistema. También se expandir la capa de prueba unitaria mediante pruebas de integración, desarrollo impulsado por pruebas de aceptación (ATDD), desarrollo impulsado por el comportamiento (BDD) o, al menos, considerar dicha opción en su propio.
+LUIS y?!?!?
+
+## 3.5 Los costes
+¿El costo real del cambio es exponencial o es plano? 
+No hay razón para que el costo de realizar un cambio en el software deba ser tan alto como hace 30 años. Definitivamente se puede hacerlo mejor hoy, con mejores herramientas y formas mejores y más baratas de desarrollar software. Las claves para minimizar los costes del cambio pueden ser:
+
+LUIS ya no entiendo nada!!!!!!!!!!!
+
+- Poner el software en manos de los clientes lo más rápido posible. Es muy probable que ninguna organización realmente necesite impulsar cambios de software de 10 a 50 o 100 veces al día, pero tampoco se desea esperar meses o años para recibir comentarios. Entregar menos, pero más a menudo. Y debido a que se van a realizar entregas con más frecuencia, tiene sentido crear una canalización de entrega continua para que se puedan impulsar los cambios de manera eficiente y con confianza. Para el desarrollo de software usar lean y tal vez Kanban para identificar y eliminar el desperdicio y minimizar el tiempo del ciclo.
+- Es importante no perder tiempo y dinero iterando cuando no es necesario. Pasar suficiente tiempo por adelantado en la comprensión de los requisitos y en el diseño para hacerlo bien al menos en su mayor parte la primera vez, se puede ahorrar mucho, más adelante.
+- Ya sea que se esté trabajando de forma incremental e iterativa, o secuencialmente, tiene sentido detectar errores lo más temprano que se pueda, ya sea que se haga a través del desarrollo e implementación de prueba primero, o talleres de requisitos y revisiones de código, lo que sea que más funcional.
+
+Vemos el solo TDD ufffffffffffff no ayuda a mejorar el coste, sino es el conjunto de todas las buenas prácticas. El TDD nos ayuda a detectar los errores y a hacer un código mas limpio, pero decir que con solo la implementación del TDD podemos mejorar mucho el coste, no es cierto. Además, cuando se habla del coste no solo se habla de TDD, sino de otros muchos factores que afectan al coste.
+
+LUIS esto es tuyo o referenciaª!!!!!!!!!!!!!!!
+
+## 4. Aplicación y problemas encontrados
 En los desarrollos del backend, se decidió usar inside-out para SecretCombination y ProposalCombination y outside-in para el Result. Para el frontend, se decidió usar outside-in para el desarrollo de BoardComponent y ProposalCombinationComponent y inside-out para el Result.
- ### Backend
+### 4.1 Backend
 Para el desarrollo del Backend se han seguido las indicaciones del libro de Kent Beck, donde nos indica que no hay que hacer desarrollos de todas las funcionalidades de manera horizontal, sino que hay que desarrollar una pequeña funcionalidad e ir subiendo hacia arriba haciendo desarrollos verticales. 
 
 Además, al tener distintas funcionalidades, se han seguido distintos enfoques para el desarrollo. Para la primera funcionalidad, se usó el TDD puro. Escribiendo el test para que falle primero, luego implementar el código mínimo para que pase el test, después escribir el test para el funcionamiento y el código de este funcionamiento. 
@@ -211,7 +248,7 @@ Otro de los problemas de no diseñar fue que, no sabíamos por dónde empezar, a
 
 ![Entity-Service-Controller-User](Documentation/Entity-Service-Controller-User.PNG)
 
-O también puedes empezar desde los servicios ya que no tiene porque haber una entidad.
+O también puedes empezar desde los servicios ya que no tiene por qué haber una entidad.
 
 ![Service-Controller-User](Documentation/Service-Controller-User.PNG)
 
@@ -223,7 +260,7 @@ Las tres opciones serían igual de válidas, porque si empezamos desde el contro
 
 Debido a esto de no diseñar tuvimos un problema, en la segunda iteración haciendo el ProposalCombination, hubo que modificar el código implementado en la primera iteración sobre el SecretCombination. Si hubiéramos tenido un primer diseño, no habríamos tenido que modificar el código ya implementado, debido a esto también hubo código que se quedó obsoleto.
 
-#### Técnicas de desarrollo
+#### 4.1.1 Técnicas de desarrollo
 Para la primera funcionalidad cumplimos de pie a la letra el TDD siguiendo el libro de Kent Beck, pero vimos que para desarrollos tan pequeños como el nuestro había algunos pasos intermedios que eran innecesarios. El TDD puro está más orientado a proyectos complejos donde la lógica de negocio sea compleja, para proyectos pequeños hacer el TDD puro puede ser un inconveniente. Ya que, en lugar de ayudar puede hacer que perdamos el tiempo en pequeñas interacciones, tales como en las que tengamos que devolver un valor predefinido. En estos casos, hacer muchas iteraciones nos hace perder el tiempo. Ya que, tendríamos que hacer primero una interacción dónde creamos el test
 
 ![maxWigth1](Documentation/maxWigth1.PNG)
@@ -244,22 +281,22 @@ Para el desarrollo de la segunda funcionalidad, teniendo en cuenta las conclusio
 
 Para la última y la tercera funcionalidad, se decidió cambiar de enfoque de desarrollo. En lugar de hacer el código de inside-out, se decidió hacer outside-in para que de esta manera tener los dos puntos de vista y ver cómo afecta al desarrollo. 
 Al hacer el desarrollo outside-in, nos hemos dado cuenta de que, aparte de crear los mocks también hay que factorizar bastante el código. Ya que, no siempre podemos tener un test con el que poder probar desde la clase de fuera la funcionalidad de la clase de dentro. Por ello, tenemos que factorizar la clase de fuera para hacer la llamada al método de la clase de dentro, para obtener el dato y poder quitar el mock.
-#### Las dudas 
+#### 4.1.2 Las dudas 
 Haciendo este desarrollo nos surgieron unas cuantas dudas:
 - La primera de las dudas es, ¿cuánto código debe ser probado? Puede haber casos que solamente nos retornen un valor predefinido, entonces, ¿es necesario probar ese código?
 - Otra de las dudas es, ¿qué tipo de test se tienen que hacer para probar los controladores? Los controladores tienen la función de entrada y salida de datos, entonces, ¿se debería probar ese controlador solo con test unitarios? ¿O también con los test de integración que prueben todas las funcionalidades implementadas de los servicios y de las entidades? ¿O por contrario, los tests de integración no harían falta? Ya que, haciendo el desarrollo de los servicios y las entidades con TDD ya hemos probado esas funcionalidades.
 - La siguiente duda es, ¿podríamos crear un mini framework para las pruebas de los controladores y los servicios? Ya que, en muchos casos los test son muy similares, lo único que hay que probar es la entrada de datos y la salida de esos datos después de haberles aplicando la lógica de negocio.
 
-#### Conclusiones 
+#### 4.1.3 Conclusiones 
 Haciendo el desarrollo Inside-out nos hemos dado cuenta de que, aunque no hayamos tenido que crear mocks como en el caso de outside-in, pero sí hemos tenido que modificar el código ya implementado en varias ocasiones. Porque al no haber un diseño previo, no se podía saber cómo iba a afectar el nuevo código implementado al código ya existente. Al final, podemos pensar que al usar Inside-out, nos estamos ahorrando el tiempo que tardaríamos en implementar los mocks. Pero no es así, ya que, podemos perder el mismo tiempo adaptando el código ya implementado al nuevo código.
 
-### Frontend 
+### 4.2 Frontend 
 Para el desarrollo del Frontend también al tener también distintas funcionalidades, hemos decidido jugar un poco con el TDD. Para ver cómo afecta a los tiempos de desarrollo y a la dificultad, si hacemos outside-in con TDD puro, outside-in con un TDD más adaptado a nuestro proyecto y inside-out.
 
 Outside-in, esta técnica consiste en empezar a hacer el desarrollo desde los elementos más cercanos al usuario. En este caso, esos elementos serían las pantallas que vería el usuario para interactuar con nuestra aplicación. Para estos elementos, también se han hecho desarrollos verticales desde el usuario hasta el back, en lugar de hacer desarrollos horizontales con todas las funcionalidades. Y inside-out, en esta nuestra aplicación la parte más interna sería el BoardService, encargado de conectar el frontend con el backend.
 
 
-#### Desarrollo
+#### 4.2.1 Técnicas de desarrollo
 Se empezó el desarrollo con el SecretCombination, que consiste en mostrar una combinación secreta que recuperamos desde el backend y lo mostramos al usuario. Para esta funcionalidad usamos el TDD puro, haciendo un commit por cada test y su código correspondiente. Al tratarse del Frontend, incumplimos otra de las normas que tenemos para hacer desarrollos con TDD, la norma del código mínimo. Ya que, para pasar el test mínimo tenemos que crear código, tanto en los componentes como en los archivos HTML y CSS. 
 
 ![Front-initial-commit](Documentation/Front-initial-commit.PNG)
@@ -274,21 +311,21 @@ Por eso, empezamos creando un método que nos devuelva el resultado, pero los da
 
 Después de esto el siguiente nivel era el BoardComponent, que tenía la funcionalidad de recoger el tablero actualizado desde el ProposalComponent. La siguiente funcionalidad que empezamos a desarrollar desde el BoardService, era el de empezar un nuevo juego. Para desarrollar esta funcionalidad, al principio devolvíamos un mock de Board, y luego conectamos esta funcionalidad con el backend para obtener un nuevo Board. Después de esto, añadimos nuevos test y código en BoardComponent para ver si el juego se ha terminado o no, y en caso de que sí haya terminado el juego, hacer la llamada al back para empezar un nuevo juego.  
 
-#### Las dudas
+#### 4.2.2 Las dudas
 Las dudas que nos han surgido haciendo este desarrollo de la parte de Frontend son:
 - ¿Cuánto del código implementado hay que probar?, haciendo el desarrollo del Frontend usando TDD de nos hemos dado cuenta de que está más orientado a hacer desarrollos en lenguajes de programación orientado a objetos.
 - Si estamos haciendo el desarrollo del Frontend y no podemos cumplir la regla del código mínimo, entonces, ¿de verdad estamos haciendo TDD o es solo desarrollo basado en TFD (Test First Development)?
 - Si nos toca cambiar el código HTML pero no tenemos cobertura de test para eso, y cambiamos ese código, ¿seguiría siendo TDD o seria refactorización o seria desarrollo normal? 
 
-#### Conclusiones
+#### 4.2.3 Conclusiones
 Haciendo el desarrollo del Frontend con el TDD, nos hemos dado cuenta de que el TDD no está pensado para hacer desarrollos con lenguajes no orientados a objetos. También nos hemos dado cuenta de que, hay unos cuántos aspectos que no están claros, como, por ejemplo, cuando hacemos el desarrollo del front siguiendo el TDD no tenemos ningún tipo de instrucción sobre cómo implementar el código HTML y CSS. 
 
-## Desarrollo y aplicación final
+## 5. Desarrollo y aplicación final
 Para el desarrollo de esta aplicación hemos usado distintas tecnologías, para el Backend, hemos usado Spring-Boot con Maven y para el desarrollo de los test unitarios hemos usado jUnit con Mockito y rest-assured para los test de integración. No tenemos una base de datos, ya que, esta aplicación solamente nos permite jugar a una partida de Mastermind sin la posibilidad de guardar nada. Esto lo hemos hecho de esta manera ya que, nos hemos centrado más en investigar y hacer el desarrollo con TDD, que en la propia aplicación.
 Para el desarrollo de Frontend hemos usado Angular Material con TypeScript, para los test unitarios hemos usado la propia herramienta de Angular y hemos usado Karma para saber la cobertura de los test.
 
-### Backend 
-#### SecretCombination
+### 5.1 Backend 
+#### 5.1.1 SecretCombination
 Para la primera funcionalidad decidimos usar el TDD puro con la técnica de inside-out.
 La primera funcionalidad que decidimos desarrollar fue la de SecretCombination, empezamos creando el enumerado `Color`, este enumerado tiene todos los colores que vamos a mostrar y con los que vamos a jugar nuestro juego de `Mastermind`. Después de haber creado el enumerado `Color`, creamos la clase `Combination` que tiene un array de uno a cuatro colores y la funcionalidad de devolver este array. Después creamos la clase de `SecretCombination` que extiende la clase `Combination`, y por ahora solamente tiene una funcionalidad y es tener una combinación secreta Random de cuatro colores. Después de `SecretCombination`, creamos la clase `Board`, este Board por ahora tiene solamente SecretCombination y la única funcionalidad de devolverlo. Al final, creamos el servicio y el controlador para la clase de Board. En este punto la arquitectura sería:
 
@@ -296,13 +333,13 @@ La primera funcionalidad que decidimos desarrollar fue la de SecretCombination, 
 
 Hemos decidido seguir este camino porque, es el que nos ha parecido más correcto de cara a los próximos desarrollos. Pero este no es el único camino que podíamos haber seguido, podríamos haber empezado directamente por el `SecretCombination` y que devolviera los colores sin enumerado. Ya que hasta este punto no tenemos la necesidad de crear un enumerado de colores o la clase Combination. Pero decidimos crear estas clases ya que, sabemos que en el futuro vamos a tener otra clase `ProposalCombination` que va a usar la clase combination, por eso decidimos crear estas clases de antemano para no tener que volver a modificar y adaptar el código. En primera funcionalidad, también podríamos no haber creado la clase Board y devolver directamente el SecretCombination usando el Service y el Controlador, pero por la misma razón de no volver a modificar el código decidimos crear esta clase, ya que, sabemos que se va a utilizar en el futuro y lo vamos a necesitar.
 
-#### ProposalCombination
+#### 5.1.2 ProposalCombination
 Para la segunda funcionalidad usamos un TDD más adaptado a nuestra aplicación, donde no hacíamos un commit después de cada pequeña funcionalidad, sino después de haber desarrollado toda la funcionalidad de un método al completo. 
 La segunda funcionalidad que decidimos desarrollar fue la de `ProposalCombination`, esta clase extiende a la clase `Combination` y devuelve la lista de colores que tiene. Después de esto modificamos la clase `Board`, para añadirle otros dos atributos, un `array` de `ProposalCombination` y el `actualIntent`. También se han añadido las funcionalidades de obtener estos dos atributos, y de poder añadir una combinación de colores indicada por el usuario, al array de ProposalCombination del Board.
 
 ![Arquitectura2](Documentation/Arquitectura2.PNG)
 
-#### Result 
+#### 5.1.3 Result 
 Para el desarrollo del Result en el backend se ha cambiado la forma de hacer el desarrollo, hasta ahora para el backend se usaba `inside-out`, pero para este desarrollo se ha decidido usar `outside-In` moqueando los datos.
 
 Aquí no tenemos el problema de saber por dónde empezar ya que, la parte más exterior de nuestra aplicación back era el controlador. Empezamos el desarrollo creando un método que nos devuelva el `Result`, para ello al no tener un objeto `Result` devolvimos un objeto de tipo Map. Fuimos moqueando los datos y de controlador pasamos al servicio, donde también creamos un método que nos devuelva el objeto Map. Después refactorizamos el `Controller` para conectarlo con el `Service`, y de esta manera usar el método de obtener el mock de Result desde el Service y quitarlo del Controller. Fuimos creando métodos de obtener el Result y refactorizando hasta llegar a crear el objeto `Result`. 
@@ -315,25 +352,25 @@ Haciendo el desarrollo `outside-in` nos hemos dado cuenta de que aparte de moque
 
 ![Arquitectura3](Documentation/Arquitectura3.PNG)
 
-### Frontend
-#### SecretCombination
+### 5.2 Frontend
+#### 5.2.1 SecretCombination
 Para la primera funcionalidad del front decidimos usar el TDD puro con la técnica de outside-in.
 La primera funcionalidad del front que decidimos desarrollar también fue la del SecretCombination, se hizo de esta manera para poder seguir con la indicación que nos daba Kent Beck en su libro. Decía que, había que desarrollar una funcionalidad desde lo más abajo hasta el usuario de manera vertical. 
 
 Empezamos creando la clase `Board` que tiene como atributo la clase `SecretCombination`, también hemos creado el `componente`, el `HTML` y el `CSS` correspondiente a esta clase Board. Al principio del desarrollo el componente Board sacaba sus datos de un mock, pero luego creamos el servicio para el Board y lo conectamos al Backend, para que de esta manera los datos obtenidos fueran reales. No hemos creado la clase `SecretCombination`, ya que, SecretCombination solamente lo vamos a mostrar y no vamos a hacer ningún otro tipo de gestión con él. Por eso, lo hemos creado como atributo de la clase Board que es a su vez un objeto que tiene una combinación y maxWidth.
 
-#### ProposalCombination 
+#### 5.2.2 ProposalCombination 
 Para la segunda funcionalidad, siguiendo el ejemplo del Backend decidimos usar un TDD más adaptado a nuestra aplicación, haciendo un commit por la funcionalidad completa del método.
 Para el `ProposalCombination` sí que creamos una clase aparte, ya que este no solamente se va a mostrar al usuario, sino que también lo tenemos que mandar al Backend dónde va a ser añadido a la lista del Board, y comprobado si coincide con nuestra combinación secreta. Esta clase de ProposalCombination se añadió a la clase Board como un array.
 
-#### Result
+#### 5.2.3 Result
 Para el desarrollo de la funcionalidad del Result en el Frontend, en lugar de hacer un desarrollo `outside-in` hemos hecho `inside-out`. 
 
 Para ello, empezamos desarrollando los test y el código para el funcionamiento de obtener el resultado y de añadir una ProposalCombination en el `BoardService`. La segunda parte de nuestra aplicación front, eran los componentes que se encargaban de recoger los datos y mostrarlos en el HTML. Por eso, primero nos centramos en recoger el resultado y mostrarlo en el `ProposalCombinationComponent`. Una vez que se mostraba bien el objeto que habíamos recuperado, hicimos que ese objeto volviese al Board principal en el componente `BoardComponent`.
 
 Una vez que teníamos ya conectada nuestra aplicación front con el back, implementamos los métodos encargados de revisar si el juego se había terminado, y llamar al backend en tal caso, para empezar un nuevo juego con un nuevo Board.
 
-### Aplicación final 
+### 5.3 Aplicación final 
 La aplicación está compuesta por dos partes, el `frontend` y el `backend`. El backend está compuesto por cuatro componentes, el `Board`, el `SecretCombination`, el `ProposalCombination` y el `Result`. Y el frontend está compuesto por dos componentes el `BoardComponent` y el `ProposalCombinationComponent`. 
 
 El backend se encarga de generar una combinación secreta y guardarla en el tablero. Luego el usuario para adivinar esa combinación introduce una propuesta, al comparar estas dos combinaciones se crea un resultado, tanto el resultado como la propuesta del usuario se guardan en el tablero hasta el número máximo de intentos permitidos. Una vez que una partida ha terminado, ya sea porque el usuario al conseguido adivinar la combinación secreta, o que ha alcanzado el número máximo de intentos permitidos, el usuario puede crear una nueva partida. La creación de esta nueva partida consiste en, crear una nueva combinación secreta y de restablecer a cero el número de intentos, las propuestas y las respuestas.
@@ -352,7 +389,8 @@ Pantalla resultado
 ![ Pantalla final](Documentation/Pantalla4.PNG)
 Pantalla final
 
-## Conclusiones generales
+## 6. Conclusiones
+### 6.1 Conclusiones generales
 Haciendo el desarrollo con TDD, nos hemos dado cuenta de que hay bastantes lagunas respeto a la forma de hacer el desarrollo. En `primer` lugar, no está muy claro qué tipo de tests tienen que ser los que prueben nuestro código, tampoco está claro qué parte del código debe ser probado. ¿Tenemos que probar todo el código y todos los métodos (get, set, negocio), o podemos no probar los métodos simples de gets y los sets? Tampoco deja claro qué hacer en caso de que escribamos código que no puede ser probado(CSS, HTML…), ¿tenemos que seguir haciendo TDD para escribir esa parte del código o podemos no hacerlo?
 
 En `segundo` lugar, hemos visto que el TDD está muy orientado a las personas con bastante experiencia escribiendo código. Ya que, empezar a escribir el código sin tener un diseño previo no es nada fácil, a no ser que tengas bastante experiencia. Y que solamente con saber los requisitos seas capaz de diseñar en tu mente, cómo quedaría la estructura de las clases de la aplicación. 
@@ -365,10 +403,10 @@ En estos casos, lo que podríamos hacer es, o bien seguir desarrollando el test 
 Tampoco deja claro qué hacer en caso de que necesitemos el código de otra clase y ese código todavía no está implementado. En el libro se indica que, si estamos desarrollando la clase `a` y necesitamos el código de la clase `b`, entonces la clase `b` deberá ser probada en la clase `a`. Pero no se indican el orden en el que se tienen que desarrollar, se da suponer que primero se desarrollaría la clase `b` sin probar y luego se usaría ese código en la clase `a` probando así las dos clases. Pero de esa manera no estaríamos haciendo el TDD, porque en TDD se escribe antes la prueba que el propio código. Tenemos que hacerlo de esta manera ya que, si desarrollamos primero la clase `a` entonces no tendríamos disponible el código de la clase `b`, y tendríamos error al compilar la aplicación lo que no nos dejaría avanzar en el desarrollo. Pero este enfoque de desarrollar sin probar nos deja con otro problema, y es, ¿qué hacer si el código de la clase `b` que hemos implementado sin probar, falla? Tenemos que corregirlo en una iteración sin TDD o tenemos que hacerlo usando TDD y mientras probamos el código de la clase `a`. 
 
 En el `quinto` y último lugar, hacer el desarrollo TDD en cualquiera de sus dos variantes tiene sus propios inconvenientes. Si hacemos Inside-out, el inconveniente es que, al no tener un diseño previo, luego en las etapas más avanzadas podemos tener que modificar el código ya implementado y los tests correspondientes a ese código. Y haciendo el desarrollo con Outside-in, el inconveniente es que al empezar por arriba tenemos que mockear las clases de abajo. Y que, en las etapas más avanzadas de desarrollo, tengamos que modificar algunos de estos mocks, y el código o los tests asociados a este fallen, ya que no los hemos adaptado a los nuevos mocks. Y también tenemos que, cuando hayamos creado ya el objeto, tenemos que volver a modificar todos los test y el código haciendo que éste usé el objeto creado.
-### Conclusiones personales
+### 6.2 Conclusiones personales
 Este proyecto ha supuesto un aprendizaje constante tanto en la parte de aprender lenguajes, como en TDD. También me ha servido para profundizar en conocimientos que ya poseía, como de Angular y TypeScript.
 Por último, me ha servido para darme cuenta de que el TDD, no es apto para todos los proyectos. Porque en los proyectos pequeños no hace falta hacer TDD, ya que en lugar de ayudarnos lo que hace es que el tardemos más en desarrollar el código que si lo hiciéramos sin TDD. Esto es así porque, en los proyectos pequeños no tenemos una lógica de negocio muy complicada, que necesite tener una cobertura de test tan alta como la que nos ofrece el TDD. En los proyectos grandes donde tenemos una lógica de negocio mayor, sí que el TDD nos ayudaría muchísimo a mantener un código limpio y las funcionalidades probadas. De esta manera, cuando el código necesite ser modificado o ampliado, podremos detectar más fácilmente si el nuevo código ha hecho cambiar algunas en las funcionalidades ya implementadas.
-### Bibliografía 
+### 7. Bibliografía 
 
 Outside-In or Inside-Out: https://itnext.io/outside-in-or-inside-out-london-or-chicago-school-part-1-greenfield-projects-d324390a0dbd
 
