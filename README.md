@@ -64,7 +64,6 @@ Para esto, se usa un ciclo de desarrollo que consta de 3 partes principales:
 - **Refactor**: Por último, tras conseguir que nuestro código pase el test, debemos examinarlo para ver si hay alguna mejora que podamos realizar.
  
 ![Red-Green-Refactor](Documentation/Red-Green-Refactor.PNG)
- 
 *<center>Ciclo Red-Green-Refactor [3].</center>*
  
 La estructura cíclica del test-driven development garantiza que el código se transmita al sistema productivo únicamente cuando se hayan cumplido todos los requisitos del software. En otras palabras, los elementos del código se refactorizan y se vuelven a poner a prueba tantas veces como sea necesario, hasta que el test ya no dé errores. Esta estrategia permite enriquecer el software poco a poco con nuevas funciones, redactando nuevo código fuente tras cada test superado. Por este motivo, el TDD se considera un modelo incremental de desarrollo de software.
@@ -229,13 +228,13 @@ Para la primera funcionalidad hicimos el TDD siguiendo el libro de Kent Beck, pe
 ![maxWigth1](Documentation/maxWigth1.PNG)
 *<center>Imagen del primer test que va a fallar</center>*
  
-y el código mínimo para que ese test pase, luego tendríamos que hacer una siguiente iteración donde creamos el código para devolver un valor nulo, como se puede ver en la siguiente imagen
+y el código mínimo para que ese test pase. Luego tendríamos que hacer una siguiente iteración donde creamos el código para devolver un valor nulo, como se puede ver en la siguiente imagen:
  
 ![maxWigth2](Documentation/maxWigth2.PNG)
 *<center>Imagen del código mínimo para pasar el test</center>*
  
-y una última iteración dónde ya devolvemos el valor que se ha decidido de antemano.
- 
+Una última iteración dónde ya devolvemos el valor que se ha decidido de antemano. En las siguientes imagen podemos ver el test final y su código correspondiente: 
+
 ![maxWigth3](Documentation/maxWigth3.PNG)
  *<center>Imagen del test final</center>*
 
