@@ -342,7 +342,7 @@ Empezamos desarrollando los tests y el código para el funcionamiento de obtener
 Una vez que tenemos conectada nuestra aplicación frontend con el backend, implementamos los métodos encargados de revisar si el juego se había terminado, y en tal caso, llamar al backend para empezar un nuevo juego con un nuevo Board.
  
 ### 5.3 Aplicación final
-La aplicación tiene dos partes, el `frontend` y el `backend`. El backend está compuesto por cuatro componentes, el `Board`, el `SecretCombination`, el `ProposalCombination` y el `Result`. Y el frontend está compuesto por dos componentes el `BoardComponent` y el `ProposalCombinationComponent`.
+La aplicación tiene dos partes, el `frontend` y el `backend`. El backend está compuesto por cuatro entidades principales, el `Board`, el `SecretCombination`, el `ProposalCombination` y el `Result`. Y el frontend está compuesto por dos componentes el `BoardComponent` y el `ProposalCombinationComponent`.
  
 El backend se encarga de generar una combinación secreta y guardarla en el tablero. Luego el usuario para adivinar esa combinación introduce una propuesta, al comparar estas dos combinaciones se crea un resultado, tanto el resultado como la propuesta del usuario se guardan en el tablero hasta el número máximo de intentos permitidos. Una vez que una partida ha terminado, ya sea porque el usuario ha conseguido adivinar la combinación secreta, o que ha alcanzado el número máximo de intentos permitidos, el usuario puede crear una nueva partida. La creación de esta nueva partida consiste en crear una nueva combinación secreta y restablecer a cero el número de intentos, las propuestas y las respuestas.
  
