@@ -73,7 +73,7 @@ El concepto TDD no es nada nuevo, fue desarrollado por Kent Beck a finales de la
 Complicaciones que puede haber:
 - Hay que pensar en lo que se quiere conseguir con el código y en cómo protegerlo para que no se rompa (probarlo).
 - Tiene una curva de aprendizaje más pronunciada y es necesario aprender cómo refactorizar el código para mantenerlo limpio.
-- Si el código existente que no está bajo prueba complica el mantenimiento y las nuevas incorporaciones. Hay que refactorizar el código existente para ponerlo bajo prueba.
+- Si el código existente que no está bajo prueba complica el mantenimiento y las nuevas incorporaciones. Hay que refactorizar el código existente para ponerlo bajo prueba. LUIS
  
 ## 3.2 Las distintas corrientes del TDD:
 En el primer libro, Kent Beck, nos da unas series de pautas que podemos usar para hacer un mejor código y TDD. Entre ellas nos dice que, tenemos que hacer una lista de las pruebas que vamos a hacer ahora y otra de las futuras pruebas, porque él dice que no podemos abarcar todo el programa en una misma iteración. Un programa basado en las pruebas puede parecer estar escrito tanto de arriba abajo, porque se ha comenzado con prueba que representa un caso simple, como de abajo a arriba, porque se ha comenzado con pequeñas partes y luego se le van agregando partes más grandes.
