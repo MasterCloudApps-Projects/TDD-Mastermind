@@ -102,7 +102,7 @@ Esto demuestra que cuando se usa **Inside-out**, no se requiere una comprensión
 | Fácil para comenzar, ya que no tenemos que preocuparnos por las conexiones entre las distintas clases.              | Aunque sea fácil empezar, no es tan fácil decidir por dónde empezar. Si tenemos muchas entidades no tendríamos claro por donde se debería empezar el desarrollo, aunque haya que empezar las entidades en las primeras iteraciones no tenemos porque crearlas.    |
 | Complejidad incremental, fácil de seguir.                                      | Cuando se hagan cambios en las capas bajas, eso puede suponer que en las capas superiores también hay que modificar el código y los tests. |
 | Puede probar la integración entre las clases desde las primeras etapas de desarrollo.  | Puede conducir a un código algorítmicamente poco confiable (errores, básicamente)[6]. |
-|                                                                                |Cada refactorización hacia abajo y hacia atrás reducirá involuntariamente la calidad del código, y altera los tiempos de entrega y los costes de desarrollo.    |
+|                                                                                |Cada refactorización hacia abajo y hacia atrás reducirá involuntariamente la calidad del código, y altera los tiempos de entrega y los costes de desarrollo.LUIS    |
  
 *<center>Tabla comparativa de lo bueno y lo malo de **Inside-out** [6]</center>*
                               
