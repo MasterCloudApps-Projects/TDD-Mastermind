@@ -146,7 +146,7 @@ Los equipos se seleccionaron en función de sus diferentes características:
  
 Tras finalizar los experimentos, hallazgos fueron realmente interesantes:
 - Los equipos de TDD estaban creando software con menos errores.
-    - Un equipo de `IBM` hizo un 40% menos de defectos que el equipo que no usaba TDD.
+    - Un equipo de `IBM` tuvo un 40% menos de defectos que el equipo que no usaba TDD.
     - Otro equipo `Microsoft` hizo entre 60–90% menos defectos que los becarios que no usaban TDD.
 - Los equipos de TDD dedicaron entre un 15% y un 33% más de tiempo a escribir el código.
 - El aspecto importante para mejorar la calidad fue la creación de la infraestructura de prueba automatizada, pruebas unitarias, de integración y funcionales.
