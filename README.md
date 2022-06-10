@@ -63,7 +63,7 @@ Para esto, se usa un ciclo de desarrollo que consta de 3 partes principales:
 - **Green**: Una vez creado el test que falla, implementaremos el mínimo código necesario para que el test pase
 - **Refactor**: Por último, tras conseguir que nuestro código pase el test, debemos examinarlo para ver si hay alguna mejora que podamos realizar.
  
-![Red-Green-Refactor](Documentation/Red-Green-Refactor.PNG)
+![Red-Green-Refactor](docs/diagramas/Red-Green-Refactor.PNG)
 *<center>Ciclo Red-Green-Refactor [3].</center>*
  
 La estructura cíclica del test-driven development garantiza que el código se transmita al sistema productivo únicamente cuando se hayan cumplido todos los requisitos del software. En otras palabras, los elementos del código se refactorizan y se vuelven a poner a prueba tantas veces como sea necesario, hasta que el test ya no dé errores. Esta estrategia permite enriquecer el software poco a poco con nuevas funciones, redactando nuevo código fuente tras cada test superado. Por este motivo, el TDD se considera un modelo incremental de desarrollo de software.
@@ -122,7 +122,7 @@ También es importante remarcar el uso de la técnica del doble bucle [7]:
 - En el bucle interno, que representa la metodología de trabajo TDD («Red-Green-Refactor»), implementaremos la lógica de nuestra solución.
 - Realizaremos las iteraciones necesarias de este bucle interno hasta conseguir pasar el test de aceptación.
  
-![ outside-in_TDD_bucle](Documentation/outside-in_TDD_bucle.png)
+![ outside-in_TDD_bucle](docs/diagramas/outside-in_TDD_bucle.png)
  
 *<center>**Outside-in** doble bucle [8].</center>*
  
@@ -204,17 +204,17 @@ Nada más empezar el desarrollo incumplimos una de las cosas que nos dice en el 
  
 Otro de los problemas de no diseñar fue que, no sabíamos por dónde empezar, aunque se diga que hay que empezar desde lo más abajo, eso es muy ambiguo. Porque cómo no tienes un diseño, puedes empezar desde lo que sería más abajo de verdad que serían las entidades. La siguiente imagen muestra como sería de arquitectura si empezamos desde las entidades:
  
-![Entity-Service-Controller-User](Documentation/Entity-Service-Controller-User.PNG)
+![Entity-Service-Controller-User](docs/diagramas/Entity-Service-Controller-User.PNG)
 *<center>Imagen de la arquitectura si empezamos desde `Entity`</center>*
  
 O también puedes empezar desde los servicios ya que no tiene por qué haber una entidad. La siguiente imagen muestra como sería de arquitectura si empezamos desde las servicios:
  
-![Service-Controller-User](Documentation/Service-Controller-User.PNG)
+![Service-Controller-User](docs/diagramas/Service-Controller-User.PNG)
 *<center>Imagen de la arquitectura si empezamos desde `Service`</center>*
  
 También puedes empezar directamente desde el controlador, porque hasta que no tengas una segunda funcionalidad que desarrollar, no necesitas un servicio o una entidad. El controlador puede tener directamente el código de la primera funcionalidad, y no hacer ninguna llamada a una clase de más abajo. La siguiente imagen muestra como sería de arquitectura si empezamos desde el controller:
  
-![Controller-User](Documentation/Controller-User.PNG)
+![Controller-User](docs/diagramas/Controller-User.PNG)
 *<center>Imagen de la arquitectura si empezamos directamente desde `Controller`</center>*
  
 Las tres opciones serían igual de válidas, porque si empezamos desde el controlador, en la primera funcionalidad no necesitamos crear ningún tipo de objeto concreto para devolverlo, directamente podríamos devolver la respuesta creando el objeto básico en el mismo controlador. Para la opción de crear un servicio para devolver el objeto, podría tener exactamente la misma funcionalidad que el controlador sin tener que crear ningún tipo entidad concreta, se podría mapear y crear el objeto directamente en el Service y devolverlo. No sería necesario crear una entidad, hasta que haya que hacer otra funcionalidad y devolver el mismo tipo de objeto, porque si no creamos una entidad tendríamos mucho código duplicado. Incluso teniendo código duplicado, no hay una necesidad real de crear una entidad hasta que no tengamos que cruzar esa entidad con otra para crear un objeto en conjunto. Por eso, el no tener un diseño previo puede complicar mucho el desarrollo si no has empezado desde el sitio correcto.
@@ -224,20 +224,20 @@ Debido a esto de no diseñar tuvimos un problema, en la segunda iteración hacie
 #### 4.1.1 Técnicas de desarrollo
 Para la primera funcionalidad hicimos el TDD siguiendo el libro de Kent Beck, pero vimos que para desarrollos tan pequeños como el nuestro había algunos pasos intermedios que eran innecesarios. El TDD puro está más orientado a proyectos complejos donde la lógica de negocio sea compleja, para proyectos pequeños hacer este tipo TDD puede ser un inconveniente, ya que en lugar de ayudar puede hacer que perdamos el tiempo en pequeñas interacciones, tales como en las que tengamos que devolver un valor predefinido. En estos casos, hacer muchas iteraciones nos hace perder el tiempo. Ya que, tendríamos que hacer primero una interacción dónde creamos el test que va a fallar, tal y como se muestra en la siguiente imagen
  
-![maxWigth1](Documentation/maxWigth1.PNG)
+![maxWigth1](docs/diagramas/maxWigth1.PNG)
 *<center>Imagen del primer test que va a fallar</center>*
  
 y el código mínimo para que ese test pase. Luego tendríamos que hacer una siguiente iteración donde creamos el código para devolver un valor nulo, como se puede ver en la siguiente imagen:
  
-![maxWigth2](Documentation/maxWigth2.PNG)
+![maxWigth2](docs/diagramas/maxWigth2.PNG)
 *<center>Imagen del código mínimo para pasar el test</center>*
  
 Una última iteración dónde ya devolvemos el valor que se ha decidido de antemano. En las siguientes imagen podemos ver el test final y su código correspondiente:
 
-![maxWigth3](Documentation/maxWigth3.PNG)
+![maxWigth3](docs/diagramas/maxWigth3.PNG)
  *<center>Imagen del test final</center>*
 
-![maxWigth4](Documentation/maxWigth4.PNG)
+![maxWigth4](docs/diagramas/maxWigth4.PNG)
  *<center>Imagen del código final para pasar el test</center>*
 
 Por eso, en estos casos hacer el TDD puro nos puede hacer perder tiempo y es más adecuado no hacer el TDD.
@@ -265,7 +265,7 @@ Para el desarrollo del Frontend al tener distintas funcionalidades, hemos decidi
 #### 4.2.1 Técnicas de desarrollo
 Empezamos el desarrollo con el SecretCombination, que consiste en mostrar una combinación secreta que recuperamos desde el backend y lo mostramos al usuario. Para esta funcionalidad usamos el TDD puro, haciendo un commit por cada test y su código correspondiente. Al tratarse del Frontend, incumplimos otra de las normas que tenemos para hacer desarrollos con TDD, la norma del código mínimo, ya que para pasar el test tenemos que implementar código tanto en los componentes como en los archivos HTML y CSS. Como se muestra en la siguiente imagen.
  
-![Front-initial-commit](Documentation/Front-initial-commit.PNG)
+![Front-initial-commit](docs/diagramas/Front-initial-commit.PNG)
   *<center>Imagen del commit con test y su código mínimo en el componente y HTML</center>*
 
 Para el desarrollo del frontend hemos usado `Angular` con `TypeScript`, para la cobertura de los tests `Karma` y para el testing los componentes propios de `Angular`. Haciendo el desarrollo del frontend con el **Outside-in**, da la sensación de que avanzamos bastante, ya que, aunque se haga el código mínimo para pasar el test, ese código incluye elementos tantos del HTML como del componente. Por eso, vamos avanzando más de cara al usuario que si hacemos un desarrollo basado en **Inside-out**, dónde la mayoría del código que se implementa, el usuario no lo llega a ver. Aunque el tiempo que se tarda en implementar este código mínimo es bastante mayor, porque hay que implementar tanto el código cómo los datos mokeados que vamos a usar hasta que podamos conectar nuestra aplicación con el backend.
@@ -296,7 +296,7 @@ Para el desarrollo de `Frontend` hemos usado `Angular Material` con `TypeScript`
 Para la primera funcionalidad decidimos usar el TDD puro con la técnica de **Inside-out**.
 La funcionalidad que desarrollamos fue la de SecretCombination, empezamos creando el enumerado `Color`, esté enumerado tiene todos los colores que vamos a mostrar y con los que vamos a jugar nuestro juego de `Mastermind`. La clase que creamos después del enumerado `Color`, fue la clase `Combination` que tiene un array de uno a cuatro colores y la funcionalidad de devolver este array. La siguiente clase fue la de `SecretCombination` que extiende la clase `Combination`, y por ahora solamente tiene una funcionalidad y es tener una combinación secreta aleatoria de cuatro colores. Después de `SecretCombination`, creamos la clase `Board`, este Board por ahora tiene SecretCombination y la funcionalidad de devolverlo. Al final, creamos el servicio y el controlador para la clase de Board. La arquitectura de este punto se muestra en la siguiente imagen:
  
-![Arquitectura1](Documentation/Arquitectura1.PNG)
+![Arquitectura1](docs/diagramas/Arquitectura1.PNG)
  *<center>Imagen de la arquitectura después de la primera iteración de `SecretCombination`</center>*
 
 Hemos decidido seguir este camino porque es el que nos ha parecido más correcto de cara a los próximos desarrollos. Pero este no es el único camino que podíamos haber seguido, podríamos haber empezado directamente por el `SecretCombination` y que devolviera los colores sin un enumerado. Ya que hasta este punto no tenemos la necesidad de crear un enumerado de colores o la clase Combination, pero decidimos crear estas clases ya que, sabemos que en el futuro vamos a tener otra clase `ProposalCombination` qué va a usar la clase combination, por eso decidimos crearlos de antemano para no tener que volver a modificar y adaptar el código. En primera funcionalidad, también podríamos no haber creado la clase `Board`  y devolver directamente el `SecretCombination` usando el `Service` y el `Controlador`, pero por la misma razón de no volver a modificar el código y que lo vamos a necesitar en el futuro decidimos crear esta clase.
@@ -305,7 +305,7 @@ Hemos decidido seguir este camino porque es el que nos ha parecido más correcto
 Para la segunda funcionalidad usamos un TDD más adaptado a nuestra aplicación, donde no hacíamos un commit después de cada pequeña funcionalidad, sino después de haber desarrollado toda la funcionalidad de un método al completo.
 La segunda funcionalidad que decidimos desarrollar fue la de `ProposalCombination`, esta clase extiende a la clase `Combination` y devuelve la lista de colores que tiene. Luego modificamos la clase `Board`, para añadirle otros dos nuevos atributos, un `array` de `ProposalCombination` y el `actualIntent`. También hemos añadido las funcionalidades de obtener estos dos atributos, y de poder añadir una combinación de colores indicada por el usuario, al array de `ProposalCombination` del Board.
  
-![Arquitectura2](Documentation/Arquitectura2.PNG)
+![Arquitectura2](docs/diagramas/Arquitectura2.PNG)
 *<center>Imagen de la arquitectura tras añadir `ProposalCombination`</center>*
 
 #### 5.1.3 Result
@@ -319,7 +319,7 @@ Por último, empezamos desde el controlador a crear el método encargado de empe
  
 Haciendo el desarrollo **Outside-in** nos hemos dado cuenta de que aparte de mockear los datos, hay que refactorizar y modificar los tests bastante más qué el **Inside-out**. Es casi el doble de veces que tenemos que modificar los tests, ya que la primera vez tenemos que estar mockeando los datos hasta que lleguemos a crear el objeto que vamos a devolver. En las siguientes iteraciones, tenemos que cambiar el código y los tests para devolver ese objeto creado, por tanto, tenemos que volver a modificar casi todos los tests, hasta el nivel más bajo. En la siguiente imagen mostramos la arquitectura final de nuestro backend
  
-![Arquitectura3](Documentation/Arquitectura3.PNG)
+![Arquitectura3](docs/diagramas/Arquitectura3.PNG)
  *<center>Imagen de la arquitectura final</center>*
 
 ### 5.2 Frontend
@@ -347,16 +347,16 @@ El backend se encarga de generar una combinación secreta y guardarla en el tabl
  
 En el frontend, el usuario puede ver el tablero con las propuestas y los resultados de esas propuestas. También puede añadir una propuesta eligiendo los distintos posibles colores. Después de haber añadido una propuesta, si el usuario ha acertado o ha perdido la partida, ya que ha alcanzado el número máximo de intentos, se muestra un pop-up con la combinación secreta indicando si ha ganado o ha perdido. Para ver si el usuario está cerca de adivinar la combinación secreta, en el resultado se muestran dos colores, el blanco y el negro. Se muestra el color blanco, por el número de colores acertados en posiciones equivocadas, y el color negro, indica el número de posiciones y colores acertados siendo la suma máxima de estos dos, 4. En las siguientes imágenes se muestran las distintas pantallas de nuestra aplicación:  
  
-![ Pantalla Inicial](Documentation/Pantalla1.PNG)
+![ Pantalla Inicial](docs/diagramas/Pantalla1.PNG)
 *<center>Pantalla Inicial</center>*
  
-![ Pantalla propuesta](Documentation/Pantalla2.PNG)
+![ Pantalla propuesta](docs/diagramas/Pantalla2.PNG)
 *<center>Pantalla propuesta</center>*
  
-![ Pantalla resultado](Documentation/Pantalla3.PNG)
+![ Pantalla resultado](docs/diagramas/Pantalla3.PNG)
 *<center>Pantalla resultado</center>*
  
-![ Pantalla final](Documentation/Pantalla4.PNG)
+![ Pantalla final](docs/diagramas/Pantalla4.PNG)
 *<center>Pantalla final</center>*
  
 ## 6. Conclusiones
