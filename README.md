@@ -1,4 +1,4 @@
-# Estudio de TDD aplicado en el desarrollo al Mastermind
+# Estudio de TDD aplicado en el desarrollo del Mastermind
  
 ## Índice
 -   [1. Resumen](#1-resumen)
