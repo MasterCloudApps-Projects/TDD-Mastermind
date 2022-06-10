@@ -78,13 +78,13 @@ Complicaciones que puede haber:
 En el primer libro, Kent Beck, nos da unas series de pautas que podemos usar para hacer un mejor código y TDD. Entre ellas nos dice que, tenemos que hacer una lista de las pruebas que vamos a hacer ahora y otra de las futuras pruebas, porque él dice que no podemos abarcar todo el programa en una misma iteración. Un programa basado en las pruebas puede parecer estar escrito tanto de arriba abajo, porque se ha comenzado con prueba que representa un caso simple, como de abajo a arriba, porque se ha comenzado con pequeñas partes y luego se le van agregando partes más grandes.
  
 Según Kent Beck ninguna de las dos describe realmente cómo es el proceso. Porque no podemos definir el proceso como algo vertical, si tuviéramos que hacer en todo caso sería algo como de lo conocido a lo desconocido. Por eso, no tenemos que abarcar todo el programa de una vez, sino tenemos que centrarnos en una funcionalidad haciendo pequeñas iteraciones.
-Kent Beck en su libro no habla del **Outside-in**, porque no dice nada sobre los mocks, pero sí que habla del **Inside-out** pero no es puro, sino que son pequeñas iteraciones verticales de abajo-arriba desarrollando pequeñas pequeñas funcionalidades y no todas a la vez. 
+Kent Beck en su libro no habla del **Outside-in**, porque no dice nada sobre los mocks, pero sí que habla del **Inside-out** pero no es puro, sino que son pequeñas iteraciones verticales de abajo-arriba desarrollando pequeñas pequeñas funcionalidades y no todas a la vez.
 
 ### 3.2.1 Inside-Out
 La escuela clásica (**Inside-Out**) se distingue por centrarse en la verificación del estado de los objetos, siendo por ello imprescindible que el contexto de los tests siempre deba estar formado por `objetos reales`, configurados previamente. Para la correcta generación de estos contextos se pueden crear clases que nos ayuden.
 La existencia previa de estos `objetos reales`, implica que el diseño de nuestra solución irá creciendo poco a poco desde la base hasta la funcionalidad final. De ahí el sobrenombre de técnica **Inside-out**.
  
-Aunque todos los desarrolladores deben tener en cuenta el panorama general, **Inside-out** permite que el desarrollador se concentre en una cosa a la vez. Cada entidad (es decir, un módulo individual o una clase única) es creada en el trascurso del desarrollo de la aplicación. En cierto sentido, las entidades individuales podrían considerarse inútiles hasta que no trabajen juntas, y conectar el sistema en una etapa tardía puede constituir un riesgo mayor. Por otro lado, centrarse en una entidad a la vez ayuda a paralelizar el trabajo de desarrollo dentro de un equipo.
+Aunque todos los desarrolladores deben tener en cuenta el panorama general, **Inside-out** permite que el desarrollador se concentre en una cosa a la vez. Cada entidad (es decir, un módulo individual o una clase única) es creada en el transcurso del desarrollo de la aplicación. En cierto sentido, las entidades individuales podrían considerarse inútiles hasta que no trabajen juntas, y conectar el sistema en una etapa tardía puede constituir un riesgo mayor. Por otro lado, centrarse en una entidad a la vez ayuda a paralelizar el trabajo de desarrollo dentro de un equipo.
  
 Tomando el juego Tic-Tac-Toe como ejemplo, una solución podría incluir al menos tres entidades: un tablero, las notificaciones y un juego [4].
  
@@ -101,7 +101,7 @@ Esto demuestra que cuando se usa **Inside-out**, no se requiere una comprensión
 | Fácil para comenzar, ya que no tenemos que preocuparnos por las conexiones entre las distintas clases.              | Aunque sea fácil empezar, no es tan fácil decidir por dónde empezar. Si tenemos muchas entidades no tendríamos claro por donde se debería empezar el desarrollo, aunque haya que empezar las entidades en las primeras iteraciones no tenemos porque crearlas.    |
 | Complejidad incremental, fácil de seguir.                                      | Cuando se hagan cambios en las capas bajas, eso puede suponer que en las capas superiores también hay que modificar el código y los tests. |
 | Puede probar la integración entre las clases desde las primeras etapas de desarrollo.  | Puede conducir a un código algorítmicamente poco confiable (errores, básicamente)[6]. |
-|                                                                                |CCada refactorización hacia código anteriormente implementado aumenta los tiempos de entrega y los costes de desarrollo.        |
+|                                                                                |Cada refactorización hacía código anteriormente implementado aumenta los tiempos de entrega y los costes de desarrollo.        |
  
 *<center>Tabla comparativa de lo bueno y lo malo de **Inside-out** [6]</center>*
                               
@@ -189,7 +189,7 @@ Después de los experimentos por pares, se preguntó a los desarrolladores sobre
 ## 3.4 Resumen: ¿Vale la pena TDD?
 Tras los experimentos de **Microsoft** y **IBM** [9] indican que, TDD es aplicable en varios dominios y puede reducir significativamente los defectos de desarrollado software, sin una reducción significativa de la productividad del equipo de desarrollo. Además, un aspecto importante de TDD es la creación de activos de prueba: unidad, funcional y pruebas de integración. Los lanzamientos futuros de estos productos, a medida que continúen usando TDD, también experimentarán bajas densidades de defectos debido al uso de estos activos de prueba.
  
-Tras los **experimentos por pares** [10], se hicieron encuestas a los desarrolladores para ver lo que pensaba del TDD. En promedio, el **80%** de los desarrolladores profesionales sostuvieron que TDD fue un enfoque efectivo y el **78%** creía que el enfoque mejora la productividad de los programadores. 
+Tras los **experimentos por pares** [10], se hicieron encuestas a los desarrolladores para ver lo que pensaba del TDD. En promedio, el **80%** de los desarrolladores profesionales sostuvieron que TDD fue un enfoque efectivo y el **78%** creía que el enfoque mejora la productividad de los programadores.
  
 Viendo los resultados obtenidos en los experimentos podemos decir que el TDD, ayuda al desarrollo, a la creación de un código limpio y después ayuda al mantenimiento y la incorporación de nuevas funcionalidades. Pero estos resultados obtenidos pueden cambiar dependiendo del proyecto y de los desarrolladores, por tanto, no podemos asegurar que el TDD vaya a funcionar en todos los casos. Por eso, antes de aplicar TDD lo recomendable sería revisar si de verdad merece la pena usar el TDD en ese proyecto.
  
@@ -207,7 +207,7 @@ Otro de los problemas de no diseñar fue que, no sabíamos por dónde empezar, a
 ![Entity-Service-Controller-User](Documentation/Entity-Service-Controller-User.PNG)
 *<center>Imagen de la arquitectura si empezamos desde `Entity`</center>*
  
-O también puedes empezar desde los servicios ya que no tiene por qué haber una entidad. La siguiente imagen muestra como sería de arquitectura si empezamos desde las servicios: 
+O también puedes empezar desde los servicios ya que no tiene por qué haber una entidad. La siguiente imagen muestra como sería de arquitectura si empezamos desde las servicios:
  
 ![Service-Controller-User](Documentation/Service-Controller-User.PNG)
 *<center>Imagen de la arquitectura si empezamos desde `Service`</center>*
@@ -232,7 +232,7 @@ y el código mínimo para que ese test pase. Luego tendríamos que hacer una sig
 ![maxWigth2](Documentation/maxWigth2.PNG)
 *<center>Imagen del código mínimo para pasar el test</center>*
  
-Una última iteración dónde ya devolvemos el valor que se ha decidido de antemano. En las siguientes imagen podemos ver el test final y su código correspondiente: 
+Una última iteración dónde ya devolvemos el valor que se ha decidido de antemano. En las siguientes imagen podemos ver el test final y su código correspondiente:
 
 ![maxWigth3](Documentation/maxWigth3.PNG)
  *<center>Imagen del test final</center>*
@@ -276,7 +276,7 @@ En la tercera parte decidimos cambiar del enfoque de **Outside-in** a uno de **I
  
 Por eso, empezamos creando un método que nos devolviera el resultado, pero los datos que nos devolvía fueron mockeados hasta que conectamos nuestra aplicación con el backend. Luego creamos el objeto Result e hicimos que ese método devolviese el objeto. Una vez que terminamos el funcionamiento de obtener el resultado, la siguiente funcionalidad que decidimos cambiar fue la de añadir una `ProposalCombination` y obtener el resultado. Al cambiar esta funcionalidad, nos dimos cuenta de qué habían otros test estaban fallando y tuvimos que cambiarlos y adaptarlos al nuevo código. Al cambiar el método en el `BoardService`, no solamente afectó a los tests sino también al método encargado de añadir la propuesta en el `ProposalComponent`. Pero en esta iteración, decidimos cambiar el mínimo de código para evitar errores de compilación. Al hacer esto, vimos que la funcionalidad de nuestra aplicación se vio afectada ya que no habíamos adaptado el código a lo que nos venía del `BoardService`. Fue en la siguiente iteración, donde decidimos añadir nuevos tests para corregir el funcionamiento del `ProposalComponent`.
  
-Después de esto, la siguiente funcionalidad que empezamos a desarrollar desde el `BoardService`, era la de empezar un nuevo juego. Para ello, al principio devolvemos un mock de `Board`, y luego conectamos esta funcionalidad con el backend para obtener un nuevo Board y quitar el mock. Después de esto, añadimos nuevos test y código en BoardComponent para ver si el juego se ha terminado o no, y en caso de que sí haya terminado el juego, hacer la llamada al backend para empezar un nuevo juego. 
+Después de esto, la siguiente funcionalidad que empezamos a desarrollar desde el `BoardService`, era la de empezar un nuevo juego. Para ello, al principio devolvemos un mock de `Board`, y luego conectamos esta funcionalidad con el backend para obtener un nuevo Board y quitar el mock. Después de esto, añadimos nuevos test y código en BoardComponent para ver si el juego se ha terminado o no, y en caso de que sí haya terminado el juego, hacer la llamada al backend para empezar un nuevo juego.
  
 #### 4.2.2 Las dudas del frontend
 Las dudas que nos han surgido haciendo este desarrollo de la parte de Frontend son:
@@ -361,7 +361,7 @@ En el frontend, el usuario puede ver el tablero con las propuestas y los resulta
  
 ## 6. Conclusiones
 ### 6.1 Conclusiones generales
-Haciendo el desarrollo con TDD, nos hemos dado cuenta de que hay bastantes lagunas respecto a la forma de hacer el desarrollo. 
+Haciendo el desarrollo con TDD, nos hemos dado cuenta de que hay bastantes lagunas respecto a la forma de hacer el desarrollo.
 
 En `primer` lugar, no está muy claro qué tipo de tests tienen que ser los que prueben nuestro código, tampoco está claro qué parte del código debe ser probado. ¿Tenemos que probar todo el código y todos los métodos (get, set, negocio), o podemos no probar los métodos simples de gets y los sets? Tampoco deja claro qué hacer en caso de que escribamos código que no puede ser probado(CSS, HTML…), ¿tenemos que seguir haciendo TDD para escribir esa parte del código o podemos no hacerlo?
  
@@ -386,7 +386,7 @@ Por último, me ha servido para darme cuenta de que el TDD, no es apto para todo
  
 [4]`From the Inside Out or the Outside In` https://8thlight.com/blog/georgina-mcfadyen/2016/06/27/inside-out-tdd-vs-outside-in.html
 
-[5] `¿Cuáles son los principios S.O.L.I.D. ? «Single Responsability»` https://tech.tribalyte.eu/blog-solid-single-responsability#Single_responsibility_principle_8211_Principio_de_responsabilidad_unica 
+[5] `¿Cuáles son los principios S.O.L.I.D. ? «Single Responsability»` https://tech.tribalyte.eu/blog-solid-single-responsability#Single_responsibility_principle_8211_Principio_de_responsabilidad_unica
 
 [6] `Classic TDD or "London School"?` http://codemanship.co.uk/parlezuml/blog/?postid=987
  
@@ -400,4 +400,7 @@ Por último, me ha servido para darme cuenta de que el TDD, no es apto para todo
  
 [11] Boby George, Laurie Williams. An Initial Investigation of Test Driven Development in Industry. 2003. ISBN 1581136242. doi>10.1145/952532.952753.
  
+
+
+
 
