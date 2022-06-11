@@ -164,12 +164,11 @@ Tanto en el proyecto de IBM como en los de Microsoft, no hay medida homologada o
 Otro experimento [10] se llevó a cabo entre 24 desarrolladores de software experimentados que se enfrentaron en **pares**. Donde un par escribía el código usando el TDD y otro par no. Tres empresas diferentes participaron en la realización de las pruebas. Los autores del experimento prepararon 20 pruebas de caja negra para verificar los resultados. El experimento se hizo con los practicantes en su propio ambiente de trabajo. Sin embargo, hay cinco limitaciones importantes para la validez externa del experimento:
 - El tamaño de muestra fue relativamente pequeño (6 pares de TDD, 6 pares sin TDD).
 - Después de revisar los resultados del primer ensayo, se modificaron las instrucciones del experimento:
-- Los desarrolladores del grupo sin TDD debían escribir pruebas automatizadas al finalizar la implementación del código.
-- Todos los desarrolladores deben controlar los errores en condiciones.
-- No se proporcionó a ninguno de los desarrolladores los casos de pruebas de aceptación.
-A pesar de eso, solo 1 par del grupo sin TDD escribió pruebas que realmente mereciese la pena, todo esto a pesar de que se les instruyó específicamente para hacerlo.
+    - Los desarrolladores del grupo sin TDD debían escribir pruebas automatizadas al finalizar la implementación del código.
+    - Todos los desarrolladores deben controlar los errores en condiciones.
+    - No se proporcionó a ninguno de los desarrolladores los casos de pruebas de aceptación. A pesar de eso, solo 1 par del grupo sin TDD escribió pruebas que realmente mereciese la pena, todo esto a pesar de que se les instruyó específicamente para hacerlo.
 - Dos de las organizaciones de desarrolladores profesionales, utilizaron el `pair programming` como práctica en su desarrollo de día a día, y el otro grupo ya estaba familiarizado con esta práctica. Por lo tanto, aunque no se requiere en TDD, se usó `pair programming` para preparar a los desarrolladores del experimento (para evaluar la eficacia de TDD en el desarrollo de día a día). Por eso, los resultados que se obtuvieron fueron de la combinación de `TDD` con `pair programming`.
-- Cuarto, la aplicación utilizada en el proceso de evaluación fue muy pequeña (el tamaño típico del código era 200 LOC).
+- La aplicación utilizada en el proceso de evaluación fue muy pequeña (el tamaño típico del código era 200 LOC).
 - Los desarrolladores de los experimentos tenían diferentes experiencias con TDD (de novato a experto). El tercer conjunto de los desarrolladores profesionales tenía solo tres semanas de experiencia con TDD antes del experimento.
  
 Los hallazgos fueron:
